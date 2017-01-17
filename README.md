@@ -27,3 +27,9 @@ The repository will be organized into multiple categories (subject to change):
   > LayoutUI
 
 - Setup (this directory will have step-by-step instructions for setting up the raspberry pis)
+
+
+How to set up Github
+Step 1: click clone or download and copy the link onto your clip board
+Step 2: download Github for desktop (windows)
+Step 3: open it, log in and then clone the copy from dfarley1
