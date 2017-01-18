@@ -1,0 +1,13 @@
+﻿"width"= 9in
+"Height"= 18in
+"D1@Sketch1"="width"
+"D2@Sketch1"="Height"
+"D3@Sketch1"="width"/2
+"D4@Sketch1"="Height"/2
+"D7@Sketch2"="Height"/2/2
+"D8@Sketch2"=3.25
+"thick"= 0.25
+"D1@Sketch2"="thick"
+"D2@Sketch2"="thick"
+"D3@Sketch2"="thick"
+"D4@Sketch2"="thick"
