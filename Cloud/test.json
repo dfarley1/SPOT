@@ -1,16 +1,16 @@
 {
-    "location": {
-        "structure": "UCSC West Core",
-        "section": "floor 1a"
-    },
-    "spots": [{
-        "timestamp": "2017-01-19T03:22:45+00:00",
-        "license": "4AME671"
-    }, {
-        "timestamp": "2016-03-24T10:22:45+00:00",
-        "license": "5BNF782"
-    }, {
-        "timestamp": "2003-01-19T17:04:33+00:00",
-        "license": ""
-    }]
+Â Â Â Â "location": {
+Â Â Â Â Â Â Â Â "structure": "UCSC West Core",
+Â Â Â Â Â Â Â Â "section": "floor 1a"
+Â Â Â Â },
+Â Â Â Â "spots": [{
+Â Â Â Â Â Â Â Â "timestamp": "03:47:48",
+Â Â Â Â Â Â Â Â "license": "4AME671"
+Â Â Â Â }, {
+Â Â Â Â Â Â Â Â "timestamp": "19:52:30",
+Â Â Â Â Â Â Â Â "license": "5BNF782"
+Â Â Â Â }, {
+Â Â Â Â Â Â Â Â "timestamp": "02:21:16",
+Â Â Â Â Â Â Â Â "license": ""
+Â Â Â Â }]
 }
