@@ -1,0 +1,16 @@
+{
+    "location": {
+        "structure": "UCSC West Core",
+        "section": "floor 1a"
+    },
+    "spots": [{
+        "timestamp": "2017-01-19T03:22:45+00:00",
+        "license": "4AME671"
+    }, {
+        "timestamp": "2016-03-24T10:22:45+00:00",
+        "license": "5BNF782"
+    }, {
+        "timestamp": "2003-01-19T17:04:33+00:00",
+        "license": ""
+    }]
+}
