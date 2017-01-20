@@ -1,6 +1,9 @@
 #--------------------------------------------------------------------------------------------------
+#   Auth : Dave Chalco 
+#   Date : 01-19-2017
 #   Desc : A script to play around with ALPR and RaspiCam integration - 0xDC
-#   Notes: Originally ported from binding examples: doc.openalpr.com/bindings.html
+#   Notes: Skeleton code taken from: doc.openalpr.com/bindings.html
+#          See README.md for operation
 #--------------------------------------------------------------------------------------------------
 from openalpr import Alpr
 

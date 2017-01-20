@@ -1,1 +1,46 @@
-Testing...
+First, update the system
+$ sudo apt-get update
+$ sudo apt-get upgrade
+
+OpenALPR
+    + Requirements:
+        - OpenCV
+        - Tesseract-OCR
+    + Installation:
+OpenCV
+    + Installation
+        1. Download dependencies:
+           $ sudo apt-get install build-essential
+           $ sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec libavformat-dev libswscale-dev
+           $ sudo apt-get install python-dev python-numpy libtbb-dev libjpeg-dev libpng-dev libjasper-dev libdc1394-22-dev
+        2. Update LUTs
+           $ sudo apt-get update && sudo apt-get upgrade && ldconfig
+        3. Install for all users
+           $ cd ~/usr/local
+           $ git clone https://github.com/opencv/opencv.git
+           $ cd /usr/local/opencv
+           $ mkdir release
+           $ cd release
+           $ sudo cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local ..
+           $ make
+           $ sudo make install
+           $ ldconfig
+    + Running examples
+        1. Check that opencv can works for examples
+           $ pkg-config --cflags --libs opencv
+        2. Build an example
+           $ cd /usr/local/opencv/samples/cpp
+           $ g++ -ggdb `pkg-config --cflags --libs opencv` facedetect.cpp -o facedetect
+        3. Enabling RaspiCam and running the example
+           $ sudo modprobe bcm2835-v4l2
+
+Tesseract-OCR
+    + Requirements:
+        - Leptonica (v3.0+)
+    + Installation
+Leptonica
+    + Installation
+
+Support
+    + For any troubleshooting contact
+      David Chalco     (818) 599-0774
