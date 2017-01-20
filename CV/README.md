@@ -1,6 +1,7 @@
+# OpenCV and RaspiCam
 First, update the system
-$ sudo apt-get update
-$ sudo apt-get upgrade
+    $ sudo apt-get update
+    $ sudo apt-get upgrade
 
 OpenALPR
     + Requirements:
@@ -44,3 +45,4 @@ Leptonica
 Support
     + For any troubleshooting contact
       David Chalco     (818) 599-0774
+
