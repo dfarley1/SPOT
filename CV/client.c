@@ -1,6 +1,6 @@
 //-------------------------------------------------------------------------------------------------
 //  Auth: David Chalco (0xDC)
-//  Desc: The intention of this file is to transfer some file through TCP to the server
+//  Desc: The intention of this script is to transfer files through TCP to a LAN server
 //  Date: 01-22-2017
 //-------------------------------------------------------------------------------------------------
 
@@ -14,18 +14,19 @@
 int main(int argc, char *argv[]) {
     int clientSocket;
     int com_port;
+    char *fin_name;
     char *server_ip;
-    char buffer[1024];
     struct sockaddr_in serverAddr;
     socklen_t addr_size;
 
     // Verify/Parse input
-    if(argc < 3) {
-        fprintf(stderr, "Usage: ./server port# ip\n");
+    if(argc < 4) {
+        fprintf(stderr, "Usage: ./server port_number server_ip input_file\n");
         exit(1);
     } else {
-        com_port = atoi(argv[1]);
+        com_port  = atoi(argv[1]);
         server_ip = argv[2];
+        fin_name  = argv[3];
     }
 
     // Create a new socket
@@ -43,7 +44,23 @@ int main(int argc, char *argv[]) {
     addr_size = sizeof(serverAddr);
     connect(clientSocket, (struct sockaddr*)&serverAddr, addr_size);
     
+    // Prepare file descriptor
+    char fin_buf[256] = {0};
+    FILE *fin = fopen(fin_name, "r");
+    if(fin == NULL) {
+        fprintf(stderr, "ERROR: Could not open file\n");
+        exit(1);
+    }
 
+    while(fgets(fin_buf, sizeof(fin_buf), fin)) {
+        printf("%s", fin_buf);
+    }
+
+    fclose(fin);
+    //#define SEND_RECV_EXAMPLE
+    #ifdef SEND_RECV_EXAMPLE
+    char buffer[1024];
+    
     // Receive data from server
     recv(clientSocket, buffer, 1024, 0);
     fprintf(stdout, "\t[Server]: %s", buffer);
@@ -55,5 +72,7 @@ int main(int argc, char *argv[]) {
     fprintf(stdout, "\t[Client]: %s", buffer);
    
     fprintf(stdout, "\nTransfer complete. Exiting...\n");
+    #endif 
+    
     exit(0);
 }
