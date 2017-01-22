@@ -51,11 +51,20 @@ int main(int argc, char *argv[]) {
         fprintf(stderr, "ERROR: Could not open file\n");
         exit(1);
     }
-
+    // Send/Echo the contents of the file to the server
     while(fgets(fin_buf, sizeof(fin_buf), fin)) {
-        printf("%s", fin_buf);
+        // Send and echo a line
+        send(clientSocket, fin_buf, strlen(fin_buf)+1, 0);
+        fprintf(stdout, "\t[Client]: %s", fin_buf);
+        
+        // Aesthetics
+        if(fin_buf[strlen(fin_buf)] != '\n') fprintf(stdout, "\n");
+
+        // Reset the buffer
+        memset(fin_buf,0,sizeof(fin_buf));
     }
 
+    fprintf(stdout, "Transfer is complete. Exiting...\n");
     fclose(fin);
     //#define SEND_RECV_EXAMPLE
     #ifdef SEND_RECV_EXAMPLE
