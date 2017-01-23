@@ -3,6 +3,17 @@
 // Desc: The intention of this program is to receive the contents of a client file over TCP and
 //       reconstruct/save it locally
 // Date: 01-22-2017
+// Note:                                  TRANSMISSION PROTOCOL
+//                              CLIENT                               SERVER
+//                      
+//                      Packet[0] = device_ID       ---->           Save ID
+//                                .
+//                                .
+//                      Packet[i] = data[1024]      ---->         Append to file
+//                                .
+//                                .
+//                    Packet[n-1] = "END TRANSMIT"  ---->   Cues end of transmission
+//
 // TODO: Need to add options to make command more user friendly. Add output suppression 
 //       flag capability
 
