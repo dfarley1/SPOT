@@ -10,6 +10,9 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <string.h>
+#include <unistd.h>
+
+#define BUFFER_SIZE 1024
 
 int main(int argc, char *argv[]) {
     int clientSocket;
@@ -21,7 +24,7 @@ int main(int argc, char *argv[]) {
 
     // Verify/Parse input
     if(argc < 4) {
-        fprintf(stderr, "Usage: ./server port_number server_ip input_file\n");
+        fprintf(stderr, "Usage: ./client port_number server_ip input_file\n");
         exit(1);
     } else {
         com_port  = atoi(argv[1]);
@@ -45,27 +48,36 @@ int main(int argc, char *argv[]) {
     connect(clientSocket, (struct sockaddr*)&serverAddr, addr_size);
     
     // Prepare file descriptor
-    char fin_buf[256] = {0};
+    char fin_buf[BUFFER_SIZE] = {0};
     FILE *fin = fopen(fin_name, "r");
     if(fin == NULL) {
         fprintf(stderr, "ERROR: Could not open file\n");
         exit(1);
     }
+
+    int byte_count   = 0;
+    int bytes_recvd  = 0;
+    int bytes_sent   = 0;
+    
     // Send/Echo the contents of the file to the server
     while(fgets(fin_buf, sizeof(fin_buf), fin)) {
         // Send and echo a line
-        send(clientSocket, fin_buf, strlen(fin_buf)+1, 0);
+        byte_count = send(clientSocket, fin_buf, strlen(fin_buf)+1, 0);
         fprintf(stdout, "\t[Client]: %s", fin_buf);
         
         // Aesthetics
         if(fin_buf[strlen(fin_buf)] != '\n') fprintf(stdout, "\n");
+        bytes_sent += byte_count;
 
         // Reset the buffer
         memset(fin_buf,0,sizeof(fin_buf));
     }
 
-    fprintf(stdout, "Transfer is complete. Exiting...\n");
+    fprintf(stdout, "Transfer complete.\n");
+    fprintf(stdout, "\tRECVD: %d B\n\tSENT : %d\n", bytes_recvd, bytes_sent);
     fclose(fin);
+    close(clientSocket);
+
     //#define SEND_RECV_EXAMPLE
     #ifdef SEND_RECV_EXAMPLE
     char buffer[1024];
@@ -83,5 +95,6 @@ int main(int argc, char *argv[]) {
     fprintf(stdout, "\nTransfer complete. Exiting...\n");
     #endif 
     
+    fprintf(stdout, "Exiting...\n");
     exit(0);
 }
