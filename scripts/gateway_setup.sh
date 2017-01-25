@@ -1,4 +1,3 @@
-# This file will set up a Gateway
 #!/bin/bash
 # 
 # Forked from https://gist.githubusercontent.com/Lewiscowles1986/fecd4de0b45b2029c390
