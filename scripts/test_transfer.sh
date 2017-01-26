@@ -1,3 +1,4 @@
 #!/bin/bash
 
-sshpass -p "sdpsp0t2017" scp -r pi@Dalmation:~/home/pi/SPOT ~/home/pi/SPOT/Cloud/test.json
+sshpass -p 'raspberry'  scp /home/pi/SPOT/Cloud/test.json pi@10.0.0.1:~
+
