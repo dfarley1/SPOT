@@ -5,6 +5,8 @@ Cloud Info:
 2. Change permissions of the MyKeyPair.pem
   - sudo chmod 600 ~/.ssh/MyKeyPair.pem
 
+Script for setup can be found in ~/scripts/setup/aws_setup.sh
+
 command to log in to EC2 instance
    ssh -i ~/.ssh/MyKeyPair.pem ec2-user@ec2-35-167-188-247.us-west-2.compute.amazonaws.com
 
