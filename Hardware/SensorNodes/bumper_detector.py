@@ -84,14 +84,14 @@ distance = round(distance, 2)
 print "Distance:",distance,"cm"
 
 
-try:
-	while True:
-		distance = measure_average()
-		print "Distance:",distance,"cm"
-		time.sleep(1)
+# try:
+# 	while True:
+# 		distance = measure_average()
+# 		print "Distance:",distance,"cm"
+# 		time.sleep(1)
 
-	except KeyboardInterrupt:
-		GPIO.cleanup()
+# 	except KeyboardInterrupt:
+# 		GPIO.cleanup()
 
 
 
