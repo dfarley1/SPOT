@@ -1,12 +1,5 @@
 Cloud Info:
 
-1. Add MyKeyPair.pem from ~/SPOT/Cloud/MyKeyPair.pem to the ~/.ssh directory 
-  - sudo cp ~/SPOT/Cloud/MyKeyPair.pem ~/.ssh
-2. Change permissions of the MyKeyPair.pem
-  - sudo chmod 600 ~/.ssh/MyKeyPair.pem
+Use ssh key (gcloud.ppk or gcloud.pub) and connect to 'sdpspot@104.196.123.57'.
 
-Script for setup can be found in ~/scripts/setup/aws_setup.sh
-
-command to log in to EC2 instance
-   ssh -i ~/.ssh/MyKeyPair.pem ec2-user@ec2-35-167-188-247.us-west-2.compute.amazonaws.com
-
+Connect to MySQL db using 'mysql -h 104.154.44.50 -u root'.  Password is the usual.
