@@ -99,10 +99,10 @@ if os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine'):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'HOST': '/cloudsql/<your-cloudsql-connection-string>',
+            'HOST': '/cloudsql/alien-walker-157903:us-central1:myinstance',
             'NAME': 'polls',
-            'USER': '<your-database-user>',
-            'PASSWORD': '<your-database-password>',
+            'USER': 'sdpspot',
+            'PASSWORD': 'sdpsp0t2017',
         }
     }
 else:
@@ -118,8 +118,8 @@ else:
             'HOST': '127.0.0.1',
             'PORT': '3306',
             'NAME': 'polls',
-            'USER': '<your-database-user>',
-            'PASSWORD': '<your-database-password>',
+            'USER': 'sdpspot',
+            'PASSWORD': 'sdpsp0t2017',
         }
     }
 # [END db_setup]
