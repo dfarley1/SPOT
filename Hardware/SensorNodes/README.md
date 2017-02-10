@@ -2,14 +2,19 @@ This is a README for the ping sensor setup.
 
 For new raspberry pi units, the hardware must be updated. 
 
-sudo python
->>import RPi.GPIO as GPIO
->>GPIO.VERSION
->>exit
+1. sudo python
 
-If device version less than 0.54, update:
-sudo apt-get install update
-sudo apt-get install upgrade
+-- import RPi.GPIO as GPIO
+
+-- GPIO.VERSION
+
+-- exit
+
+2. If device version less than 0.54, update:
+
+-- sudo apt-get install update
+ 
+-- sudo apt-get install upgrade
 
 Reference: http://makezine.com/projects/tutorial-raspberry-pi-gpio-pins-and-python/
 
