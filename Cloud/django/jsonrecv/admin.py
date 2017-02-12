@@ -12,12 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from django.conf.urls import include, url
 from django.contrib import admin
 
-from jsonrecv.views import index 
+from .models import Question
 
-urlpatterns = [
-    url(r'^$', index),
-    url(r'^admin/', include(admin.site.urls)),
-]
+admin.site.register(Question)

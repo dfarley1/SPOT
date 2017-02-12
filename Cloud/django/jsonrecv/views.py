@@ -12,12 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from django.conf.urls import include, url
-from django.contrib import admin
+from django.http import HttpResponse
+import django
 
-from jsonrecv.views import index 
 
-urlpatterns = [
-    url(r'^$', index),
-    url(r'^admin/', include(admin.site.urls)),
-]
+def index(request):
+    print "----------- Received ------------\n"
+    print request
+    print "---------------------------------\n\n"
+    
+    
+    csrf_token = django.middleware.csrf.get_token(request)
+    print "----------- Sending ------------\n"
+    print "CSRF Token: " + csrf_token + "\n"
+    print "---------------------------------\n\n"
+    return HttpResponse("Hello, world. You're at the jsonrecv index.")
