@@ -12,12 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from django.conf.urls import include, url
-from django.contrib import admin
+# Uncomment these imports and add tests here
 
-from jsonrecv.views import index 
+# from django import http
+# from django.test import TestCase
 
-urlpatterns = [
-    url(r'^$', index),
-    url(r'^admin/', include(admin.site.urls)),
-]
+# from . import views
