@@ -17,13 +17,22 @@ import django
 
 
 def index(request):
-    print "----------- Received ------------\n"
-    print request
-    print "---------------------------------\n\n"
-    
+    if request.method == 'GET':
+        print "--------- GET: Received ----------"
+        print request.GET.lists()
+        print "----------------------------------"
+    #if request.method == 'POST':
     
     csrf_token = django.middleware.csrf.get_token(request)
     print "----------- Sending ------------\n"
     print "CSRF Token: " + csrf_token + "\n"
     print "---------------------------------\n\n"
     return HttpResponse("Hello, world. You're at the jsonrecv index.")
+
+def sensor(request):
+    if request.method == 'GET':
+        print "------ Sensor GET: Received ------"
+        print request.GET.lists()
+        print "----------------------------------"
+        
+    return HttpResponse("Hello from sensor API")
