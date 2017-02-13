@@ -23,5 +23,3 @@ iptables -t nat -A POSTROUTING -o $ADAPTER -j MASQUERADE
 iptables -A FORWARD -i $ADAPTER -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT  
 iptables -A FORWARD -i wlan0 -o $ADAPTER -j ACCEPT
 
-sh -c "iptables-save > /etc/iptables.ipv4.nat"
-echo "iptables-restore < /etc/iptables.ipv4.nat" > /lib/dhcpcd/dhcpcd-hooks/70-ipv4-nat
