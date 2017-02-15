@@ -12,8 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START vendor]
-from google.appengine.ext import vendor
+from django.contrib import admin
 
-vendor.add('lib')
-# [END vendor]
+from .models import Question
+
+admin.site.register(Question)

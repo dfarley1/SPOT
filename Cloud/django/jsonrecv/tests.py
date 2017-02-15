@@ -12,8 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START vendor]
-from google.appengine.ext import vendor
+# Uncomment these imports and add tests here
 
-vendor.add('lib')
-# [END vendor]
+# from django import http
+# from django.test import TestCase
+
+# from . import views

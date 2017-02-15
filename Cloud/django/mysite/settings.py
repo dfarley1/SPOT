@@ -54,7 +54,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'polls',
+    'jsonrecv',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -100,7 +100,7 @@ if os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine'):
         'default': {
             'ENGINE': 'django.db.backends.mysql',
             'HOST': '/cloudsql/alien-walker-157903:us-central1:myinstance',
-            'NAME': 'polls',
+            'NAME': 'SPOT',
             'USER': 'sdpspot',
             'PASSWORD': 'sdpsp0t2017',
         }
@@ -117,7 +117,7 @@ else:
             'ENGINE': 'django.db.backends.mysql',
             'HOST': '127.0.0.1',
             'PORT': '3306',
-            'NAME': 'polls',
+            'NAME': 'SPOT',
             'USER': 'sdpspot',
             'PASSWORD': 'sdpsp0t2017',
         }
