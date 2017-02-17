@@ -1,0 +1,23 @@
+Before running setup scripts append the following to your ~/.bashrc or ~/.profile
+
+
+# Adds critical dependencies into shell scope
+PATH=$PATH:/opt
+
+# Adds openalpr as shell command
+PATH=$PATH:/opt/openalpr/src/bin
+
+# Adds necessary libraries into shell scope
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/opencv/release/lib
+
+
+Make sure to run the script as such:
+
+sudo ./openalpr_setup.sh
+
+Which runs all other necessary setup scripts.
+Note to interface the camera with opencv,
+you may need to activate a driver with:
+
+sudo modprobe bcm2835-v4l2
+
