@@ -6,7 +6,7 @@
 ./tesseract_setup.sh
 
 # Get necessary dependencies
-apt-get install libpng12-dev libjpeg62-dev libtiff4-dev zlib1g-dev liblog4cplus-dev libcurl4-gnutls-dev
+apt-get install libpng12-dev libjpeg62-dev libtiff5-dev zlib1g-dev liblog4cplus-dev libcurl4-gnutls-dev
 apt-get install build-essential
 apt-get install autoconf automake libtool
 apt-get install git-core
