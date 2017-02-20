@@ -42,6 +42,7 @@ def sensor(request):
 def sensorGET(getDict):
     print "--------- Sensor GET ----------"
     
+    return HttpResponse("Hi david, you made a GET request")
     
     
 
