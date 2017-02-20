@@ -31,7 +31,7 @@ def index(request):
 def sensor(request):
     if request.method == 'GET':
         #TODO: need more verification checks probably
-        return sensorGET(request.GET)
+        return sensorGET(request)
     elif request.method == 'POST':
         #TODO: definitely need more checks here
         return sensorPOST(request)
@@ -39,15 +39,19 @@ def sensor(request):
     return HttpResponse("Hello from sensor API")
     
     
-def sensorGET(getDict):
+def sensorGET(request):
     print "--------- Sensor GET ----------"
     
-    return HttpResponse("Hi david, you made a GET request")
+    strParams = ''.join(str(e) for e in request.GET.items())
+    
+    return HttpResponse("GET requested successful:\n" + strParams)
     
     
 
 def sensorPOST(request):
     print "-------- Sensor POST ----------"
     
+    strParams = ''.join(str(e) for e in request.GET.items())
     
+    return HttpResponse("Someone made a POST request with \n" + strParams)
     
