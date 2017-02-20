@@ -13,6 +13,7 @@
 # limitations under the License.
 
 from django.http import HttpResponse
+from django.http import HttpResponseBadRequest
 import django
 
 def index(request):
@@ -29,6 +30,12 @@ def index(request):
     return HttpResponse("Hello, world. You're at the jsonrecv index.")
 
 def sensor(request):
+
+    if "sensor_id" not in request.GET:
+        return HttpResponseBadRequest("sensor_id required.")
+    # if "sensor_id" not in DB already
+    #   return HttpResponseBadRequest("sensor_id not found.")
+
     if request.method == 'GET':
         #TODO: need more verification checks probably
         return sensorGET(request)
@@ -42,6 +49,7 @@ def sensor(request):
 def sensorGET(request):
     print "--------- Sensor GET ----------"
     
+    
     strParams = ''.join(str(e) for e in request.GET.items())
     
     return HttpResponse("GET requested successful:\n" + strParams)
@@ -51,7 +59,11 @@ def sensorGET(request):
 def sensorPOST(request):
     print "-------- Sensor POST ----------"
     
-    strParams = ''.join(str(e) for e in request.GET.items())
     
-    return HttpResponse("Someone made a POST request with \n" + strParams)
+    strParams = ''.join((str(e)+"\n") for e in request.POST.items())
+    
+    response = HttpResponse("Successful POST with:\n" + strParams)
+    response['occ_valid'] = 1
+    
+    return response
     

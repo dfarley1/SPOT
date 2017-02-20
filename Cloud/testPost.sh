@@ -1,5 +1,6 @@
 BASE_URL=http://127.0.0.1:8000/sensor/
-POST_ARGS="?a=1&b=how%20spaces&c=32"
+GET_ARGS="?sensor_id=1234"
+POST_ARGS="sensor_id=1234&occ_status=1&occ_since=2017-02-20%2013:34:00&occ_license=4AME671"
 YOUR_USER='sdpspot'
 YOUR_PASS='sdpsp0t2017'
 COOKIES=cookies.txt
@@ -11,6 +12,6 @@ DJANGO_TOKEN="csrfmiddlewaretoken=$(grep csrftoken $COOKIES | sed 's/^.*csrftoke
 
 echo -n " perform post ..."
 $CURL_BIN \
-    -d "$DJANGO_TOKEN&username=$YOUR_USER&password=$YOUR_PASS" \
-    -X POST $BASE_URL$POST_ARGS
+    -D - -d "$DJANGO_TOKEN&username=$YOUR_USER&password=$YOUR_PASS&$POST_ARGS" \
+    -X POST $BASE_URL$GET_ARGS
 
