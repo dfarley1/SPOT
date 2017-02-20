@@ -15,7 +15,6 @@
 from django.http import HttpResponse
 import django
 
-
 def index(request):
     if request.method == 'GET':
         print "--------- GET: Received ----------"
@@ -31,8 +30,23 @@ def index(request):
 
 def sensor(request):
     if request.method == 'GET':
-        print "------ Sensor GET: Received ------"
-        print request.GET.lists()
-        print "----------------------------------"
+        #TODO: need more verification checks probably
+        return sensorGET(request.GET)
+    elif request.method == 'POST':
+        #TODO: definitely need more checks here
+        return sensorPOST(request)
         
     return HttpResponse("Hello from sensor API")
+    
+    
+def sensorGET(getDict):
+    print "--------- Sensor GET ----------"
+    
+    
+    
+
+def sensorPOST(request):
+    print "-------- Sensor POST ----------"
+    
+    
+    
