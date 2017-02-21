@@ -17,30 +17,16 @@ from django.http import HttpResponseBadRequest
 import django
 
 def index(request):
-    if request.method == 'GET':
-        print "--------- GET: Received ----------"
-        print request.GET.lists()
-        print "----------------------------------"
-    #if request.method == 'POST':
-    
     csrf_token = django.middleware.csrf.get_token(request)
-    print "----------- Sending ------------\n"
-    print "CSRF Token: " + csrf_token + "\n"
-    print "---------------------------------\n\n"
-    return HttpResponse("Hello, world. You're at the jsonrecv index.")
+    return HttpResponse("Hello, have a cookie.")
 
 def sensor(request):
-
-    if "sensor_id" not in request.GET:
-        return HttpResponseBadRequest("sensor_id required.")
-    # if "sensor_id" not in DB already
-    #   return HttpResponseBadRequest("sensor_id not found.")
+    if not validSensor(request):
+        return HttpResponseBadRequest("Invalid sensor_id")
 
     if request.method == 'GET':
-        #TODO: need more verification checks probably
         return sensorGET(request)
     elif request.method == 'POST':
-        #TODO: definitely need more checks here
         return sensorPOST(request)
         
     return HttpResponse("Hello from sensor API")
@@ -49,7 +35,7 @@ def sensor(request):
 def sensorGET(request):
     print "--------- Sensor GET ----------"
     
-    
+    csrf_token = django.middleware.csrf.get_token(request)
     strParams = ''.join(str(e) for e in request.GET.items())
     
     return HttpResponse("GET requested successful:\n" + strParams)
@@ -67,3 +53,12 @@ def sensorPOST(request):
     
     return response
     
+
+    
+def validSensor(request):
+    if "sensor_id" not in request.GET:
+        return False
+    # if "sensor_id" not in DB already
+    #   return False
+    
+    return True
