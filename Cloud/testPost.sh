@@ -1,5 +1,5 @@
-#BASE_URL=http://127.0.0.1:8000/sensor/
-BASE_URL=http://alien-walker-157903.appspot.com/sensor/
+BASE_URL=http://127.0.0.1:8000/sensor/
+#BASE_URL=http://alien-walker-157903.appspot.com/sensor/
 GET_ARGS="?sensor_id=1234"
 POST_ARGS="occ_status=1&occ_since=2017-02-20%2013:34:00&occ_license=4AME671"
 COOKIES=cookies.txt
@@ -13,4 +13,3 @@ echo -n " POSTing ...\n"
 $CURL_BIN \
     -D - -d "$DJANGO_TOKEN&$POST_ARGS" \
     -X POST $BASE_URL$GET_ARGS
-
