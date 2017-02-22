@@ -67,6 +67,6 @@ error = ((distance_1 - distance_2) / distance_2) * 100
 
 if error <= 10:
 	if(distance_1 < car_distance):
-		return 1
- 
-return 0
+		exit(1)
+
+exit(0)
