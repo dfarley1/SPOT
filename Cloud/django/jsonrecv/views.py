@@ -44,7 +44,8 @@ def sensorGET(request):
 
 def sensorPOST(request):
     print "-------- Sensor POST ----------"
-    
+    #for key, val in request.COOKIES:
+    #    print(key, ' -> ', val)
     
     strParams = ''.join((str(e)+"\n") for e in request.POST.items())
     

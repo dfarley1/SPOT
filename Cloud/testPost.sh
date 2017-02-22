@@ -1,12 +1,12 @@
-BASE_URL=http://127.0.0.1:8000/sensor/
-#BASE_URL=http://alien-walker-157903.appspot.com/sensor/
-GET_ARGS="?sensor_id=1234"
+BASE_URL=127.0.0.1:8000
+#BASE_URL=alien-walker-157903.appspot.com
+GET_ARGS="/sensor/?sensor_id=1234"
 POST_ARGS="occ_status=1&occ_since=2017-02-20%2013:34:00&occ_license=4AME671"
-COOKIES=cookies.txt
+COOKIES=sh_cookies.txt
 CURL_BIN="curl -s -c $COOKIES -b $COOKIES -e $BASE_URL"
 
 echo -n "GETing csrftoken ..."
-$CURL_BIN $BASE_URL$GET_ARGS > /dev/null
+#$CURL_BIN $BASE_URL$GET_ARGS > /dev/null
 DJANGO_TOKEN="csrfmiddlewaretoken=$(grep csrftoken $COOKIES | sed 's/^.*csrftoken\s*//')"
 
 echo -n " POSTing ...\n"
