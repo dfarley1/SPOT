@@ -50,6 +50,8 @@ while GPIO.input(ECHO)==0:
  
 while GPIO.input(ECHO)==1:
   pulse_end = time.time()
+
+GPIO.cleanup()
  
 pulse_duration = pulse_end - pulse_start
  
@@ -64,10 +66,7 @@ print "Distance:",distance_2,"ft"
 error = ((distance_1 - distance_2) / distance_2) * 100
 
 if error <= 10:
-	return 1
+	if(distance_1 < car_distance):
+		exit(1)
 
-else: 
-	return 0
-
-
-GPIO.cleanup()
+exit(0)
