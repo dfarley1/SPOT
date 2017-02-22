@@ -14,3 +14,4 @@ $CURL_BIN \
     -D - -d "$DJANGO_TOKEN&$POST_ARGS" \
     -X POST $BASE_URL$GET_ARGS
 
+echo "Finished File Transfer!"
