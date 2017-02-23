@@ -3,7 +3,7 @@
 # Specify location of ping_check program.
 # NOTE: Make sure the file has executable rights
 #       (i.e sudo chmod +x ./script)
-# PING_CHECKER="/home/pi/SPOT/CV/scripts/photo_triggers/test_occupied"
+#PING_CHECKER="/home/pi/SPOT/CV/scripts/photo_triggers/test_occupied"
 PING_CHECKER="python /home/pi/SPOT/Hardware/SensorNodes/bumper_distance_checker.py"
 TRANSFER_SCRIPT="python /home/pi/SPOT/Cloud/testHttp.py"
 LOG_FILE="/home/pi/spot_log/license_log.txt"

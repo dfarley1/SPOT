@@ -63,7 +63,7 @@ distance_2 = round(distance_2, 2)
 
 print "Distance:",distance_2,"ft"
 
-error = ((distance_1 - distance_2) / distance_2) * 100
+error = (abs((distance_1 - distance_2)) / distance_2) * 100
 
 if error <= 10:
 	if(distance_1 < car_distance):
