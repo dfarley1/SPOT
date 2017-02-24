@@ -1,4 +1,4 @@
-PING_CHECKER="/home/pi/SPOT/CV/scripts/ping_trigger.sh"
+PING_CHECKER="/home/pi/SPOT/Hardware/SensorNodes/ping_trigger.sh"
 while [ 1 ]; do 
     $PING_CHECKER
     sleep 5
