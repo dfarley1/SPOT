@@ -30,9 +30,9 @@ if [ $STATUS -ne $LAST_STATUS ]; then
         # Process the plate for user prefetch
         alpr -j $LOG_PIC >> $LOG_STATS
 
-	# Send to gateway
-    	# Insert transmission script HERE
-    	$TRANSFER_SCRIPT
+    # Send to gateway
+        # Insert transmission script HERE
+        $TRANSFER_SCRIPT
 
     fi
     # Update the log file
