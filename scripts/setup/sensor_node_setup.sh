@@ -9,3 +9,6 @@ sudo apt-get install python-dev python-rpi.gpio
 
 # Any installation script for CV side of setup
 #sudo ./david's script for setting up the CV
+
+sudo pip install runp
+runp /home/pi/SPOT/Cloud/testHttp.py testGET
