@@ -1,0 +1,3 @@
+- May need to rebuild test_* for proper operation.
+- Make sure to create directory ~/spot_log
+- Make sure you 'sudo pip install runp'

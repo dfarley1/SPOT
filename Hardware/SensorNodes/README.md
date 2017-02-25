@@ -32,3 +32,11 @@ The file will return a value in centimeters, can change for different units.
 Will need to follow circuit diagram posted in the SPOT Document for optimal results. 
 
 Reference to the details above come from this website: https://www.modmypi.com/blog/hc-sr04-ultrasonic-range-sensor-on-the-raspberry-pi
+
+
+For Autonomous triggering, we use the command:
+- nohup /home/pi/background_ping.sh
+
+Step-by-step instructions for autonomous set up:
+1. Make sure you run the setup script with each new Pi
+2. Enjoy. ;)
