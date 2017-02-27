@@ -2,16 +2,18 @@ import requests
 import pprint
 import pickle
 
-base_url = 'http://127.0.0.1:8000/sensor/'
-#base_url = 'http://alien-walker-157903.appspot.com/sensor/'
+#base_url = 'http://127.0.0.1:8000/sensor/'
+base_url = 'http://alien-walker-157903.appspot.com/sensor/'
 get_args = {'sensor_id': '1234'}
+get_uuid = {'getuuid'}
 #get_args="/sensor/?sensor_id=1234"
 post_args="occ_status=1&occ_since=2017-02-20%2013:34:00&occ_license=4AME671"
 cookie_filename = '/home/pi/spot_log/py_cookies.txt'
 #cookie_filename = 'py_cookies.txt'
 
 def testGET():
-    r = requests.get(base_url, params = get_args)
+    # r = requests.get(base_url, params = get_args)
+    r = requests.get(base_url, params = get_uuid)
     print(r.cookies['csrftoken'])
     saveCookies(r.cookies)
     printResponse(r)
