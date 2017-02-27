@@ -1,4 +1,3 @@
-#!/bin/bash
 # This file sets up Sensor nodes
 
 # This allows us to bypass any password intensive commands espcially for file transfers
@@ -15,9 +14,10 @@ sudo pip install runp
 runp /home/pi/SPOT/Cloud/testHttp.py testGET
 
 # This sets up the sensor for autonomous background script
-cp /home/pi/SPOT/scripts/setup/sensor_nodes/bootup_ping_script.sh /etc/init.d/
+sudo cp /home/pi/SPOT/scripts/setup/sensor_nodes/bootup_ping_script.sh /etc/init.d/
 sudo update-rc.d bootup_ping_script.sh defaults
 
 echo "Sensor setup complete!"
 
 sudo reboot
+

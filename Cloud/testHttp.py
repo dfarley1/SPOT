@@ -16,7 +16,7 @@ def testGET():
     printResponse(r)
 
 
-def testPOST(occupied_status):
+def testPOST():
     cookies = loadCookies()
     print(cookies['csrftoken'])
     
@@ -29,8 +29,8 @@ def testPOST(occupied_status):
         base_url,
         params = get_args,
         data = {
-            'occ_status': occupied_status,
-            # 'occ_status': '1',
+            #'occ_status': occupied_status,
+            'occ_status': '1',
             # 'occ_since': occupied_since,
             'occ_since': '2017-02-20%2013:34:00',
             # 'occ_license': occupied_license,
