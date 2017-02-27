@@ -32,7 +32,7 @@ if [ $STATUS -ne $LAST_STATUS ]; then
 
     	# Send to gateway
         # Insert transmission script HERE
-        $TRANSFER_SCRIPT $STATUS
+        $TRANSFER_SCRIPT
     fi
     # Update the log file
     rm $LOG_FILE

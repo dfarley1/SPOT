@@ -2442,3 +2442,226 @@ Waiting For Sensor To Settle
 Distance: 3.94 ft
 Waiting For Sensor To Settle
 Distance: 3.96 ft
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 3.96 ft
+Waiting For Sensor To Settle
+Distance: 3.92 ft
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 3.99 ft
+Waiting For Sensor To Settle
+Distance: 3.92 ft
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 3.96 ft
+Waiting For Sensor To Settle
+Distance: 1.73 ft
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 3.96 ft
+Waiting For Sensor To Settle
+Distance: 3.95 ft
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 3.92 ft
+Waiting For Sensor To Settle
+Distance: 3.92 ft
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 3.99 ft
+Waiting For Sensor To Settle
+Distance: 3.95 ft
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 4.0 ft
+Waiting For Sensor To Settle
+Distance: 112.65 ft
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 4.02 ft
+Waiting For Sensor To Settle
+Distance: 3.95 ft
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 113.64 ft
+Waiting For Sensor To Settle
+Distance: 112.41 ft
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 3.93 ft
+Waiting For Sensor To Settle
+Distance: 3.98 ft
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 3.95 ft
+Waiting For Sensor To Settle
+Distance: 3.92 ft
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 3.98 ft
+Waiting For Sensor To Settle
+Distance: 3.94 ft
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 2.05 ft
+Waiting For Sensor To Settle
+Distance: 113.34 ft
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 0.81 ft
+Waiting For Sensor To Settle
+Distance: 1.89 ft
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 113.79 ft
+Waiting For Sensor To Settle
+Distance: 1.34 ft
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 3.95 ft
+Waiting For Sensor To Settle
+Distance: 114.0 ft
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 3.99 ft
+Waiting For Sensor To Settle
+Distance: 112.46 ft
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 2.27 ft
+Waiting For Sensor To Settle
+Distance: 2.53 ft
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 1.84 ft
+Waiting For Sensor To Settle
+Distance: 113.15 ft
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 1.79 ft
+Waiting For Sensor To Settle
+Distance: 113.6 ft
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 2.06 ft
+Waiting For Sensor To Settle
+Distance: 112.66 ft
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 113.73 ft
+Waiting For Sensor To Settle
+Distance: 4.01 ft
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 113.16 ft
+Waiting For Sensor To Settle
+Distance: 112.56 ft
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 2.15 ft
+Waiting For Sensor To Settle
+Distance: 113.81 ft
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 0.44 ft
+Waiting For Sensor To Settle
+Distance: 0.44 ft
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 3.27 ft
+Waiting For Sensor To Settle
+Distance: 3.35 ft
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 0.43 ft
+Waiting For Sensor To Settle
+Distance: 0.43 ft
+Mu0GJVLEaxaNa6XJzDkhipdZnXKq3jsl6XUgS0dwIWpcE4PDp1ZU6TsEvHYbcww4
+----------
+csrftoken  :  Mu0GJVLEaxaNa6XJzDkhipdZnXKq3jsl6XUgS0dwIWpcE4PDp1ZU6TsEvHYbcww4
+----------
+------ GET: Status = 200 -----
+----------- Headers ----------
+content-length  :  208
+server  :  Google Frontend
+occ_valid  :  1
+x-cloud-trace-context  :  a11091bc3d805c2554da385c4f8c9224;o=1
+date  :  Mon, 27 Feb 2017 00:24:59 GMT
+x-frame-options  :  SAMEORIGIN
+content-type  :  text/html; charset=utf-8
+------------ Text ------------
+Successful POST with:
+(u'occ_status', u'1')
+(u'csrfmiddlewaretoken', u'Mu0GJVLEaxaNa6XJzDkhipdZnXKq3jsl6XUgS0dwIWpcE4PDp1ZU6TsEvHYbcww4')
+(u'occ_since', u'2017-02-20%2013:34:00')
+(u'occ_license', u'4AME671')
+
+------------------------------
+
+
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 0.43 ft
+Waiting For Sensor To Settle
+Distance: 0.43 ft
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 0.45 ft
+Waiting For Sensor To Settle
+Distance: 0.43 ft
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 0.42 ft
+Waiting For Sensor To Settle
+Distance: 0.43 ft
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 0.43 ft
+Waiting For Sensor To Settle
+Distance: 0.43 ft
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 0.43 ft
+Waiting For Sensor To Settle
+Distance: 0.43 ft
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 0.43 ft
+Waiting For Sensor To Settle
+Distance: 0.43 ft
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 0.43 ft
+Waiting For Sensor To Settle
+Distance: 0.43 ft
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 0.43 ft
+Waiting For Sensor To Settle
+Distance: 0.43 ft
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 0.43 ft
+Waiting For Sensor To Settle
+Distance: 0.43 ft
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 2.89 ft
+Waiting For Sensor To Settle
+Distance: 2.96 ft
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 2.84 ft
+Waiting For Sensor To Settle
+Distance: 2.79 ft
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 2.82 ft
+Waiting For Sensor To Settle
+Distance: 3.01 ft
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 2.74 ft
+Waiting For Sensor To Settle
+Distance: 3.0 ft
