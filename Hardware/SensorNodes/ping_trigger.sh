@@ -10,6 +10,7 @@ TRANSFER_SCRIPT="runp /home/pi/SPOT/Cloud/testHttp.py testPOST"
 LOG_FILE="/home/pi/spot_log/license_log.txt"
 LOG_PIC="/home/pi/spot_log/license_log.png"
 LOG_STATS="/home/pi/spot_log/license_log.json"
+EDDYSTONE_SCRIPT="/home/pi/SPOT/scripts/setup/sensor_nodes/eddystone_test_setup.sh"
 
 PHOTO_TRIG=1
 EMPTY=0
@@ -29,6 +30,9 @@ if [ $STATUS -ne $LAST_STATUS ]; then
         raspistill -t 1 -o $LOG_PIC
         # Process the plate for user prefetch
         alpr -j $LOG_PIC >> $LOG_STATS
+
+        # Activate beacon for this spot
+        $EDDYSTONE_SCRIPT
 
     	# Send to gateway
         # Insert transmission script HERE
