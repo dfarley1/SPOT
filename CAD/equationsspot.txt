@@ -1,4 +1,4 @@
-﻿"width"= 9in
+﻿"width"= 3.5in
 "Height"= 18in
 "D1@Sketch1"="width"
 "D2@Sketch1"="Height"
