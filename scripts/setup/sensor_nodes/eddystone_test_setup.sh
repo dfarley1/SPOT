@@ -7,9 +7,9 @@ sudo hciconfig hci0 leadv 3
 #sudo hcitool -i hci0 cmd 0x08 0x0008 16 02 01 06 03 03 aa fe 0e 16 aa fe 10 00 03 73 64 70 73 70 6f 74 07 00 00 00 00 00 00 00 00 00
 
 #Broadcasts to webgazer.org
-#sudo hcitool -i hci0 cmd 0x08 0x0008 17 02 01 06 03 03 aa fe 0f 16 aa fe 10 00 03 77 65 62 67 61 7a 65 72 08 00 00 00 00 00 00 00 00
+sudo hcitool -i hci0 cmd 0x08 0x0008 17 02 01 06 03 03 aa fe 0f 16 aa fe 10 00 03 77 65 62 67 61 7a 65 72 08 00 00 00 00 00 00 00 00
 
-sudo hcitool -i hci0 cmd 10 00 03 77 65 62 67 61 7a 65 72 08 00 00 00 00 00 00 00 00
+#sudo hcitool -i hci0 cmd 10 00 03 77 65 62 67 61 7a 65 72 08 00 00 00 00 00 00 00 00
 
 #Attempting yo bradcast using UID
 #sudo hcitool -i hci0 cmd 0x00 0x30 0x584B930E3D99416E615D 0x123456123456 00 00
