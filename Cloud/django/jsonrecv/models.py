@@ -16,11 +16,25 @@ from django.db import models
 import uuid
 
 class SPOT(models.Model):
-    sensor_id = models.UUIDField(
-            primary_key = True, 
-            default=uuid.uuid4, 
-            editable=False)
-    last_update = models.DateTimeField(auto_now=True)
-    occ_status = models.SmallIntegerField(default=0)
+    sensor_uuid = models.UUIDField(
+        primary_key = True,
+        unique = True)
+    last_update = models.DateTimeField(
+        auto_now=True)
+    occ_status = models.SmallIntegerField(
+        default=0)
     occ_since = models.DateTimeField()
-    occ_license = models.CharField(max_length=20)
+    occ_license = models.CharField(
+        max_length=20)
+    #occupant = models.ForeignKey(
+    #    User, 
+    #    models.SET_NULL, 
+    #    null=True)
+    
+
+class SPOTUUID(models.Model):
+    mac_addr = models.BigIntegerField()
+    sensor_uuid = models.UUIDField(
+        default = uuid.UUID('00000000-00000000-00000000-00000000'),
+        unique = True)
+    

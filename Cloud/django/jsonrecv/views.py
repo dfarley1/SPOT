@@ -14,52 +14,25 @@
 
 from django.http import HttpResponse
 from django.http import HttpResponseBadRequest
+from django.template import loader
 import django
+from sensor import *
 
 def index(request):
     csrf_token = django.middleware.csrf.get_token(request)
-    return HttpResponse("Hello, have a cookie.")
+    
+    testD = {'a':'1234', 'b':'5687', 'c':'9876543'}
+    template = loader.get_template('index.html')
+    context = {'testD': testD}
+    
+    return HttpResponse(template.render(context, request))
 
 def sensor(request):
-    if not validSensor(request):
-        return HttpResponseBadRequest("Invalid sensor_id")
-
     if request.method == 'GET':
         return sensorGET(request)
     elif request.method == 'POST':
         return sensorPOST(request)
         
-    return HttpResponse("Hello from sensor API")
+    return HttpResponseNotAllowed(['GET', 'POST'])
     
     
-def sensorGET(request):
-    print "--------- Sensor GET ----------"
-    
-    csrf_token = django.middleware.csrf.get_token(request)
-    strParams = ''.join(str(e) for e in request.GET.items())
-    
-    return HttpResponse("GET requested successful:\n" + strParams)
-    
-    
-
-def sensorPOST(request):
-    print "-------- Sensor POST ----------"
-    #for key, val in request.COOKIES:
-    #    print(key, ' -> ', val)
-    
-    strParams = ''.join((str(e)+"\n") for e in request.POST.items())
-    
-    response = HttpResponse("Successful POST with:\n" + strParams)
-    response['occ_valid'] = 1
-    
-    return response
-    
-
-    
-def validSensor(request):
-    if "sensor_id" not in request.GET:
-        return False
-    # if "sensor_id" not in DB already
-    #   return False
-    
-    return True
