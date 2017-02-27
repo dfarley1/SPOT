@@ -19,7 +19,6 @@ from jsonrecv.views import index
 from jsonrecv.views import sensor
 
 urlpatterns = [
-    url(r'^$', index),
-    url(r'^sensor/', include('jsonrecv.urls')),
+    url(r'^', include('jsonrecv.urls')),
     url(r'^admin/', include(admin.site.urls)),
 ]
