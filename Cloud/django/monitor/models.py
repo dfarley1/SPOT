@@ -12,14 +12,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from django.conf.urls import include, url
-from django.contrib import admin
-
-import sensor 
-import monitor
-
-urlpatterns = [
-    url(r'^sensor/', include('sensor.urls')),
-	url(r'^monitor/', include('monitor.urls')),
-    url(r'^admin/', include(admin.site.urls)),
-]
+from django.db import models

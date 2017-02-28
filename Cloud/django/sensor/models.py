@@ -15,7 +15,7 @@
 from django.db import models
 import uuid
 
-class SPOT(models.Model):
+class spot_status(models.Model):
     sensor_uuid = models.UUIDField(
         primary_key = True,
         unique = True)
@@ -31,10 +31,9 @@ class SPOT(models.Model):
     #    models.SET_NULL, 
     #    null=True)
     
-
-class SPOTUUID(models.Model):
-    mac_addr = models.BigIntegerField()
-    sensor_uuid = models.UUIDField(
-        default = uuid.UUID('00000000-00000000-00000000-00000000'),
-        unique = True)
-    
+class spot_info(models.Model):
+	sensor_uuid = models.UUIDField()
+	section = models.CharField(max_length=20)
+	number = models.IntegerField()
+	description = models.CharField(max_length=50)
+	

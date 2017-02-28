@@ -16,7 +16,7 @@ from django.http import HttpResponse
 from django.http import HttpResponseBadRequest
 from django.template import loader
 import django
-from sensor import *
+import *
 
 def index(request):
     csrf_token = django.middleware.csrf.get_token(request)
@@ -27,12 +27,6 @@ def index(request):
     
     return HttpResponse(template.render(context, request))
 
-def sensor(request):
-    if request.method == 'GET':
-        return sensorGET(request)
-    elif request.method == 'POST':
-        return sensorPOST(request)
-        
-    return HttpResponseNotAllowed(['GET', 'POST'])
+
     
     
