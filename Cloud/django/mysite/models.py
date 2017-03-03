@@ -27,7 +27,7 @@ class spot_status(models.Model):
 	occ_license = models.CharField(
 		max_length=20)
 	def __str__(self):
-		return (str(self.sensor_uuid) + 
+		return ("\n" + str(self.sensor_uuid) + 
 			"\n\tlast_update: " + str(self.last_update) + 
 			"\n\tocc_status: " + str(self.occ_status) + 
 			"\n\tocc_license: " + self.occ_license + 
@@ -42,7 +42,7 @@ class spot_info(models.Model):
 	number = models.IntegerField()
 	description = models.CharField(max_length=50)
 	def __str__(self):
-		return (str(self.sensor_uuid) +
+		return ("\n" + str(self.sensor_uuid) +
 			"\n\tsection: " + self.section +
 			"\n\tnumber: " + self.number + 
 			"\n\tsecription: " + self.description + "\n")

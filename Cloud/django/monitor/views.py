@@ -16,7 +16,8 @@ from django.http import HttpResponse
 from django.http import HttpResponseBadRequest
 from django.template import loader
 import django
-from sensor import *
+import sensor.models
+
 
 def index(request):
     #stupid cookie thing we have to have.
@@ -25,10 +26,10 @@ def index(request):
     template = loader.get_template('monitor.html')
     
     #Do stuff here, fill a dictionary object from the database
-    dummyData = {'a':'1234', 'b':'5687', 'c':'9876543'}
-    
+    garage_status = spot_status.objects.all()
+	
     #put that data into the HTML's context
-    context = {'testD': dummyData}
+    context = {'garage': garage_status}
     #render the HTML page
     return HttpResponse(template.render(context, request))
 

@@ -1,7 +1,10 @@
-{% if testD %}
+{% if garage %}
     <ul>
-    {% for key, val in testD.items %}
-        <li>{{ key }} -- {{ val }}</li>
+    {% for spot in garage %}
+		<li>{{ spot.sensor_uuid }}: 
+			status={{ spot.occ_status }}, 
+			license={{spot.occ_license }},
+			since={{ spot.occ_since }}</li>
     {% endfor %}
     </ul>
 {% else %}

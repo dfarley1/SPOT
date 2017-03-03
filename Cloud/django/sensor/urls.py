@@ -5,5 +5,5 @@ import getUUID
 
 urlpatterns = [
 	url(r'getUUID/', getUUID.getUUID, name='getUUID'),
-    url(r'^', sensor.sensor, name='sensor'),
+    url(r'^', sensor.sensor_main, name='sensor'),
 ]
