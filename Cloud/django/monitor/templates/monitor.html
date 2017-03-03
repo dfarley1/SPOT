@@ -1,12 +1,21 @@
-{% if garage %}
-    <ul>
-    {% for spot in garage %}
-		<li>{{ spot.sensor_uuid }}: 
-			status={{ spot.occ_status }}, 
-			license={{spot.occ_license }},
-			since={{ spot.occ_since }}</li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No D</p>
-{% endif %}
+
+<h1>Table Header</h1>
+<p>There will be a table here soon...</p>
+<table border="1">
+  {% for spot in garage %}
+    {% cycle '<tr>' '' '' '' %}
+      <td>{{spot.occ_status}}</td>
+    {% cycle '' '' '' '</tr>' %}
+  {% endfor %}
+</table>
+
+
+<h1>dump all the things!</h1>
+<ul>
+{% for aple in garage %}
+	<li>{{ aple.sensor_uuid }}: 
+		status={{ aple.occ_status }}, 
+		license={{aple.occ_license }},
+		since={{ aple.occ_since }}</li>
+{% endfor %}
+</ul>
