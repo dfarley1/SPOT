@@ -5,7 +5,7 @@
 #       (i.e sudo chmod +x ./script)
 #PING_CHECKER="/home/pi/SPOT/CV/scripts/photo_triggers/test_occupied"
 PING_CHECKER="sudo python /home/pi/SPOT/Hardware/SensorNodes/bumper_distance_checker.py"
-TRANSFER_SCRIPT="sudo runp /home/pi/SPOT/Cloud/testHttp.py sensor_POST"
+TRANSFER_SCRIPT="sudo runp /home/pi/SPOT/Cloud/testHttp.py sensor_POST:"
 TIMESTAMP_SCRIPT="sudo runp /home/pi/SPOT/Hardware/SensorNodes/occupied_since.py now"
 #TRANSFER_SCRIPT="runp /home/pi/SPOT/Cloud/testHttp.py testPOST:$STATUS"
 #TRANSFER_SCRIPT="/home/pi/SPOT/Cloud/testPost.sh"
@@ -44,7 +44,7 @@ if [ $STATUS -ne $LAST_STATUS ]; then
     	# Send to gateway
         # Insert transmission script HERE
 
-        $TRANSFER_SCRIPT
+        $TRANSFER_SCRIPT $STATUS $OCCUPIED_SINCE
     fi
     # Update the log file
     rm $LOG_FILE

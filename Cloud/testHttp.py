@@ -23,14 +23,14 @@ def sensor_GET():
     saveCookies(r.cookies)
     printResponse(r)
 
-def sensor_POST():
+def sensor_POST(occupied_status, occupied_since):
     cookies = loadCookies()
     params = {'sensor_uuid': cookies['sensor_uuid']}
     data = {
-        #'occ_status': occupied_status,
-        'occ_status': '1',
-        # 'occ_since': occupied_since,
-        'occ_since': datetime.datetime.now(),
+        'occ_status': occupied_status,
+        # 'occ_status': '1',
+        'occ_since': occupied_since,
+        # 'occ_since': datetime.datetime.now(),
         # 'occ_license': occupied_license,
         'occ_license': '4AME671',
         'csrfmiddlewaretoken': cookies['csrftoken']
