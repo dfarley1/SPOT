@@ -1,7 +1,10 @@
-<!DOCTYPE html>
-<html>
-<body>
+
 <h1>Table Header</h1>
 <p>There will be a table here soon...</p>
-</body>
-</html>
+<table>
+  {% for spot in garage %}
+    {% cycle '<tr>' '' '' '' %}
+      <td>{{spot.occ_status}}</td>
+    {% cycle '' '' '' '</tr>' %}
+  {% endfor %}
+</table>
