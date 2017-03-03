@@ -5,8 +5,8 @@
 #       (i.e sudo chmod +x ./script)
 #PING_CHECKER="/home/pi/SPOT/CV/scripts/photo_triggers/test_occupied"
 PING_CHECKER="python /home/pi/SPOT/Hardware/SensorNodes/bumper_distance_checker.py"
-TRANSFER_SCRIPT="runp /home/pi/SPOT/Cloud/testHttp.py testPOST"
-#TRANSFER_SCRIPT="runp /home/pi/SPOT/Cloud/testHttp.py testPOST:"$STATUS""
+TRANSFER_SCRIPT="runp /home/pi/SPOT/Cloud/testHttp.py sensor_POST"
+#TRANSFER_SCRIPT="runp /home/pi/SPOT/Cloud/testHttp.py testPOST:$STATUS"
 #TRANSFER_SCRIPT="/home/pi/SPOT/Cloud/testPost.sh"
 LOG_FILE="/home/pi/spot_log/license_log.txt"
 LOG_PIC="/home/pi/spot_log/license_log.png"
