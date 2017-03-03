@@ -1,6 +1,9 @@
 import requests
 import pprint
 import pickle
+import uuid
+import os
+import datetime
 
 #base_url = 'http://127.0.0.1:8000/sensor/'
 base_url = 'http://alien-walker-157903.appspot.com/sensor/'
