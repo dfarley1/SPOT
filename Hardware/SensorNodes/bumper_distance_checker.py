@@ -15,7 +15,7 @@ GPIO.setup(ECHO,GPIO.IN)
  
 GPIO.output(TRIG, False)
 print "Waiting For Sensor To Settle"
-time.sleep(0.5)
+time.sleep(0.005)
  
 GPIO.output(TRIG, True)
 time.sleep(0.00001)
@@ -39,7 +39,7 @@ print "Distance:",distance_1,"ft"
 
 GPIO.output(TRIG, False)
 print "Waiting For Sensor To Settle"
-time.sleep(0.5)
+time.sleep(0.005)
  
 GPIO.output(TRIG, True)
 time.sleep(0.00001)

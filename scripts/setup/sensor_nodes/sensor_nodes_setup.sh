@@ -15,7 +15,8 @@ runp /home/pi/SPOT/Cloud/testHttp.py sensor_getUUID_GET
 runp /home/pi/SPOT/Cloud/testHttp.py sensor_GET
 #------------------------------
 sudo mkdir ~/spot_log
-sudo echo '0' >license_log.txt
+sudo echo '0' >~/spot_log/license_log.txt
+sudo echo '' >~/spot_log/occupied_since.txt
 #------------------------------
 # This sets up the sensor for autonomous background script
 sudo cp /home/pi/SPOT/scripts/setup/sensor_nodes/bootup_ping_script.sh /etc/init.d/
