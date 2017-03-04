@@ -12,6 +12,8 @@ get_uuid = {'getuuid'}
 #get_args="/sensor/?sensor_id=1234"
 post_args="occ_status=1&occ_since=2017-02-20%2013:34:00&occ_license=4AME671"
 cookie_filename = '/home/pi/spot_log/py_cookies.txt'
+status_filename = '/home/pi/spot_log/license_log.txt'
+timestamp_filename = '/home/pi/spot_log/occupied_since.txt'
 #cookie_filename = 'py_cookies.txt'
 
 def sensor_GET():
@@ -23,13 +25,15 @@ def sensor_GET():
     saveCookies(r.cookies)
     printResponse(r)
 
-def sensor_POST(occupied_status, occupied_since):
+def sensor_POST():
     cookies = loadCookies()
+    occupied_status = open(status_filename, 'r').read()
+    occupied_since = open(timestamp_filename, 'r').read()
     params = {'sensor_uuid': cookies['sensor_uuid']}
     data = {
         'occ_status': occupied_status,
         # 'occ_status': '1',
-        'occ_since': occupied_since,
+	'occ_since': occupied_since,
         # 'occ_since': datetime.datetime.now(),
         # 'occ_license': occupied_license,
         'occ_license': '4AME671',
