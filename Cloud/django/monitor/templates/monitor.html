@@ -45,7 +45,7 @@ table, th, td{
 <h1>dump all the things!</h1>
 <ul>
 {% for spot in garage_data %}
-	<li>{{ spot.uuid }}
+	<li><a href="/monitor/edit_info/?sensor_uuid={{spot.uuid}}">{{ spot.uuid }}</a>
 		<br>active={{ spot.active }}
 		<br>status={{ spot.occ_status }}
 		<br>license={{ spot.occ_license }}
