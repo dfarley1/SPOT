@@ -4,7 +4,7 @@ from django.template import loader
 from django.utils import timezone
 import django
 import datetime
-import models
+from models import spot_data
 import uuid
 
 def getUUID(request):
@@ -20,15 +20,15 @@ def getUUID_GET(request):
 		return HttpResponseBadRequest("MAC address required!")
 	new_uuid = uuid.uuid1(long(mac_addr))
 	
-	new_info = models.spot_info(
-		sensor_uuid=new_uuid,
-		number=0)
-	new_info.save()
-	new_status = models.spot_status(
-		sensor_uuid=new_uuid,
+	new_spot = spot_data(
+		uuid=new_uuid,
+		number=0,
 		occ_status=0,
-		occ_since=datetime.datetime.min.replace(tzinfo=timezone.utc))
-	new_status.save()
+		occ_since=datetime.datetime.min.replace(tzinfo=timezone.utc),
+	)
+		
+		
+	new_spot.save()
 	
 	response = HttpResponse(str(new_uuid))
 	csrf_token = django.middleware.csrf.get_token(request)

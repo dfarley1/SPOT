@@ -13,37 +13,31 @@
 # limitations under the License.
 
 from django.db import models
+from django.forms import ModelForm
 import uuid
 
-class spot_status(models.Model):
-	sensor_uuid = models.UUIDField(
-		primary_key = True,
-		unique = True)
-	last_update = models.DateTimeField(
-		auto_now=True)
-	occ_status = models.SmallIntegerField(
-		default=0)
-	occ_since = models.DateTimeField()
-	occ_license = models.CharField(
-		max_length=20)
-	def __str__(self):
-		return (str(self.sensor_uuid) + 
-			"\n\tlast_update: " + str(self.last_update) + 
-			"\n\tocc_status: " + str(self.occ_status) + 
-			"\n\tocc_license: " + self.occ_license + 
-			"\n\tocc_since: " + str(self.occ_since) + "\n")
-		
-		
+class spot_data(models.Model):
+	uuid = models.UUIDField("UUID", primary_key = True, unique = True)
+	#"static" metadata about spot
+	active = models.BooleanField("Active", default=True)
+	section = models.CharField("Section", max_length=20)
+	number = models.IntegerField("Spot Number")
+	description = models.CharField("Description", max_length=50)
+	gpslat = models.FloatField("Latitude", null=True)
+	gpslon = models.FloatField("Longitude", null=True)
+	#"variable" current status
+	last_update = models.DateTimeField("Last Update", auto_now=True)
+	occ_status = models.SmallIntegerField("Occupied Status", default=0)
+	occ_since = models.DateTimeField("Occupied Since")
+	occ_license = models.CharField("Occupant License", max_length=20)
 	
+	
+	def __str__(self):
+		return (str(self.uuid))
 
-class spot_info(models.Model):
-	sensor_uuid = models.UUIDField()
-	section = models.CharField(max_length=20)
-	number = models.IntegerField()
-	description = models.CharField(max_length=50)
-	def __str__(self):
-		return (str(self.sensor_uuid) +
-			"\n\tsection: " + self.section +
-			"\n\tnumber: " + self.number + 
-			"\n\tsecription: " + self.description + "\n")
-	
+class spot_data_form(ModelForm):
+	class Meta:
+		model = spot_data
+		fields = ['active', 'section', 'number', 
+				'description', 'gpslat', 'gpslon']
+

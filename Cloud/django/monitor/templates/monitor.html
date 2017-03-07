@@ -1,21 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+h1 {
+    color: blue;
+    font-family: Comic Sans MS;
+    font-size: 300%;
 
-<h1>Table Header</h1>
-<p>There will be a table here soon...</p>
-<table border="1">
-  {% for spot in garage %}
-    {% cycle '<tr>' '' '' '' %}
-      <td>{{spot.occ_status}}</td>
-    {% cycle '' '' '' '</tr>' %}
-  {% endfor %}
+}
+p  {
+    color: red;
+    font-family: courier;
+    font-size: 160%;
+}
+table, th, td{
+	border: 1px solid black; 
+}
+</style>
+</head>
+
+<body>
+<h1> UCSC East Remote Parking </h1>
+<table style="width:100%">
+{% for spot in garage_data %}
+	<tr>
+		{% if len(spot.section) > 0 %}
+			<th><a href="/monitor/edit_info/?sensor_uuid={{spot.uuid}}">{{spot.section}} -- {{spot.number}}</a></th>
+		{% else %}
+			<th><a href="/monitor/edit_info/?sensor_uuid={{spot.uuid}}">{{spot.uuid}}</a></th>
+		{% endif %}
+		<th>{{spot.occ_status}}</th> 
+	</tr>
+{% endfor %}
 </table>
+
+</body>
+</html>
 
 
 <h1>dump all the things!</h1>
 <ul>
-{% for aple in garage %}
-	<li>{{ aple.sensor_uuid }}: 
-		status={{ aple.occ_status }}, 
-		license={{aple.occ_license }},
-		since={{ aple.occ_since }}</li>
+{% for spot in garage_data %}
+	<li>{{ spot.uuid }}
+		<br>status={{ spot.occ_status }}
+		<br>license={{ spot.occ_license }}
+		<br>since={{ spot.occ_since }}
+		<br>section={{ spot.section }} 
+		<br>number={{ spot.number }}
+		<br>GPS={{ spot.gpslat }} - {{ spot.gpslon }}
+	</li>
 {% endfor %}
 </ul>
