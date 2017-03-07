@@ -24,12 +24,16 @@ table, th, td{
 <table style="width:100%">
 {% for spot in garage_data %}
 	<tr>
-		{% if len(spot.section) > 0 %}
-			<th><a href="/monitor/edit_info/?sensor_uuid={{spot.uuid}}">{{spot.section}} -- {{spot.number}}</a></th>
+	{% if spot.active == True %}
+		<th><a href="/monitor/edit_info/?sensor_uuid={{spot.uuid}}">
+		{% if spot.section != "" %}
+			{{spot.section}} -- {{spot.number}}
 		{% else %}
-			<th><a href="/monitor/edit_info/?sensor_uuid={{spot.uuid}}">{{spot.uuid}}</a></th>
+			{{spot.uuid}}
 		{% endif %}
-		<th>{{spot.occ_status}}</th> 
+		</a></th>
+		<th>{{spot.occ_status}}</th>
+	{% endif %}
 	</tr>
 {% endfor %}
 </table>
@@ -42,6 +46,7 @@ table, th, td{
 <ul>
 {% for spot in garage_data %}
 	<li>{{ spot.uuid }}
+		<br>active={{ spot.active }}
 		<br>status={{ spot.occ_status }}
 		<br>license={{ spot.occ_license }}
 		<br>since={{ spot.occ_since }}
