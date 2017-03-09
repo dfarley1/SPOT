@@ -41,3 +41,8 @@ class spot_data_form(ModelForm):
 		fields = ['active', 'section', 'number', 
 				'description', 'gpslat', 'gpslon']
 
+class spot_structs(models.Model):
+	name = models.CharField("Structure", max_length=100)
+	
+class spot_sections(models.Model):
+	name = models.CharField("Section", max_length=100)

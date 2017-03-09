@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+
+</script>
+</head>
+
+<body>
+<h1>Click on a structure to edit it</h1>
+{% for struct in structures %}
+	<a href="/monitor/view_structure/?name={{struct.name}}">{{struct.name}}</a> 
+		-- <a href="/monitor/edit_structure/?name={{struct.name}}">Edit</a><br>
+{% endfor %}
+<br><a href="/monitor/edit_structure/">Add new structure</a>
+</body>
+</html>

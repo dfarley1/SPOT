@@ -18,8 +18,10 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.template import loader
 import django
-from sensor.models import spot_data, spot_data_form
+from sensor.models import spot_data, spot_data_form, spot_structs, spot_sections
 from sensor.sensor import valid_sensor
+from django import forms
+from django.forms import formset_factory
 
 
 def index(request):
@@ -58,4 +60,26 @@ def edit_info(request):
 			'edit_info.html', 
 			{'form':form, 'sensor_uuid': request.GET['sensor_uuid'],}
 		)
-		
+
+
+def view_structure(request):
+	csrf_token = django.middleware.csrf.get_token(request)
+	garage_data = spot_data.objects.all()
+	
+	return render(request, 'view_structure.html', {'garage': garage_data})
+
+
+def list_structures(request):
+	csrf_token = django.middleware.csrf.get_token(request)
+	structures = spot_structs.objects.all()
+	
+	return render(request, 'list_structures.html', {'structures': structures})
+
+
+def edit_structure(request):
+	if request.method == "POST":
+		print "edit_structures POSTed"
+		return HttpResponseRedirect('/monitor/list_structures')
+	else:
+		print "edit_structures GETed"
+	return render(request, 'edit_structures.html', {})

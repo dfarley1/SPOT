@@ -20,6 +20,22 @@ table, th, td{
 </head>
 
 <body>
+{% load static %}
+<p>Click on the location where you would like to park</p>
+<p>North Remote, East Remote, West Remote or West Core Structure</p>
+
+<img src="{% static "parking.png" %}" width="700" height="1000" alt="Parking" usemap="#parkmap">
+
+<map name="parkmap">
+  <area shape="rect" coords="250,40,100,126" alt="NorthRemote" href="NorthRemote.html">
+ <area shape="rect" coords="230,250,270,150" alt="WestCore" href="WestCore.html">
+ <area shape="rect" coords="400,600,660,426" alt="EastRemote" href="EastRemote.html">
+ <area shape="rect" coords="300,600,100,426" alt="WestRemote" href="WestRemote.html">
+</map>
+
+<br><a href="/monitor/list_structures/">View/edit structures</a>
+
+
 <h1> UCSC East Remote Parking </h1>
 <table style="width:100%">
 {% for spot in garage_data %}
@@ -38,8 +54,6 @@ table, th, td{
 {% endfor %}
 </table>
 
-</body>
-</html>
 
 
 <h1>dump all the things!</h1>
@@ -56,3 +70,7 @@ table, th, td{
 	</li>
 {% endfor %}
 </ul>
+
+
+</body>
+</html>
