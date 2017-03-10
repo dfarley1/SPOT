@@ -8,7 +8,7 @@
 PING_CHECKER="sudo python /home/pi/SPOT/Hardware/SensorNodes/bumper_distance_checker.py"
 TRANSFER_SCRIPT="sudo runp /home/pi/SPOT/Cloud/testHttp.py sensor_POST"
 TIMESTAMP_SCRIPT="sudo runp /home/pi/SPOT/Hardware/SensorNodes/occupied_since.py now"
-EDDYSTONE_SCRIPT="sudo /home/pi/SPOT/scripts/setup/sensor_nodes/eddystone_test_setup.sh"$
+EDDYSTONE_SCRIPT="sudo /home/pi/SPOT/scripts/setup/sensor_nodes/eddystone_test_setup.sh"
 BLUETOOTH_SHUTOFF_SCRIPT = "sudo /home/pi/SPOT/scripts/setup/sensor_nodes/bluetooth_shutoff.sh"
 
 
@@ -39,14 +39,29 @@ if [ $STATUS -ne $LAST_STATUS ]; then
         # Process the plate for user prefetch
         alpr -j $LOG_PIC >> $LOG_STATS
 
+	# UPDATE FILE
+	#echo $STATUS > $LOG_FILE
+
         # Activate beacon for this spot
         $EDDYSTONE_SCRIPT
     fi
-    # Run timestamp script 
+    if [ $STATUS -eq $EMPTY ]; then
+	# Turn off beacon
+	$BLUETOOTH_SHUTOFF_SCRIPT
+    fi
+
+    # Update Log File
+    # rm $LOG_FILE
+    # echo $STATUS >> $LOG_FILE
+
+    # Run timestamp script
     # runp occupied_since.py now
     sudo $TIMESTAMP_SCRIPT > $TIME_FILE
     OCCUPIED_SINCE = `cat $TIME_FILE`
+
+    # Update Log File
     echo $STATUS > $LOG_FILE
+
     # Update Cloud with new status
     $TRANSFER_SCRIPT
 fi

@@ -4,6 +4,7 @@ import pickle
 import uuid
 import os
 import datetime
+import binascii
 
 #base_url = 'http://127.0.0.1:8000/sensor/'
 base_url = 'http://alien-walker-157903.appspot.com/sensor/'
@@ -14,6 +15,7 @@ post_args="occ_status=1&occ_since=2017-02-20%2013:34:00&occ_license=4AME671"
 cookie_filename = '/home/pi/spot_log/py_cookies.txt'
 status_filename = '/home/pi/spot_log/license_log.txt'
 timestamp_filename = '/home/pi/spot_log/occupied_since.txt'
+uuid_filename = '/home/pi/spot_log/uuid_file.txt'
 #cookie_filename = 'py_cookies.txt'
 
 def sensor_GET():
@@ -54,6 +56,14 @@ def sensor_getUUID_GET():
     r = requests.get(base_url+'sensor/getUUID/', params = params)
     print(r.cookies['csrftoken'])
     saveCookies(r.cookies)
+    
+    f = open(uuid_filename, 'w')
+    sensor_uuid_hex = uuid.UUID(r.cookies['sensor_uuid']).hex
+    s = str(sensor_uuid_hex)
+    new_hex = " ".join(s[i:i+2] for i in range(0, len(s),2))
+    f.write(new_hex)
+    f.close()
+
     printResponse(r)
 
 #######################COOKIE CODE#############################
