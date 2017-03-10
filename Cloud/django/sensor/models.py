@@ -31,7 +31,6 @@ class spot_data(models.Model):
 	occ_since = models.DateTimeField("Occupied Since")
 	occ_license = models.CharField("Occupant License", max_length=20)
 	
-	
 	def __str__(self):
 		return (str(self.uuid))
 
@@ -41,8 +40,25 @@ class spot_data_form(ModelForm):
 		fields = ['active', 'section', 'number', 
 				'description', 'gpslat', 'gpslon']
 
+
+
+
 class spot_structs(models.Model):
 	name = models.CharField("Structure", max_length=100)
+	def __str__(self):
+		return str(self.name)
 	
+class spot_structs_form(ModelForm):
+	class Meta:
+		model = spot_structs
+		fields = ['name']
+
+
+
+
 class spot_sections(models.Model):
 	name = models.CharField("Section", max_length=100)
+class spot_sections_form(ModelForm):
+	class Meta:
+		model = spot_sections
+		fields = ['name']

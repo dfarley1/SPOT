@@ -18,7 +18,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.template import loader
 import django
-from sensor.models import spot_data, spot_data_form, spot_structs, spot_sections
+from sensor.models import *
 from sensor.sensor import valid_sensor
 from django import forms
 from django.forms import formset_factory
@@ -53,13 +53,13 @@ def edit_info(request):
 		else:
 			return HttpResponseRedirect('/not_valid/')
 		
-	elif request.method == 'GET':
+	else:
 		form = spot_data_form(instance=spot)
-		return render(
-			request, 
-			'edit_info.html', 
-			{'form':form, 'sensor_uuid': request.GET['sensor_uuid'],}
-		)
+	return render(
+		request, 
+		'edit_info.html', 
+		{'form':form, 'sensor_uuid': request.GET['sensor_uuid'],}
+	)
 
 
 def view_structure(request):
@@ -77,9 +77,23 @@ def list_structures(request):
 
 
 def edit_structure(request):
-	if request.method == "POST":
-		print "edit_structures POSTed"
-		return HttpResponseRedirect('/monitor/list_structures')
+	if 'name' in request.GET:
+		structure = spot_structs.objects.get(name=request.GET['name'])
+		print "using existing structure" + str(structure)
 	else:
-		print "edit_structures GETed"
-	return render(request, 'edit_structures.html', {})
+		structure = spot_structs()
+		print "using new structure" + str(structure)
+	
+	if request.method == "POST":
+		form = spot_structs_form(request.POST, instance=structure)
+		if form.is_valid():
+			form.save()
+			return HttpResponseRedirect('/monitor/list_structures/')
+		else:
+			return HttpResponseRedirect('/not_valid/')
+	else:
+		form = spot_structs_form(instance=structure)
+	return render(
+		request, 
+		'edit_structure.html', 
+		{'form':form, 'name':request.GET['name']})
