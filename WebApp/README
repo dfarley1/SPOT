@@ -1,0 +1,11 @@
+Dynamic Markup --> Angular JS
+Display        --> BootStrap
+Please stay consistent to these frameworks to keep homogenous display & homogenous JS<-->html management.
+There's DEV examples in index.html to show how to use Bootstrap display and Angular JS.
+Feel free to contribute.
+
+Left off: 
+Attempting to print status code received from .http
+
+To Do:
+Verify that server is receiving POST requests.
