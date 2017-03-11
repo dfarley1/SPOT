@@ -20,18 +20,45 @@
 
   
 <!--v-------[DEV] TESTS---------v-->
-<pre><h1>DEV TESTS</h1><br> 
-<script>
-        if(typeof angular == 'undefined') {
-            document.write("[ERROR]  Angular did not load...")
-        } else {
-            document.write("[SUCCESS] Angular loaded properly!")
-        }
-</script>
+<pre><h1>DEV TESTS</h1><br>
+    <div ng-controller="devPOST">
+            <p>{{ret_msg}} {{ret_code}}</p>
+    </div>
+    <script>
+            if(typeof angular == 'undefined') {
+                document.write(" [ERROR]  Angular did not load...")
+            } else {
+                document.write("[SUCCESS] Angular loaded properly!")
+            }
+    </script>
 </pre>
 <!--^---------------------------^-->
+<div ng-controller="devPOST">
+            <p>{{ret_msg}} {{ret_code}}</p>
+</div>
+<script>
+    var appname = angular.module('slot_client', []);
+    appname.controller('devPOST', function($scope, $http) {
+                                      $http({
+                                            method : 'POST',
+                                            url : 'http://alien-walker-157903.appspot.com/monitor/hub',
+                                            data : 'xDC here'
+                                      }).then(function successCallback(response) {
+                                            $scope.ret_msg = " [SUCCESS] Good status code : "
+                                            $scope.ret_code = response.status;
+                                      }, function errorCallBack(response) {
+                                            $scope.ret_msg = " [ERROR] Bad status code :"
+                                            $scope.ret_code = response.status;
+                                      });
+                                  });
+</script>
+<!-----------------[DEV] EXAMPLE: Printing some text with angular--------------
+NOTES -DC
+- ng-controller allows you take control of div attributes, with angular, by reference.
+  Name it something relavant.
+- angular.module('ngcontroller_name', []
 
-<!--v------[DEV] EXAMPLE--------v-->
+
     <div ng-controller="appCtrl">
       <p>{{greeting.text}}, world </p>
     </div>
@@ -42,7 +69,7 @@
                                           $scope.greeting = { text: 'Hello' };
                                       }]);
     </script>
-<!--^---------------------------^-->    
+--^---------------------------^-->    
     
 <div class="container">
     <h1>Lots</h1>
@@ -112,6 +139,5 @@
 
 </body>
 </html>
-
 
 
