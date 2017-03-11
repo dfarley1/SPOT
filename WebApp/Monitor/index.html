@@ -1,519 +1,117 @@
+<!-------------------------------------------------------------------------------------------------
+    Contributors : David Chalco
+    Created      : 03-12-2017
+    Description  : Lot admin page. Main hub for admin control of lot.
+-------------------------------------------------------------------------------------------------->
+
 <!DOCTYPE html>
-<html><head>
-        <meta charset="utf-8">
-
-        <title>The Bar Pages</title>
-
-        <meta name="viewport" content="width=320,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-
-        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,700">
-        <link rel="stylesheet" href="/css/profile_responsive.css">
-
-        <link rel="apple-touch-icon" href="https://barpages.s3.amazonaws.com/profile/icon/2176.png">
-        <link rel="icon" href="https://barpages.s3.amazonaws.com/profile/icon/2176.png">
-
-        <script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="//code.jquery.com/jquery-1.7.1.min.js"></script>
-        <script>
-        $(function() {
-            var $pageSelector, $menuSelector, $verticalMenu;
-
-            $pageSelector = "[data-role=page]";
-            $menuSelector = "menu a[href^=#]";
-            $verticalMenu = "menu.vertical";
-
-            function closePages() {
-                $("menu a").removeClass("active");
-                $($pageSelector).css("display","none");
-                $(".back-button").css("display","none");
-                $($pageSelector + "#default-page").css("display","block");
-            }
-
-            function openPage(name) {
-                closePages();
-                $("menu a[href="+name+"]").addClass("active");
-                $(".back-button").css("display","block");
-                $($pageSelector).css("display","none");
-                $($pageSelector + name).css("display","block");
-            }
-
-            function openURL() {
-                var id = document.URL.substring(document.URL.lastIndexOf('#'));
-
-                if ($(id).length) {
-                    openPage(id);
-                }
-            }
-
-            closePages();
-            openURL();
-
-            $($menuSelector).click(function() {
-                openPage($(this).attr("href"));
-            });
-
-            $(".back-button").click(function() {
-                closePages();
-            });
-        });
-        </script>
-        <style type="text/css">
-            menu.navbar.horizontal { background-image: url(https://barpages.s3.amazonaws.com/profile/title_bg/2176.png); }
-            .container { background: transparent url(https://barpages.s3.amazonaws.com/profile/bg/2176.png);}
-        </style>
-    </head>
-
-    <body>
-        <div class="container">
-            <menu class="navbar horizontal">
-                <div class="wrapper">
-                <li class="title item">The Bar Pages</li>
-                    <div class="header-links-wrapper">
-    <a href="./z6" data-transition="none" class="desktop">Home</a>
- <a href="#information0" style="" data-transition="none" class="desktop">Who We are</a>  <a href="#survey1" style="" data-transition="none" class="desktop">get more info</a>  <a href="#information2" style="" data-transition="none" class="desktop">BP products</a>  <a href="#contact3" style="" data-transition="none" class="desktop">Contact us</a>  <a href="http://my.brp.gs/profile/Bd" style="" data-transition="none" class="desktop">bp clients</a>  <a href="http://my.brp.gs/login" style="" data-transition="none" class="desktop">BP log-in</a>  <a href="http://my.brp.gs/profile/rR" style="" data-transition="none" class="desktop">bp events</a>  <a href="https://forms.zohopublic.com/thebarpages/form/TheBarPagesOrderMenuForm/formperma/H9M8m91194Eeae_D6J041eDM9" style="" data-transition="none" class="desktop">order now</a> 
-</div><!-- end header-links-wrapper -->
-                </div>
-            </menu>
-
-            <div class="body wrapper">
-                <div class="main">
-                    <!-- <a href="#" class="back-button mobile">Back</a> -->
-
-                    <!-- 
-                    x  Include social page and possibly use for footer icons
-                    x  Style Survey
-                    o  Include gallery
-                    -->
-
-
-                    
-
-                            <div id="information0" class="information" data-role="page" style="display: none;">
-                                <div data-role="header"><h1 class="section-header">WHO WE ARE</h1></div>
-
-                                <div class="content" data-role="content">
-                                    <p><img src="http://barpages.s3.amazonaws.com/profile/gallery/438/2/0.png" width="248" height="248"><br><b>The Bar Pages</b> is a technology based consulting company that transcends innovative and creative technology into an unprecedented dimension. <b>The Bar Pages</b> transforms traditional media into life directly in the palm of your hands. Our various products and services include an online 3DMobile Barcode technology, media production, display ads, and much more. Working with our marketing staff and utilizing our products is ideal for businesses searching to discover new and innovative marketing solutions for their marketplace. Working with us at <b>The Bar Pages</b> gives you the opportunity, through cutting-edge technology, to directly inform, persuade and engage your target audience. At <b>The Bar Pages</b> we guarantee quality products, instrumental applications and the highest caliber service to our clients.</p><p><b>The Bar Pages</b> are committed to giving you all the tools necessary to bring your business to the next level of success. With everything that we have to offer,  we believe that you will have a product that you can stand by, and be proud of. We hope that you share the same vision and passion as we do. Together the possibilities are endless.<b><br><br>Contact Info:</b><b><br>Phone:</b> 949-340-3511<b><br>Email:</b> Info@TheBarPages.com<b><br>Website:</b> www.TheBarPages.com<br><br><b>Office Address:</b><br>1322 Bell Ave suite 1M<br>Tustin, Ca 92780</p>
-                                </div>
-                            </div>
-
-                        
-
-                        
-
-                        
-
-                        
-
-                        
-
-
-                        
-
-                        
-
-                    
-
-                        
-
-                        
-
-                        
-
-                        
-
-
-                        
-
-                        
-                            <div id="survey1" class="survey" data-role="page" style="display: none;">
-                                <div class="nav" data-role="header"><h1 class="section-header">GET MORE INFO</h1></div>
-
-                                <div class="content" data-role="content">
-                                    <div class="thankyou" style="display:none">Thank you for filling out our short form. We will be in contact with you shortly!<br><br><b>The Bar Pages</b><br></div>
-
-                                    
-                                        
-                                            <div class="question" data-role="fieldcontain">
-
-                                            
-
-                                            
-                                                <label for="question_2176_1_0">
-                                                    Please fill out our short form so we can better assist you:
-                                                </label>
-
-                                                
-                                            
-                                            </div>
-                                        
-                                            <div class="question" data-role="fieldcontain">
-
-                                            
-                                                <label for="question_2176_1_1">
-                                                    Name:
-                                                </label>
-                                                <input name="question_2176_1_1" id="question_2176_1_1" value="" type="text">
-                                            
-
-                                            
-                                            </div>
-                                        
-                                            <div class="question" data-role="fieldcontain">
-
-                                            
-                                                <label for="question_2176_1_2">
-                                                    Company:
-                                                </label>
-                                                <input name="question_2176_1_2" id="question_2176_1_2" value="" type="text">
-                                            
-
-                                            
-                                            </div>
-                                        
-                                            <div class="question" data-role="fieldcontain">
-
-                                            
-                                                <label for="question_2176_1_3">
-                                                    Email:
-                                                </label>
-                                                <input name="question_2176_1_3" id="question_2176_1_3" value="" type="text">
-                                            
-
-                                            
-                                            </div>
-                                        
-                                            <div class="question" data-role="fieldcontain">
-
-                                            
-                                                <label for="question_2176_1_4">
-                                                    Phone:
-                                                </label>
-                                                <input name="question_2176_1_4" id="question_2176_1_4" value="" type="text">
-                                            
-
-                                            
-                                            </div>
-                                        
-                                            <div class="question" data-role="fieldcontain">
-
-                                            
-
-                                            
-                                                <label for="question_2176_1_5">
-                                                    I would like more information on:
-                                                </label>
-
-                                                
-                                                    <select name="question_2176_1_5">
-                                                        
-                                                            <option value="BP Products and Services">BP Products and Services</option>
-                                                        
-                                                            <option value="BP Pricing and Rates">BP Pricing and Rates</option>
-                                                        
-                                                            <option value="BP Events">BP Events</option>
-                                                        
-                                                            <option value="BP Opportunities">BP Opportunities</option>
-                                                        
-                                                            <option value="Other">Other</option>
-                                                        
-                                                    </select>
-                                                
-                                            
-                                            </div>
-                                        
-                                            <div class="question" data-role="fieldcontain">
-
-                                            
-                                                <label for="question_2176_1_6">
-                                                    Comments:
-                                                </label>
-                                                <input name="question_2176_1_6" id="question_2176_1_6" value="" type="text">
-                                            
-
-                                            
-                                            </div>
-                                        
-                                            <div class="question" data-role="fieldcontain">
-
-                                            
-                                                <label for="question_2176_1_7">
-                                                    Referred By:
-                                                </label>
-                                                <input name="question_2176_1_7" id="question_2176_1_7" value="" type="text">
-                                            
-
-                                            
-                                            </div>
-                                        
-                                    
-
-                                    <input value="Submit" type="button">
-                                    <!-- @TODO: make this form actually submit, etc -->
-                                </div>
-                            </div>
-                        
-
-                    
-
-                            <div id="information2" class="information" data-role="page" style="display: none;">
-                                <div data-role="header"><h1 class="section-header">BP PRODUCTS</h1></div>
-
-                                <div class="content" data-role="content">
-                                    <p><b><u>BP Products &amp; Services:</u></b><br><br><img src="http://barpages.s3.amazonaws.com/profile/gallery/2176/7/0.png" width="255" height="182"><br><br>Our Digital Business Cards is essential to any business especially in today's mobile digital marketplace. Our Digital TAG Program has everything your business needs to build your digital foundation. It is very dynamic and can scale with you as you grow and can really help expand your brand in areas Traditional Marketing can't reach. Ask our Digital experts for more details about our One of a Kind program!<br><br><img src="http://barpages.s3.amazonaws.com/profile/gallery/438/2/0.png" width="162" height="162"><br><b>Digital TAG Generator:<br></b>We offer the latest in Cutting-Edge 2DBarcode Technology. The Bar Pages platform offers our very own 3D Tag Generator which enables you to create the only 3Dimensional 2D Barcode in the market place! Seperate yourself from your competition by branding your business with a Digital TAG that people can recognize and remember!<br><br><img src="http://barpages.s3.amazonaws.com/profile/gallery/438/1/0.png"><br><b>Mobile-Web App Builder:</b><br>With our seamless mobile-web app builder, you can create an engaging but more importantly a user friendly experience that everyone can enjoy! Some features of our Mobile-Web App include:<br><br><big>• </big>Embedded video links to tell your story (YouTube, Vimeo)<big><br>• </big>Call to Action buttons (create links to your sign ups, shop links, registrations, and more...<big><br>• </big>Lead Capture Buttons<big><br>• </big>Referral Tracking Buttons<big><br>• </big>Photo Gallery<big><br>• </big>Directions (GPS)<big><br>• </big>Social Media links<big><br>• </big>and more...<br><br><img src="http://barpages.s3.amazonaws.com/profile/gallery/1453/0/0.png"><br><b>Full Service Digital Consulting:<br></b>Our team of experts can help you build and create a solid digital foundation that you can use to maximize and leverage every aspect of your brand through our DTP (Digital TAG Program). We specialize in creating Integrated Solutions for your business that gives your customers and clients instant access to your brand 24hours a day 7 days a week. We are very passionate about what we do and we believe that with our expertise we can give your business the tools and know-how that can take you to the next level of success. <br><br><img src="http://barpages.s3.amazonaws.com/profile/gallery/2176/6/0.png"><br><b>Avatar Creation:<br></b>Our Creative Team can give your business the Digital Makeover it needs to be able to leave a lasting impression in the Digital Marketplace Today. With today's online communities demanding more of a digital presence, we can definitely prepare you for what's coming in your marketplace.<br><br><img src="http://barpages.s3.amazonaws.com/profile/gallery/438/0/0.png"><br><b>Video Production:</b><br>We offer affordable Video Services with our Green Screen Studio and other media tools and software that can help elevate your business to the next level of success.<br><br><img src="http://barpages.s3.amazonaws.com/profile/gallery/2255/3/0.png" width="203" height="356"><br><b>Marketing Cards:</b><br>Our Interactive Marketing Cards are unique in a way where the only information on the card is your Digital Tag, Branded URL and TEXT Campaign. Our marketing card's only function is to lead your customers to your Digital Business Card App.<br></p><img src="http://barpages.s3.amazonaws.com/profile/gallery/2255/4/0.png" width="201" height="164"><br><b>VIP Chat (Virtual Interactive Person):<br></b>This upgrade enables you to become fully interactive. Now you will know when someone is visiting your Digital Business Card App. You can also get an alert via text when someone wants to tag you from this feature. You can also chat with your visitor via our VIP chat feature.<br><br><img src="http://barpages.s3.amazonaws.com/profile/gallery/2255/5/0.png" width="201" height="246"><br><b>TEXT Campaigns:<br></b>This added campaign will enable you to reach a BIG audience at one time. This feature is great for people who are always doing presentations or for people who speak to big groups because at any time they can text your keyword (e.g. Digital) to your short code (e.g. 77948) and anyone who did this would get your Digital Business Card App. Pretty powerful tool for something so SIMPLE to use!!<br><br><img src="http://barpages.s3.amazonaws.com/profile/gallery/2255/6/0.png" width="219" height="363"><br><b>Virtual Pay:<br></b>Our Virtual Payment feature is a Safe and Secure way to accept Credit Card Payments and ACH payments. Your customers, clients, and friends can now key in there payment info through this portal to make Payments, Donations, and more...<br><br>**All applicants will go through an approval process**<br><br>We also have other products and services that are not listed. Please Contact Us for more info!!
-                                </div>
-                            </div>
-
-                        
-
-                        
-
-                        
-
-                        
-
-                        
-
-
-                        
-
-                        
-
-                    
-
-                        
-
-                        
-                            <div id="contact3" class="contact" data-role="page" style="display: none;">
-                                <div data-role="header"><h1 class="section-header">CONTACT US</h1></div>
-
-                                <div class="content" data-role="content">
-                                    
-                                        
-                                        <div class="contact-links desktop">
-                                            
-                                            
-                                                <a href="http://www.thebarpages.com" rel="external">
-                                                    <i class="icon">⌨</i>
-                                                    BP Website
-                                                </a>
-                                            
-                                            
-                                                <a href="mailto:info@thebarpages.com" rel="external">
-                                                    <i class="icon">✉</i>
-                                                    info@thebarpages.com
-                                                </a>
-                                            
-                                            
-                                                <a href="tel://949-340-3511" rel="external">
-                                                    <i class="icon">☎</i>
-                                                    949-340-3511
-                                                </a>
-                                            
-                                        </div>
-
-                                        <menu full="" class="mobile">
-                                            
-                                                <a href="http://www.thebarpages.com" rel="external" style="background: url(https://barpages.s3.amazonaws.com/profile/contact_button_bg/2176/3/website.png);">BP Website</a>
-                                            
-                                            
-                                                <a href="mailto:info@thebarpages.com" rel="external" style="background: url(https://barpages.s3.amazonaws.com/profile/contact_button_bg/2176/3/email.png);">Email Us</a>
-                                            
-                                            
-                                                <a href="tel://949-340-3511" rel="external" style="background: url(https://barpages.s3.amazonaws.com/profile/contact_button_bg/2176/3/phone.png);">Call Us</a>
-                                            
-                                        </menu>
-                                    
-                                    
-                                    <div class="social-box">
-                                        <h1>Follow Us!</h1>
-                                        <div class="social large">
-                                            <a href="http://www.facebook.com/TheBarPages" class="facebook" target="_blank">facebook</a>
-                                            
-                                            <a href="http://twitter.com/TheBarPages" class="twitter" target="_blank">twitter</a>
-                                            <a href="http://www.youtube.com/user/thebarpages" class="youtube" target="_blank">youtube</a>
-                                            
-                                            <a href="http://www.linkedin.com/companies/the-bar-pages" class="linkedin" target="_blank">linkedin</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        
-
-                        
-
-                        
-
-
-                        
-
-                        
-
-                    
-
-                        
-
-                        
-
-                        
-
-                        
-
-
-                        
-
-                        
-
-                    
-
-                        
-
-                        
-
-                        
-
-                        
-
-
-                        
-
-                        
-
-                    
-
-                        
-
-                        
-
-                        
-
-                        
-
-
-                        
-
-                        
-
-                    
-
-                        
-
-                        
-
-                        
-
-                        
-
-
-                        
-
-                        
-
-                    
-
-
-                    
-                        <div id="default-page" data-role="page" class="video" style="display: block;">
-                            
-                            <iframe src="https://player.vimeo.com/video/16422707?autoplay=0&amp;byline=0&amp;portrait=0&amp;title=0" width="420" height="315" frameborder="0"></iframe>
-                        </div>
-                    
-
-                    
-                </div>
-
-                <div class="sidebar">
-                    <div class="logo">
-                        <h1 class="wrapper">
-                            <img alt="The Bar Pages" src="https://barpages.s3.amazonaws.com/profile/logo/2176.png?1482101735" onerror="$(this).hide()">
-                        </h1>
-                    </div>
-
-                    <menu class="vertical">
-                         <a href="#information0" style="background: url(https://barpages.s3.amazonaws.com/profile/button_bg/2176/0.png); background-size: cover;" data-transition="none">Who We are</a>  <a href="#survey1" style="background: url(https://barpages.s3.amazonaws.com/profile/button_bg/2176/1.png); background-size: cover;" data-transition="none">get more info</a>  <a href="#information2" style="background: url(https://barpages.s3.amazonaws.com/profile/button_bg/2176/2.png); background-size: cover;" data-transition="none">BP products</a>  <a href="#contact3" style="background: url(https://barpages.s3.amazonaws.com/profile/button_bg/2176/3.png); background-size: cover;" data-transition="none">Contact us</a>  <a href="http://my.brp.gs/profile/Bd" style="background: url(https://barpages.s3.amazonaws.com/profile/button_bg/2176/4.png); background-size: cover;" data-transition="none">bp clients</a>  <a href="http://my.brp.gs/login" style="background: url(https://barpages.s3.amazonaws.com/profile/button_bg/2176/5.png); background-size: cover;" data-transition="none">BP log-in</a>  <a href="http://my.brp.gs/profile/rR" style="background: url(https://barpages.s3.amazonaws.com/profile/button_bg/2176/6.png); background-size: cover;" data-transition="none">bp events</a>  <a href="https://forms.zohopublic.com/thebarpages/form/TheBarPagesOrderMenuForm/formperma/H9M8m91194Eeae_D6J041eDM9" style="background: url(https://barpages.s3.amazonaws.com/profile/button_bg/2176/7.png); background-size: cover;" data-transition="none">order now</a> 
-
-                    </menu>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer">
-            <div class="wrapper">
-                <div class="social">
-                    
-
-                    
-                        <a href="http://www.facebook.com/TheBarPages" class="facebook" target="_blank">facebook</a>
-                        
-                        <a href="http://twitter.com/TheBarPages" class="twitter" target="_blank">twitter</a>
-                        <a href="http://www.youtube.com/user/thebarpages" class="youtube" target="_blank">youtube</a>
-                        
-                        <a href="http://www.linkedin.com/companies/the-bar-pages" class="linkedin" target="_blank">linkedin</a>
-                    
-                </div>
-
-                <div class="horizontal powered-by">
-                    <a href="http://www.thebarpages.com"><img src="/images/powered-by-big.png"></a>
-                </div>
-                <!--
-                <menu class="horizontal">
-                    <a href="#"><li>Privacy Policy</li></a>
-                    <a href="#"><li>Terms &amp; Conditions</li></a>
-                </menu>
-                -->
-            </div>
-        </div>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $(".survey input[type=button]").live('click', function () {
-                    var content = $(this).closest('.content');
-                    var profile_id = 'z6';
-                    var survey_id = $(this).closest('.survey').attr('id').replace(/survey/, '');
-                    var data = $(this).closest('.survey').find('input, select').serialize();
-                    var thank_you = content.find('.thankyou').text().length > 0 ? content.find('.thankyou').html() : '<div class="thanks">Thank You!<br /><small>Information has been sent.</small></div>';
-                    
-                    $.post('https://my.brp.gs/profile/' + profile_id + '/survey/' + survey_id, data, function (data, status) {
-                        if(status == 'success') {
-                            content.html(thank_you);
-                        }
-                    });
-                    return false;
-                });
-                $(".image_wrapper").live('click', function () {
-                    var caption = $($(this)).find('.caption').val();
-                    var url = $($(this)).find('.url').val();
-                    $(this).closest('.content').append(
-                        '<div class="image_backdrop"><a href="#" class="close">X</a><img src="' + url + '" /><div class="">' + caption + '</div></div>'
-                    );
-                });
-                $(".image_backdrop .close").live('click', function () {
-                    $(".image_backdrop").fadeOut();
-                    return false;
-                });
-            });
-        </script>
-        
-          <script>
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-            ga('create', 'UA-77861875-37', 'auto');
-            ga('send', 'pageview');
-
-          </script>
-        
-
-
-        <!--
-        <script src="headroom.min.js"></script>
-        <script>
-        var navbar   = document.querySelector(".navbar");
-        var headroom = new Headroom(navbar);
-
-        headroom.init();
-        </script>
-        -->
+<html lang="en">
+<head>
+  <title>Admin Control Hub</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
     
+<body ng-app="slot_client">
+
+  
+<!--v-------[DEV] TESTS---------v-->
+<pre><h1>DEV TESTS</h1><br> 
+<script>
+        if(typeof angular == 'undefined') {
+            document.write("[ERROR]  Angular did not load...")
+        } else {
+            document.write("[SUCCESS] Angular loaded properly!")
+        }
+</script>
+</pre>
+<!--^---------------------------^-->
+
+<!--v------[DEV] EXAMPLE--------v-->
+    <div ng-controller="appCtrl">
+      <p>{{greeting.text}}, world </p>
+    </div>
+    <script>
+        var appname = angular.module('slot_client', []);
+        appname.controller('appCtrl', ['$scope',
+                                      function($scope) {
+                                          $scope.greeting = { text: 'Hello' };
+                                      }]);
+    </script>
+<!--^---------------------------^-->    
+    
+<div class="container">
+    <h1>Lots</h1>
+    <!--Angular/Bootstrap Button Example: Link text info, upon button press, to Angular-->
+    <div class="jumbotron text-center"> 
+        <div class="form-group">
+            <form ng-controller="LotController" ng-submit="createLot()">
+                <label for="lots">Create a new lot</label>    
+                <div class="input-group">
+                    <input type="text" class="form-control" name="newLot" ng-model="lotName" />   
+                    <span class="input-group-btn"><button class="btn btn-primary" type="submit">New Entry</button></span>
+                </div>
+            </form>
+            
+            <!--POSTing text info to server-->
+            <script>
+                /*
+                function LotController($scope, $http) {
+                    $scope.ret_status = -1;
+                    $scope.createLot = function() {
+                        $scope.ret_status = 2;
+                        $http({
+                            method : 'POST',
+                            url : 'http://alien-walker-157903.appspot.com/monitor/hub',
+                            data : 'xDC here'
+                        }).then(function successCallback(response) {
+                            $scope.ret_status = 0;
+                        }, function errorCallBack(response) {
+                            $scope.ret_status = 1;
+                        });
+                }
+                */
+            </script>
+        </div>    
+        
+        <!--Bootstrap/Django Table Example: Show pretty table, dynamically sized by Django-->
+        <table class="table table-striped text-center">
+            <thead>
+              <!--Embedded python for fields-->
+              <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Email</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!--Embedded python for contents-->
+              <tr>
+                <td>John</td>
+                <td>Doe</td>
+                <td>john@example.com</td>
+              </tr>
+              <tr>
+                <td>Mary</td>
+                <td>Moe</td>
+                <td>mary@example.com</td>
+              </tr>
+              <tr>
+                <td>July</td>
+                <td>Dooley</td>
+                <td>july@example.com</td>
+              </tr>
+            </tbody>
+        </table>
+  <p></p> 
+</div>
+
+</body>
+</html>
 
 
-</body></html>
+
