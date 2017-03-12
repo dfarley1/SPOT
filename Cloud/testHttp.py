@@ -59,9 +59,11 @@ def sensor_getUUID_GET():
     
     f = open(uuid_filename, 'w')
     sensor_uuid_hex = uuid.UUID(r.cookies['sensor_uuid']).hex
+    
     s = str(sensor_uuid_hex)
     new_hex = " ".join(s[i:i+2] for i in range(0, len(s),2))
-    f.write(new_hex)
+    hex_s = new_hex[0:12] + new_hex[30:]
+    f.write(hex_s)
     f.close()
 
     printResponse(r)
