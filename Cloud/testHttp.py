@@ -26,6 +26,8 @@ def sensor_GET():
     
     saveCookies(r.cookies)
     printResponse(r)
+    print(uuid_filename)
+
 
 def sensor_POST():
     cookies = loadCookies()
@@ -63,6 +65,7 @@ def sensor_getUUID_GET():
     s = str(sensor_uuid_hex)
     new_hex = " ".join(s[i:i+2] for i in range(0, len(s),2))
     hex_s = new_hex[0:12] + new_hex[30:]
+    print(hex_s)
     f.write(hex_s)
     f.close()
 
