@@ -76,15 +76,13 @@ def list_structures(request):
 	return render(request, 'list_structures.html', {'structures': structures})
 
 
-def edit_structure(request):
-	if 'name' in request.GET:
-		structure = spot_structs.objects.get(name=request.GET['name'])
-		print "using existing structure" + str(structure)
-	else:
-		structure = spot_structs()
-		print "using new structure" + str(structure)
-	
+def edit_structure(request):	
 	if request.method == "POST":
+		if 'name' in request.GET and request.GET['name'] != "":
+			structure = spot_structs.objects.get(name=request.GET['name'])
+		else: 
+			structure = spot_structs()
+	
 		form = spot_structs_form(request.POST, instance=structure)
 		if form.is_valid():
 			form.save()
@@ -92,8 +90,25 @@ def edit_structure(request):
 		else:
 			return HttpResponseRedirect('/not_valid/')
 	else:
+		if 'name' in request.GET:
+			structure = spot_structs.objects.get(name=request.GET['name'])
+		else: 
+			structure = spot_structs()
+	
 		form = spot_structs_form(instance=structure)
-	return render(
-		request, 
-		'edit_structure.html', 
-		{'form':form, 'name':request.GET['name']})
+		return render(
+			request, 
+			'edit_structure.html', 
+			{'form':form, 'name':structure.name})
+		
+def hub(request):
+	help = "------ " + str(request.method) + " -----<br>"
+	help += "----------- GET Params ----------<br>"
+	for key,val in request.GET.items():
+		help += (key + " : " + val + "<br>")
+	help += "----------- POST Params ----------<br>"
+	for key,val in request.POST.items():
+		help += (key + " : " + val + "<br>")
+	help += "------------------------------<br><br>"
+
+	return HttpResponse(help)

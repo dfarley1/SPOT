@@ -19,6 +19,7 @@ import uuid
 class spot_data(models.Model):
 	uuid = models.UUIDField("UUID", primary_key = True, unique = True)
 	#"static" metadata about spot
+	#structure = models.OneToOneField('spot_structs', on_delete=models.CASCADE, default=None)
 	active = models.BooleanField("Active", default=True)
 	section = models.CharField("Section", max_length=20)
 	number = models.IntegerField("Spot Number")

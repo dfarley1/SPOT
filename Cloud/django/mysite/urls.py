@@ -14,12 +14,21 @@
 
 from django.conf.urls import include, url
 from django.contrib import admin
-
+from rest_framework_nested import routers
+from authentication.views import AccountViewSet
 import sensor 
 import monitor
+from mysite.views import IndexView
+
+router = routers.SimpleRouter()
+router.register(r'accounts', AccountViewSet)
 
 urlpatterns = [
     url(r'^sensor/', include('sensor.urls')),
 	url(r'^monitor/', include('monitor.urls')),
+	url(r'^home/', include('home.urls')),
     url(r'^admin/', include(admin.site.urls)),
+	url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+	url(r'^api/v1/', include(router.urls)),
+	url('^.*$', IndexView.as_view(), name='index'),
 ]
