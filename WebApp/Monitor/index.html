@@ -1,0 +1,143 @@
+<!-------------------------------------------------------------------------------------------------
+    Contributors : David Chalco
+    Created      : 03-12-2017
+    Description  : Lot admin page. Main hub for admin control of lot.
+-------------------------------------------------------------------------------------------------->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Admin Control Hub</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+    
+<body ng-app="slot_client">
+
+  
+<!--v-------[DEV] TESTS---------v-->
+<pre><h1>DEV TESTS</h1><br>
+    <div ng-controller="devPOST">
+            <p>{{ret_msg}} {{ret_code}}</p>
+    </div>
+    <script>
+            if(typeof angular == 'undefined') {
+                document.write(" [ERROR]  Angular did not load...")
+            } else {
+                document.write("[SUCCESS] Angular loaded properly!")
+            }
+    </script>
+</pre>
+<!--^---------------------------^-->
+<div ng-controller="devPOST">
+            <p>{{ret_msg}} {{ret_code}}</p>
+</div>
+<script>
+    var appname = angular.module('slot_client', []);
+    appname.controller('devPOST', function($scope, $http) {
+                                      $http({
+                                            method : 'POST',
+                                            url : 'http://alien-walker-157903.appspot.com/monitor/hub',
+                                            data : 'xDC here'
+                                      }).then(function successCallback(response) {
+                                            $scope.ret_msg = " [SUCCESS] Good status code : "
+                                            $scope.ret_code = response.status;
+                                      }, function errorCallBack(response) {
+                                            $scope.ret_msg = " [ERROR] Bad status code :"
+                                            $scope.ret_code = response.status;
+                                      });
+                                  });
+</script>
+<!-----------------[DEV] EXAMPLE: Printing some text with angular--------------
+NOTES -DC
+- ng-controller allows you take control of div attributes, with angular, by reference.
+  Name it something relavant.
+- angular.module('ngcontroller_name', []
+
+
+    <div ng-controller="appCtrl">
+      <p>{{greeting.text}}, world </p>
+    </div>
+    <script>
+        var appname = angular.module('slot_client', []);
+        appname.controller('appCtrl', ['$scope',
+                                      function($scope) {
+                                          $scope.greeting = { text: 'Hello' };
+                                      }]);
+    </script>
+--^---------------------------^-->    
+    
+<div class="container">
+    <h1>Lots</h1>
+    <!--Angular/Bootstrap Button Example: Link text info, upon button press, to Angular-->
+    <div class="jumbotron text-center"> 
+        <div class="form-group">
+            <form ng-controller="LotController" ng-submit="createLot()">
+                <label for="lots">Create a new lot</label>    
+                <div class="input-group">
+                    <input type="text" class="form-control" name="newLot" ng-model="lotName" />   
+                    <span class="input-group-btn"><button class="btn btn-primary" type="submit">New Entry</button></span>
+                </div>
+            </form>
+            
+            <!--POSTing text info to server-->
+            <script>
+                /*
+                function LotController($scope, $http) {
+                    $scope.ret_status = -1;
+                    $scope.createLot = function() {
+                        $scope.ret_status = 2;
+                        $http({
+                            method : 'POST',
+                            url : 'http://alien-walker-157903.appspot.com/monitor/hub',
+                            data : 'xDC here'
+                        }).then(function successCallback(response) {
+                            $scope.ret_status = 0;
+                        }, function errorCallBack(response) {
+                            $scope.ret_status = 1;
+                        });
+                }
+                */
+            </script>
+        </div>    
+        
+        <!--Bootstrap/Django Table Example: Show pretty table, dynamically sized by Django-->
+        <table class="table table-striped text-center">
+            <thead>
+              <!--Embedded python for fields-->
+              <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Email</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!--Embedded python for contents-->
+              <tr>
+                <td>John</td>
+                <td>Doe</td>
+                <td>john@example.com</td>
+              </tr>
+              <tr>
+                <td>Mary</td>
+                <td>Moe</td>
+                <td>mary@example.com</td>
+              </tr>
+              <tr>
+                <td>July</td>
+                <td>Dooley</td>
+                <td>july@example.com</td>
+              </tr>
+            </tbody>
+        </table>
+  <p></p> 
+</div>
+
+</body>
+</html>
+
+
