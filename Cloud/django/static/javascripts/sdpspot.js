@@ -3,9 +3,10 @@
 
 	angular
 		.module('sdpspot', [
-		'sdpspot.config',
+			'sdpspot.config',
 			'sdpspot.routes',
-			'sdpspot.authentication'
+			'sdpspot.authentication',
+			'sdpspot.layout'
 		]);
 
 	angular
