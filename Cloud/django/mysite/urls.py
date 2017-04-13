@@ -24,10 +24,10 @@ router = routers.SimpleRouter()
 router.register(r'accounts', AccountViewSet)
 
 urlpatterns = [
-    url(r'^sensor/', include('sensor.urls')),
+	url(r'^sensor/', include('sensor.urls')),
 	url(r'^monitor/', include('monitor.urls')),
 	url(r'^home/', include('home.urls')),
-    url(r'^admin/', include(admin.site.urls)),
+	url(r'^admin/', include(admin.site.urls)),
 	
 	url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 	url(r'^api/v1/', include(router.urls)),
