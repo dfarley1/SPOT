@@ -4,7 +4,7 @@
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#	 http://www.apache.org/licenses/LICENSE-2.0
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -48,47 +48,48 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = (
-	'django.contrib.admin',
-	'django.contrib.auth',
-	'django.contrib.contenttypes',
-	'django.contrib.sessions',
-	'django.contrib.messages',
-	'django.contrib.staticfiles',
-	'sensor',
-	'monitor',
-	'authentication',
-	'rest_framework',
-	'compressor',
-	#'rest_framework_nested',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'sensor',
+    'monitor',
+    'authentication',
+    'rest_framework',
+    'compressor',
+    #'rest_framework_nested',
 )
 
 MIDDLEWARE_CLASSES = (
-	'django.contrib.sessions.middleware.SessionMiddleware',
-	'django.middleware.common.CommonMiddleware',
-	'django.middleware.csrf.CsrfViewMiddleware',
-	'django.contrib.auth.middleware.AuthenticationMiddleware',
-	'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
-	'django.contrib.messages.middleware.MessageMiddleware',
-	'django.middleware.clickjacking.XFrameOptionsMiddleware',
-	'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'mysite.disable.DisableCSRF',
 )
 
 ROOT_URLCONF = 'mysite.urls'
 
 TEMPLATES = [
-	{
-		'BACKEND': 'django.template.backends.django.DjangoTemplates',
-		'DIRS': [],
-		'APP_DIRS': True,
-		'OPTIONS': {
-			'context_processors': [
-				'django.template.context_processors.debug',
-				'django.template.context_processors.request',
-				'django.contrib.auth.context_processors.auth',
-				'django.contrib.messages.context_processors.messages',
-			],
-		},
-	},
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
 ]
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
@@ -99,34 +100,34 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 # [START db_setup]
 if os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine'):
-	# Running on production App Engine, so connect to Google Cloud SQL using
-	# the unix socket at /cloudsql/<your-cloudsql-connection string>
-	DATABASES = {
-		'default': {
-			'ENGINE': 'django.db.backends.mysql',
-			'HOST': '/cloudsql/alien-walker-157903:us-central1:myinstance',
-			'NAME': 'SPOT',
-			'USER': 'sdpspot',
-			'PASSWORD': 'sdpsp0t2017',
-		}
-	}
+    # Running on production App Engine, so connect to Google Cloud SQL using
+    # the unix socket at /cloudsql/<your-cloudsql-connection string>
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'HOST': '/cloudsql/alien-walker-157903:us-central1:myinstance',
+            'NAME': 'SPOT',
+            'USER': 'sdpspot',
+            'PASSWORD': 'sdpsp0t2017',
+        }
+    }
 else:
-	# Running locally so connect to either a local MySQL instance or connect to
-	# Cloud SQL via the proxy. To start the proxy via command line:
-	#
-	#	 $ cloud_sql_proxy -instances=[INSTANCE_CONNECTION_NAME]=tcp:3306
-	#
-	# See https://cloud.google.com/sql/docs/mysql-connect-proxy
-	DATABASES = {
-		'default': {
-			'ENGINE': 'django.db.backends.mysql',
-			'HOST': '127.0.0.1',
-			'PORT': '3306',
-			'NAME': 'SPOT',
-			'USER': 'sdpspot',
-			'PASSWORD': 'sdpsp0t2017',
-		}
-	}
+    # Running locally so connect to either a local MySQL instance or connect to
+    # Cloud SQL via the proxy. To start the proxy via command line:
+    #
+    #     $ cloud_sql_proxy -instances=[INSTANCE_CONNECTION_NAME]=tcp:3306
+    #
+    # See https://cloud.google.com/sql/docs/mysql-connect-proxy
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'HOST': '127.0.0.1',
+            'PORT': '3306',
+            'NAME': 'SPOT',
+            'USER': 'sdpspot',
+            'PASSWORD': 'sdpsp0t2017',
+        }
+    }
 # [END db_setup]
 
 # Internationalization
@@ -150,13 +151,13 @@ STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-	os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'static'),
 )
 
 STATICFILES_FINDERS = (
-	'django.contrib.staticfiles.finders.FileSystemFinder',
-	'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-	'compressor.finders.CompressorFinder',
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
 )
 
 COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
@@ -185,10 +186,12 @@ TEMPLATES = [
     },
 ]
 
+CSRF_COOKIE_SECURE = True
+
 REST_FRAMEWORK = {
-	'DEFAULT_AUTHENTICATION_CLASSES': (
-		'rest_framework.authentication.SessionAuthentication',
-	)
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+    )
 }
 
 AUTH_USER_MODEL = 'authentication.Account'

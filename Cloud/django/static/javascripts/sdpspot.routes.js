@@ -20,6 +20,10 @@
 			controller: 'LoginController',
 			controllerAs: 'vm',
 			templateUrl: '/static/templates/authentication/login.html'
+		}).when('/home', {
+			controller: 'MapController',
+			controllerAs: 'vm',
+			templateUrl: '/static/templates/home.html'
 		}).otherwise('/');
 	}
 })();

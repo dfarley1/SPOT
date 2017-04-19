@@ -15,6 +15,7 @@
 from django.db import models
 from django.forms import ModelForm
 import uuid
+from authentication.models import Account, AccountManager
 
 class spot_data(models.Model):
 	uuid = models.UUIDField("UUID", primary_key = True, unique = True)
@@ -31,6 +32,9 @@ class spot_data(models.Model):
 	occ_status = models.SmallIntegerField("Occupied Status", default=0)
 	occ_since = models.DateTimeField("Occupied Since")
 	occ_license = models.CharField("Occupant License", max_length=20)
+
+	
+	occupant = models.ForeignKey(Account, related_name='spot_occupied')
 	
 	def __str__(self):
 		return (str(self.uuid))
