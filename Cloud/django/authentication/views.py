@@ -2,6 +2,7 @@ import json
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render
 from rest_framework import permissions, viewsets, status, views
+from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
 from authentication.models import Account
 from authentication.permissions import IsAccountOwner
@@ -37,6 +38,7 @@ class AccountViewSet(viewsets.ModelViewSet):
 
 
 class LoginView(views.APIView):
+    renderer_classes = (JSONRenderer, )
     @csrf_exempt
     def post(self, request, format=None):
         data = json.loads(request.body)
@@ -76,7 +78,6 @@ class LogoutView(views.APIView):
 
 class OccupyView(views.APIView):
     # permission_classes = (permissions.IsAuthenticated,)
-
     @csrf_exempt
     def post(self, request, format=None):
         data = json.loads(request.body)
@@ -92,4 +93,4 @@ class OccupyView(views.APIView):
         #else:
             #return 400
         print 5
-        return Response({''}, status=status.HTTP_200_OK)
+        return Response({}, status=status.HTTP_200_OK)
