@@ -34,7 +34,7 @@ class spot_data(models.Model):
 	occ_license = models.CharField("Occupant License", max_length=20)
 
 	
-	occupant = models.ForeignKey(Account, related_name='spot_occupied')
+	occupant = models.ForeignKey(Account, null=True, related_name='spot_occupied')
 	
 	def __str__(self):
 		return (str(self.uuid))
