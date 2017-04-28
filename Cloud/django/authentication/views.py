@@ -1,5 +1,6 @@
 import json
-from django.contrib.auth import authenticate, login, logout
+import uuid
+from django.contrib.auth import authenticate, login, logout, get_user
 from django.shortcuts import render
 from rest_framework import permissions, viewsets, status, views
 from rest_framework.renderers import JSONRenderer
@@ -8,6 +9,8 @@ from authentication.models import Account
 from authentication.permissions import IsAccountOwner
 from authentication.serializers import AccountSerializer
 from django.views.decorators.csrf import csrf_exempt
+from sensor.models import spot_data
+from django.core.exceptions import ObjectDoesNotExist
 
 class AccountViewSet(viewsets.ModelViewSet):
     lookup_field = 'username'
@@ -77,20 +80,48 @@ class LogoutView(views.APIView):
 
 
 class OccupyView(views.APIView):
-    # permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.IsAuthenticated,)
     @csrf_exempt
     def post(self, request, format=None):
         data = json.loads(request.body)
-        #if no beacon_id and no user
-            #return 400
-        #get spot_data for uuid
-        #if valid:
-            #get account for user
-            #if valid:
-                #spot_data.occupant = account
-            #else:
-                #return 400
-        #else:
-            #return 400
-        print 5
-        return Response({}, status=status.HTTP_200_OK)
+        
+        #check args
+        email = data.get('email', None)
+        if email is None:
+            return Response({
+                'status': 'Unauthorized',
+                'message': 'Missing email.'
+            }, status=status.HTTP_401_UNAUTHORIZED)
+        raw_beacon = data.get('beacon_id', None)
+        if raw_beacon is None:
+            return Response({
+                'status': 'Unauthorized',
+                'message': 'Missing beacon_id.'
+            }, status=status.HTTP_401_UNAUTHORIZED)
+
+        #check request.user for 
+        if not request.user.is_authenticated:
+            return Response({
+                'status': 'Unauthorized',
+                'message': 'User not authenticated, please log in.'
+            }, status=status.HTTP_401_UNAUTHORIZED)
+
+        beacon_uuid = uuid.UUID(raw_beacon)
+        try:
+            spot = spot_data.objects.get(uuid=beacon_uuid)
+        except ObjectDoesNotExist as den:
+		    return Response({
+                        'status':'Unauthorized',
+                        'message':'Invalid beacon UUID.'
+            }, status=status.HTTP_401_UNAUTHORIZED)
+
+        #user is authenitcated and we have the beacon's spot_data,
+        # add this user as the occupant
+        #if spot.occ_status is True:
+        spot.occupant = request.user
+        spot.save()
+
+        return Response({
+            'status':'Success',
+            'occupying': spot.pretty_str()
+        }, status=status.HTTP_200_OK)
