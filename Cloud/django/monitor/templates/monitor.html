@@ -61,9 +61,9 @@ table, th, td{
 {% for spot in garage_data %}
 	<li><a href="/monitor/edit_info/?sensor_uuid={{spot.uuid}}">{{ spot.uuid }}</a>
 		<br>active={{ spot.active }}
+        <br>occupant={{spot.occupant}}
 		<br>status={{ spot.occ_status }}
 		<br>license={{ spot.occ_license }}
-		<br>since={{ spot.occ_since }}
 		<br>section={{ spot.section }} 
 		<br>number={{ spot.number }}
 		<br>GPS={{ spot.gpslat }} - {{ spot.gpslon }}
