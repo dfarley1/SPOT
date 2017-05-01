@@ -13,4 +13,24 @@
 # limitations under the License.
 
 from django.db import models
+from django.forms import ModelForm
+import uuid
+import datetime
+from authentication.models import Account, AccountManager
 
+class parking_rates (models.Model):
+	start_time = models.TimeField("Start time")
+	end_time = models.TimeField("End time")
+    days = models.IntegerField("Days", default=0)
+    section = models.CharField("Section(s)", max_length=20)
+    spot = models.IntegerField("SPOT(s)")
+    rate = models.IntegerField("Rate per hour")
+
+    def contains(self, time):
+        if time > start_time and time < end_time:
+            day_of_week = 2**time.weekday()
+            if self.days & day_of_week is True:
+                return True 
+        
+        return False
+            
