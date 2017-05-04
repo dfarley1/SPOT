@@ -5,12 +5,14 @@ from django.shortcuts import render
 from rest_framework import permissions, viewsets, status, views
 from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
+from django.views.decorators.csrf import csrf_exempt
+from django.core.exceptions import ObjectDoesNotExist
+
+import monitor.logging
 from authentication.models import Account
 from authentication.permissions import IsAccountOwner
 from authentication.serializers import AccountSerializer
-from django.views.decorators.csrf import csrf_exempt
 from sensor.models import spot_data
-from django.core.exceptions import ObjectDoesNotExist
 
 class AccountViewSet(viewsets.ModelViewSet):
     lookup_field = 'username'
@@ -120,6 +122,9 @@ class OccupyView(views.APIView):
         #if spot.occ_status is True:
         spot.occupant = request.user
         spot.save()
+
+        #log the occupancy
+        monitor.logging.log_occupancy(spot, request.user)
 
         return Response({
             'status':'Success',

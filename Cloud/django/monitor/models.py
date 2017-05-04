@@ -14,9 +14,11 @@
 
 import uuid
 import datetime
+import pytz
 from django.db import models
 from django.forms import ModelForm
 from authentication.models import Account, AccountManager
+from sensor.models import spot_data
 
 class parking_rates(models.Model):
     start_time = models.TimeField("Start time")
@@ -32,4 +34,27 @@ class parking_rates(models.Model):
             if self.days & day_of_week is True:
                 return True
         return False
-            
+
+class event_log(models.Model):
+    start = models.DateTimeField("Arrival", null=True)
+    end = models.DateTimeField("Departure", null=True)
+    spot = models.ForeignKey(spot_data, null=True, related_name="spot_occupied")
+    user = models.ForeignKey(Account, null=True, related_name="occupant")
+
+    def __str__(self):
+        string = "SPOT " + str(self.spot) + " occupied by "
+        if self.user is None:
+            string = string + str(self.spot.occ_license)
+        else:
+            string = string + str(self.user)
+        string = string + (" from " + str(self.start) + " to " +
+                           str(self.end) + " (" + str(self.dur_minutes()) + ")")
+
+    def dur_minutes(self):
+        if self.start is None:
+            return -2
+        if self.end is None:
+            end = pytz.utc.localize(datetime.datetime.now())
+        else:
+            end = self.end
+        return int((end - self.start).total_seconds() / 60)
