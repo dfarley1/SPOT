@@ -6,7 +6,8 @@
 			'sdpspot.config',
 			'sdpspot.routes',
 			'sdpspot.authentication',
-			'sdpspot.layout'
+			'sdpspot.layout',
+      'sdpspot.monitor'
 		]);
 
 	angular

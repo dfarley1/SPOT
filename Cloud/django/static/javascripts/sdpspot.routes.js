@@ -20,10 +20,22 @@
 			controller: 'LoginController',
 			controllerAs: 'vm',
 			templateUrl: '/static/templates/authentication/login.html'
-		}).when('/home', {
+		}).when('/test', {
+      controller: 'MonitorController',
+      controllerAs: 'vm',
+      templateUrl: '/static/templates/monitor/monitor.html'
+    }).when('/home', {
 			controller: 'MapController',
 			controllerAs: 'vm',
 			templateUrl: '/static/templates/home.html'
-		}).otherwise('/');
+    }).when('/monitor', {
+			controller: 'MonitorController',
+			controllerAs: 'vm',
+			templateUrl: 'monitor/templates/monitor.html'
+		}).when('/mobile', {
+      controller: 'MobileController',
+      controllerAs: 'vm',
+      templateUrl: '/static/templates/mobile/insert.html'
+    }).otherwise('/');
 	}
 })();
