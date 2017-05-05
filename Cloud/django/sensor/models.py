@@ -29,10 +29,9 @@ class sections(models.Model):
         return str(self.name)
 
 class spot_data(models.Model):
-    uuid = models.UUIDField("UUID", primary_key = True, unique = True)
+    uuid = models.UUIDField("UUID", primary_key=True, unique=True)
     #"static" metadata about spot
     active = models.BooleanField("Active", default=True)
-    structure = models.ForeignKey(structures, null=True)
     section = models.ForeignKey(sections, null=True)
     number = models.IntegerField("Spot Number")
     description = models.CharField("Description", max_length=50)

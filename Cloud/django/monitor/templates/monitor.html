@@ -42,11 +42,15 @@ table, th, td{
 	<tr>
 	{% if spot.active == True %}
 		<th><a href="/monitor/edit_info/?sensor_uuid={{spot.uuid}}">
-		{% if spot.section != "" %}
-			{{spot.section}} -- {{spot.number}}
-		{% else %}
-			{{spot.uuid}}
-		{% endif %}
+        {% if spot.section is not None %}
+            {% if spot.section.structure is not None %}
+                {{ spot.section.structure }}, {{ spot.section }} -- {{spot.number}}
+            {% else %}
+                {{ spot.section }} -- {{ spot.number }}
+            {% endif %}
+        {% else %}
+            {{ spot.number }}
+        {% endif %}
 		</a></th>
 		<th>{{spot.occ_status}}</th>
 	{% endif %}
@@ -64,7 +68,7 @@ table, th, td{
         <br>occupant={{spot.occupant}}
 		<br>status={{ spot.occ_status }}
 		<br>license={{ spot.occ_license }}
-		<br>section={{ spot.section }} 
+		<br>location={{spot.structure.name}}, {{ spot.section.name }} 
 		<br>number={{ spot.number }}
 		<br>GPS={{ spot.gpslat }} - {{ spot.gpslon }}
 	</li>

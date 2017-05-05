@@ -39,12 +39,12 @@ def index(request):
 	#render the HTML page
 	return HttpResponse(template.render(context, request))
 
-	
+
 def edit_info(request):
 	spot = spot_data.objects.get(uuid=request.GET['sensor_uuid'])
 	if not valid_sensor(request):
 		return HttpResponseBadRequest("Sensor UUID doesn't exist!")
-		
+
 	if request.method == 'POST':
 		form = spot_data_form(request.POST, instance=spot)
 		if form.is_valid():
