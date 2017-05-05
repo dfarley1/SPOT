@@ -38,8 +38,8 @@ class parking_rates(models.Model):
 class event_log(models.Model):
     start = models.DateTimeField("Arrival", null=True)
     end = models.DateTimeField("Departure", null=True)
-    spot = models.ForeignKey(spot_data, null=True, related_name="spot_occupied")
-    user = models.ForeignKey(Account, null=True, related_name="occupant")
+    spot = models.ForeignKey(spot_data, null=True)
+    user = models.ForeignKey(Account, null=True)
 
     def __str__(self):
         string = "SPOT " + str(self.spot) + " occupied by "
