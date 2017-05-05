@@ -1,0 +1,117 @@
+{
+	"variables": [],
+	"info": {
+		"name": "SPOT",
+		"_postman_id": "f8edaaa0-dc8f-10fd-503c-8010208e7cff",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Sensor Arrival POST",
+			"request": {
+				"url": "127.0.0.1:8000/sensor/?sensor_uuid=9256490c-0786-11e7-af7a-b827eb6471d8",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "occ_status",
+							"value": "1",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "occ_since",
+							"value": "2017-05-03 18:17:56.330153",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "occ_license",
+							"value": "",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Login POST",
+			"request": {
+				"url": "http://127.0.0.1:8000/api/v1/auth/login/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\":\"test@test.test\",\n\t\"password\":\"test\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Occupy POST",
+			"request": {
+				"url": "http://127.0.0.1:8000/api/v1/auth/occupy/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\":\"test@test.test\",\n\t\"beacon_id\":\"9256490c-0786-11e7-af7a-b827eb6471d8\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Sensor Departure POST",
+			"request": {
+				"url": "127.0.0.1:8000/sensor/?sensor_uuid=9256490c-0786-11e7-af7a-b827eb6471d8",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "occ_status",
+							"value": "0",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "occ_since",
+							"value": "2017-05-03 15:27:04.358651",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "occ_license",
+							"value": "",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
