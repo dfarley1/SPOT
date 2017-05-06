@@ -38,10 +38,12 @@ def index(request):
 	
 	#Do stuff here, fill a dictionary object from the database
 	garage_data = spot_data.objects.all()
-	
+	lot_directory = structures.objects.all()
+
 	#put that data into the HTML's context
 	context = {
-		'garage_data': garage_data}
+		'garage_data': garage_data,
+    'lot_directory': lot_directory}
 	#render the HTML page
 	return HttpResponse(template.render(context, request))
 
