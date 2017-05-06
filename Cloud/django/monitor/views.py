@@ -23,6 +23,8 @@ from sensor.sensor import valid_sensor
 from django import forms
 from django.forms import formset_factory
 
+from rest_framework import permissions, viewsets, status, views
+from django.views.decorators.csrf import csrf_exempt
 
 def index(request):
 	#stupid cookie thing we have to have.
@@ -100,7 +102,7 @@ def edit_structure(request):
 			request, 
 			'edit_structure.html', 
 			{'form':form, 'name':structure.name})
-		
+	
 def hub(request):
 	help = "------ " + str(request.method) + " -----<br>"
 	help += "----------- GET Params ----------<br>"
@@ -112,3 +114,28 @@ def hub(request):
 	help += "------------------------------<br><br>"
 
 	return HttpResponse(help)
+
+
+class CreateLotView(views.APIView):
+  @csrf_exempt
+  def post(self, request, format=None):
+    # Load data into model
+    data = json.loads(request.body)
+    lot_name = data.get('lot_name', None)
+
+    # Save attributes to new Lot and store in DB 
+    newLot = Lot(request.POST, instance=lot)
+    newLot.lot_name = lot_name
+    newLot.save()
+
+    if lot_name is None:
+      return Response({
+        'status': 'Unauthorized',
+        'message': 'Empty Name'
+      }, status=status.HTTP_401_UNAUTHORIZED)
+    else:
+      print "[SERVER]: Succesfully processed \'" + lot_name + "\'"
+      return Response({
+        'status': 'Success',
+        'message': 'New lot processed!'
+      }, status=status.HTTP_200_OK)

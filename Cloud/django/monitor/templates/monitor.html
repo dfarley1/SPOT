@@ -1,80 +1,53 @@
-<!DOCTYPE html>
-<html>
-<head>
-<style>
-h1 {
-    color: blue;
-    font-family: Comic Sans MS;
-    font-size: 300%;
+<div class="col-md-6 col-md-offset" ng-controller="MonitorController as vm">  
+  {% if user.is_authenticated %}    
+    <h1>Enter info here</h1>
+    <div class="well">
+      <form role="form" ng-submit="vm.create_spot()">
+        <div class"alert alert-danger" ng-show="error" ng-bind="error"></div>
+        <div class="form-group">
+          <label for="spot__name">Spot Name</label>
+          <input type="text" class="form-control" id="spot__name" ng-model="vm.spot_name" placeholder="ex. Handicap" />
+          <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+      </form>
+    </div>
 
-}
-p  {
-    color: red;
-    font-family: courier;
-    font-size: 160%;
-}
-table, th, td{
-	border: 1px solid black; 
-}
-</style>
-</head>
+  
+  <p>This is authorized</p>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Section</th>
+        <th>UUID</th>
+        <th>Status</th>
+      </tr>
+    </thead>
 
-<body>
-{% load static %}
-<p>Click on the location where you would like to park</p>
-<p>North Remote, East Remote, West Remote or West Core Structure</p>
+    <tbody>
+    
+    {% for spot in garage_data %}
+      {% if spot.active == True %}
+      <tr>
+        <!--<th scope="row">1</th>
+        !-->
+        <td>{{ spot.number }}</td>
+        <td>{{ spot.section }}</td>
+        <td>{{ spot.uuid }}
 
-<img src="{% static "parking.png" %}" width="700" height="1000" alt="Parking" usemap="#parkmap">
-
-<map name="parkmap">
-  <area shape="rect" coords="250,40,100,126" alt="NorthRemote" href="NorthRemote.html">
- <area shape="rect" coords="230,250,270,150" alt="WestCore" href="WestCore.html">
- <area shape="rect" coords="400,600,660,426" alt="EastRemote" href="EastRemote.html">
- <area shape="rect" coords="300,600,100,426" alt="WestRemote" href="WestRemote.html">
-</map>
-
-<br><a href="/monitor/list_structures/">View/edit structures</a>
-
-
-<h1> UCSC East Remote Parking </h1>
-<table style="width:100%">
-{% for spot in garage_data %}
-	<tr>
-	{% if spot.active == True %}
-		<th><a href="/monitor/edit_info/?sensor_uuid={{spot.uuid}}">
-        {% if spot.section is not None %}
-            {% if spot.section.structure is not None %}
-                {{ spot.section.structure }}, {{ spot.section }} -- {{spot.number}}
-            {% else %}
-                {{ spot.section }} -- {{ spot.number }}
-            {% endif %}
-        {% else %}
-            {{ spot.number }}
-        {% endif %}
-		</a></th>
-		<th>{{spot.occ_status}}</th>
-	{% endif %}
-	</tr>
-{% endfor %}
-</table>
-
-
-
-<h1>dump all the things!</h1>
-<ul>
-{% for spot in garage_data %}
-	<li><a href="/monitor/edit_info/?sensor_uuid={{spot.uuid}}">{{ spot.uuid }}</a>
-		<br>active={{ spot.active }}
-        <br>occupant={{spot.occupant}}
-		<br>status={{ spot.occ_status }}
-		<br>license={{ spot.occ_license }}
-		<br>location={{spot.structure.name}}, {{ spot.section.name }} 
-		<br>number={{ spot.number }}
-		<br>GPS={{ spot.gpslat }} - {{ spot.gpslon }}
-	</li>
-{% endfor %}
-</ul>
-
-
-</body>
-</html>
+        </td>
+        <td>{{ spot.occ_status }}</td>
+        <td>  
+          <button type="button" class="btn btn-default" aria-label="Right Align">
+            <span class="glyphicon glyphicon-edit glyphicon-align-right" aria-hidden="true"></span>
+            </button>
+        </td>
+      </tr>
+      {% endif %}
+    {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+    <p>Unauthorized</p>
+  {% endif %}
+</div>
