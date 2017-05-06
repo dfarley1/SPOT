@@ -10,22 +10,22 @@
   // Returns factory
   function Monitor($cookies, $http) {
     var Monitor = {
-      create_spot: create_spot
+      create_lot: create_lot
     }; 
 
     return Monitor;
 
     // Define factory functionality
-    function create_spot(spot_name) {
-      return $http.post('/monitor', {
-        spot_name: spot_name
-      }).then(create_spotSuccessFn, create_spotErrorFn);
+    function create_lot(lot_name) {
+      return $http.post('/api/v1/monitor/create_lot/', {
+        lot_name: lot_name
+      }).then(create_lotSuccessFn, create_lotErrorFn);
 
       // Define Success and failure methods
-      function create_spotSuccessFn(data, status, headers, config) {
+      function create_lotSuccessFn(data, status, headers, config) {
         console.log('Successful POST to /monitor!');
       }
-      function create_spotErrorFn(data, status, headers, config) {
+      function create_lotErrorFn(data, status, headers, config) {
         console.error('FAILED to POST to /monitor!');
       }
     }

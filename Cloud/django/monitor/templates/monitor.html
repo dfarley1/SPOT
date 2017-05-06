@@ -2,11 +2,11 @@
   {% if user.is_authenticated %}    
     <h1>Enter info here</h1>
     <div class="well">
-      <form role="form" ng-submit="vm.create_spot()">
+      <form role="form" ng-submit="vm.create_lot()">
         <div class"alert alert-danger" ng-show="error" ng-bind="error"></div>
         <div class="form-group">
-          <label for="spot__name">Spot Name</label>
-          <input type="text" class="form-control" id="spot__name" ng-model="vm.spot_name" placeholder="ex. Handicap" />
+          <label for="lot__name">Spot Name</label>
+          <input type="text" class="form-control" id="lot__name" ng-model="vm.lot_name" placeholder="ex. Handicap" />
           <button type="submit" class="btn btn-primary">Create</button>
         </div>
       </form>
