@@ -12,19 +12,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import django
+import json
 from django.http import HttpResponse
 from django.http import HttpResponseBadRequest
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.template import loader
-import django
-from sensor.models import *
-from sensor.sensor import valid_sensor
 from django import forms
 from django.forms import formset_factory
+from django.views.decorators.csrf import csrf_exempt
+from django.views.generic.edit import CreateView
+
+from sensor.models import *
+from sensor.sensor import valid_sensor
 
 from rest_framework import permissions, viewsets, status, views
-from django.views.decorators.csrf import csrf_exempt
+from rest_framework.response import Response
 
 def index(request):
 	#stupid cookie thing we have to have.
@@ -124,8 +128,8 @@ class CreateLotView(views.APIView):
     lot_name = data.get('lot_name', None)
 
     # Save attributes to new Lot and store in DB 
-    newLot = Lot(request.POST, instance=lot)
-    newLot.lot_name = lot_name
+    newLot = structures()
+    newLot.name = lot_name
     newLot.save()
 
     if lot_name is None:
