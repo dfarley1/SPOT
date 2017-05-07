@@ -37,6 +37,7 @@ urlpatterns = [
     url(r'^api/v1/auth/occupy/$', OccupyView.as_view(), name='occupy'),
     
     url(r'^api/v1/monitor/create_lot/$', CreateLotView.as_view(), name='createLot'),
+    url(r'^api/v1/monitor/list_lots/$', ListLotView.as_view(), name='liststructures'),
 
    
     #catch-all

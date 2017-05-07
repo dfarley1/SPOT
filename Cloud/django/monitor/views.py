@@ -30,6 +30,9 @@ from sensor.sensor import valid_sensor
 from rest_framework import permissions, viewsets, status, views
 from rest_framework.response import Response
 
+from monitor.serializers import *
+
+
 def index(request):
 	#stupid cookie thing we have to have.
 	csrf_token = django.middleware.csrf.get_token(request)
@@ -75,14 +78,6 @@ def view_structure(request):
 	garage_data = spot_data.objects.all()
 	
 	return render(request, 'view_structure.html', {'garage': garage_data})
-
-
-def list_structures(request):
-	csrf_token = django.middleware.csrf.get_token(request)
-	structures = spot_structs.objects.all()
-	
-	return render(request, 'list_structures.html', {'structures': structures})
-
 
 def edit_structure(request):	
 	if request.method == "POST":
@@ -145,3 +140,11 @@ class CreateLotView(views.APIView):
         'status': 'Success',
         'message': 'New lot processed!'
       }, status=status.HTTP_200_OK)
+ 
+class ListLotView(views.APIView):
+  @csrf_exempt
+  def get(self, request, format=None):
+    # Load entire structure table, and serialize every Lot instance
+    lot_directory = structures.objects.all() 
+    serialized = LotSerializer(lot_directory, many=True)
+    return Response(serialized.data, status=status.HTTP_200_OK)

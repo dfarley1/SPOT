@@ -16,18 +16,18 @@
     return LotDirectory;
 
     // Define factory functionality
-    function getDirectory(lot_name) {
-      return $http.post('/api/v1/monitor/create_lot/', {
-        lot_name: lot_name
-      }).then(create_lotSuccessFn, create_lotErrorFn);
+    function getDirectory(test_receive) {
+      return $http.get('/api/v1/monitor/list_lots/',
+      ).then(getDirectorySuccessFn, getDirectoryErrorFn);
 
       // Define Success and failure methods
-      function create_lotSuccessFn(data, status, headers, config) {
-        console.log('Successful POST to /monitor!');
-        window.location = "/monitor"
+      function getDirectorySuccessFn(data, status, headers, config) {
+        test_receive = data;
+        console.log(test_receive);
+        console.log('Successfuly load directory');
       }
-      function create_lotErrorFn(data, status, headers, config) {
-        console.error('FAILED to POST to /monitor!');
+      function getDirectoryErrorFn(data, status, headers, config) {
+        console.error('FAILED to GET directory');
       }
     }
   }

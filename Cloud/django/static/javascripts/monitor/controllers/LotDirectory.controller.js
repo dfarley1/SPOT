@@ -13,9 +13,10 @@
 
     LotVM.lot_directory = ['test1', 'test2', 'test3'];
     LotVM.getDirectory = getDirectory;
+    getDirectory();
   
     function getDirectory() {
-      LotDirectory.getDirectory(LotVM.lot_name);
+      LotDirectory.getDirectory(LotVM.lot_directory);
     }
   }
 })();
