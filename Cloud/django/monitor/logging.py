@@ -25,7 +25,7 @@ def log_arrival(sensor, start_time):
 
 def log_occupancy(sensor, user):
     #occupy a spot with a user after beacon transmission
-    events = event_log.objects.filter(spo=sensor).order_by('-start')
+    events = event_log.objects.filter(spot=sensor).order_by('-start')
     if len(events) > 0:
         event = events[0]
         event.user = user
