@@ -13,27 +13,26 @@
         </form>
       </div>
     </div>
-
-  
-  <p>This is authorized</p>
-
+  </div>
 
   <!-- Display Lot table -->
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Name</th>
-      </tr>
-    </thead>
+  <div class="col-md-4 col-md-offset" ng-controller="LotDirectoryController as LotVM">
+    {% verbatim %}
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+          </tr>
+        </thead>
 
-    <tbody> 
-      {% for lot in lot_directory %}
-        <tr>
-          <td>{{ lot.name }}</td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+        <tbody> 
+            <tr ng-repeat="lot in LotVM.lot_directory">
+              <td>{{ lot }}</td>
+            </tr>
+        </tbody>
+      </table>
+    {% endverbatim %}
+  </div>
 
   <!-- Display SPOT table -->
   <table class="table table-striped">
@@ -72,4 +71,3 @@
   {% else %}
     <p>Unauthorized</p>
   {% endif %}
-</div>
