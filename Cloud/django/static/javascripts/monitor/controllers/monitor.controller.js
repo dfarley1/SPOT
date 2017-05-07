@@ -9,10 +9,10 @@
 
   function MonitorController($location, $scope, Monitor) {
     var vm = this;
-    vm.create_spot = create_spot;
+    vm.create_lot = create_lot;
   
-    function create_spot() {
-      Monitor.create_spot(vm.spot_name);
+    function create_lot() {
+      Monitor.create_lot(vm.lot_name);
     }
   }
 })();

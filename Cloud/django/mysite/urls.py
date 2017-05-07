@@ -19,6 +19,7 @@ from authentication.views import AccountViewSet, LoginView, LogoutView, OccupyVi
 import sensor 
 import monitor
 from mysite.views import IndexView
+from monitor.views import *
 
 router = routers.SimpleRouter()
 router.register(r'accounts', AccountViewSet)
@@ -34,6 +35,9 @@ urlpatterns = [
     url(r'^api/v1/auth/login/$', LoginView.as_view(), name='login'),
     url(r'^api/v1/auth/logout/$', LogoutView.as_view(), name='logout'),
     url(r'^api/v1/auth/occupy/$', OccupyView.as_view(), name='occupy'),
+    
+    url(r'^api/v1/monitor/create_lot/$', CreateLotView.as_view(), name='createLot'),
+
    
     #catch-all
     url('^.*$', IndexView.as_view(), name='index'),
