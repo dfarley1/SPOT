@@ -11,12 +11,11 @@
     // Initialization
     var LotVM = this;
 
-    LotVM.lot_directory = ['test1', 'test2', 'test3'];
-    LotVM.getDirectory = getDirectory;
-    getDirectory();
+    //LotVM.lot_directory = ['test1', 'test2', 'test3'];
+    getDir();
   
-    function getDirectory() {
-      LotDirectory.getDirectory(LotVM.lot_directory);
+    function getDir() {
+      LotVM.lot_directory = LotDirectory.getDirectory();
     }
   }
 })();
