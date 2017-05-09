@@ -13,7 +13,7 @@
     var LotDirectory = {
       getDirectory: getDirectory
     }; 
-    var dir = [];
+    var dir;
     return LotDirectory;
 
     // Define factory functionality
@@ -25,7 +25,7 @@
       function getDirectorySuccessFn(data, status, headers, config) {
       // console.log(data.data);
       //  console.log('Successfuly load directory');
-      dir = [data.data];
+      dir = data.data;
       console.log(dir);
       return dir; 
       }
