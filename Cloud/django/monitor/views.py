@@ -12,8 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import django
 import json
+import django
 from django.http import HttpResponse
 from django.http import HttpResponseBadRequest
 from django.shortcuts import render
@@ -38,113 +38,95 @@ def index(request):
 	csrf_token = django.middleware.csrf.get_token(request)
 	#which HTML file should we use?
 	template = loader.get_template('monitor.html')
-	
+
 	#Do stuff here, fill a dictionary object from the database
 	garage_data = spot_data.objects.all()
 	lot_directory = structures.objects.all()
 
 	#put that data into the HTML's context
-	context = {
-		'garage_data': garage_data,
-    'lot_directory': lot_directory}
+	context = {'garage_data': garage_data,
+            'lot_directory': lot_directory}
 	#render the HTML page
 	return HttpResponse(template.render(context, request))
 
-
-def edit_info(request):
-	spot = spot_data.objects.get(uuid=request.GET['sensor_uuid'])
-	if not valid_sensor(request):
-		return HttpResponseBadRequest("Sensor UUID doesn't exist!")
-
-	if request.method == 'POST':
-		form = spot_data_form(request.POST, instance=spot)
-		if form.is_valid():
-			form.save()
-			return HttpResponseRedirect('/monitor/')
-		else:
-			return HttpResponseRedirect('/not_valid/')
-		
-	else:
-		form = spot_data_form(instance=spot)
-	return render(
-		request, 
-		'edit_info.html', 
-		{'form':form, 'sensor_uuid': request.GET['sensor_uuid'],}
-	)
-
-
-def view_structure(request):
-	csrf_token = django.middleware.csrf.get_token(request)
-	garage_data = spot_data.objects.all()
-	
-	return render(request, 'view_structure.html', {'garage': garage_data})
-
-def edit_structure(request):	
-	if request.method == "POST":
-		if 'name' in request.GET and request.GET['name'] != "":
-			structure = spot_structs.objects.get(name=request.GET['name'])
-		else: 
-			structure = spot_structs()
-	
-		form = spot_structs_form(request.POST, instance=structure)
-		if form.is_valid():
-			form.save()
-			return HttpResponseRedirect('/monitor/list_structures/')
-		else:
-			return HttpResponseRedirect('/not_valid/')
-	else:
-		if 'name' in request.GET:
-			structure = spot_structs.objects.get(name=request.GET['name'])
-		else: 
-			structure = spot_structs()
-	
-		form = spot_structs_form(instance=structure)
-		return render(
-			request, 
-			'edit_structure.html', 
-			{'form':form, 'name':structure.name})
-	
-def hub(request):
-	help = "------ " + str(request.method) + " -----<br>"
-	help += "----------- GET Params ----------<br>"
-	for key,val in request.GET.items():
-		help += (key + " : " + val + "<br>")
-	help += "----------- POST Params ----------<br>"
-	for key,val in request.POST.items():
-		help += (key + " : " + val + "<br>")
-	help += "------------------------------<br><br>"
-
-	return HttpResponse(help)
-
-
 class CreateLotView(views.APIView):
-  @csrf_exempt
-  def post(self, request, format=None):
-    # Load data into model
-    data = json.loads(request.body)
-    lot_name = data.get('lot_name', None)
+    @csrf_exempt
+    def post(self, request, format=None):
+        data = json.loads(request.body)
+        old_info = data.get('old_info', None)
+        new_info = data.get('new_info', None)
+        if new_info is None:
+            return Response({
+                'message': 'Missing new_info'
+            }, status=status.HTTP_400_BAD_REQUEST)
 
-    # Save attributes to new Lot and store in DB 
-    newLot = structures()
-    newLot.name = lot_name
-    newLot.save()
+        #if there's no old info then we're trying to add a new entry
+        #else we're updating an existing entry
+        if old_info is None:
+            #check for existing name
+            old_struct = structures.objects.filter(name=new_info)
+            #if the name exists, don't create a duplicate
+            #else create a new instance and save it
+            if len(old_struct) > 0:
+                return Response({
+                    'message': 'Name already exists, no change'
+                }, status=status.HTTP_202_ACCEPTED)
+            else:
+                new_struct = structures(name=new_info)
+                new_struct.save()
+                return Response({
+                    'message': 'Structure created'
+                }, status=status.HTTP_201_CREATED)
+        else:
+            old_struct = structures.objects.filter(name=old_info)
+            num_structs = len(old_struct)
+            #if there's no existing entry, return error
+            #elif there's one existing entry, update it
+            #else we dun fuck'd up
+            if num_structs == 0:
+                return Response({
+                    'message': 'No structure with that name found'
+                }, status=status.HTTP_400_BAD_REQUEST)
+            elif num_structs == 1:
+                struct = old_struct[0]
+                old_name = struct.name
+                struct.name = new_info
+                return Response({
+                    'message': ('Strucutre \'' + old_name + '\' renamed to ' + new_info + '\'.')
+                }, status=status.HTTP_200_OK)
+            else:
+                #this should never happen
+                return Response({
+                    'message': 'Something has gone VERY wrong'
+                }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-    if lot_name is None:
-      return Response({
-        'status': 'Unauthorized',
-        'message': 'Empty Name'
-      }, status=status.HTTP_401_UNAUTHORIZED)
-    else:
-      print "[SERVER]: Succesfully processed \'" + lot_name + "\'"
-      return Response({
-        'status': 'Success',
-        'message': 'New lot processed!'
-      }, status=status.HTTP_200_OK)
- 
+    @csrf_exempt
+    def old_post(self, request, format=None):
+        # Load data into model
+        data = json.loads(request.body)
+        lot_name = data.get('lot_name', None)
+
+        # Save attributes to new Lot and store in DB
+        newLot = structures()
+        newLot.name = lot_name
+        newLot.save()
+
+        if lot_name is None:
+            return Response({
+                'status': 'Unauthorized',
+                'message': 'Empty Name'
+            }, status=status.HTTP_401_UNAUTHORIZED)
+        else:
+            print "[SERVER]: Succesfully processed \'" + lot_name + "\'"
+            return Response({
+                'status': 'Success',
+                'message': 'New lot processed!'
+            }, status=status.HTTP_200_OK)
+
 class ListLotView(views.APIView):
-  @csrf_exempt
-  def get(self, request, format=None):
-    # Load entire structure table, and serialize every Lot instance
-    lot_directory = structures.objects.all() 
-    serialized = LotSerializer(lot_directory, many=True)
-    return Response(serialized.data, status=status.HTTP_200_OK)
+    @csrf_exempt
+    def get(self, request, format=None):
+        # Load entire structure table, and serialize every Lot instance
+        lot_directory = structures.objects.all()
+        serialized = LotSerializer(lot_directory, many=True)
+        return Response(serialized.data, status=status.HTTP_200_OK)
