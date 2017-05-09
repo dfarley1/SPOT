@@ -55,6 +55,8 @@ class CreateLotView(views.APIView):
         data = json.loads(request.body)
         old_info = data.get('old_info', None)
         new_info = data.get('new_info', None)
+
+        #if there's no new_info then what are we even doing here?
         if new_info is None:
             return Response({
                 'message': 'Missing new_info'
@@ -63,9 +65,9 @@ class CreateLotView(views.APIView):
         #if there's no old info then we're trying to add a new entry
         #else we're updating an existing entry
         if old_info is None:
-            #check for existing name
+            #check for existing structure
             old_struct = structures.objects.filter(name=new_info)
-            #if the name exists, don't create a duplicate
+            #if the structure exists, don't create a duplicate
             #else create a new instance and save it
             if len(old_struct) > 0:
                 return Response({
@@ -78,9 +80,10 @@ class CreateLotView(views.APIView):
                     'message': 'Structure created'
                 }, status=status.HTTP_201_CREATED)
         else:
+            #check for existing structures
             old_struct = structures.objects.filter(name=old_info)
             num_structs = len(old_struct)
-            #if there's no existing entry, return error
+            #if there's none existing with that name, return error
             #elif there's one existing entry, update it
             #else we dun fuck'd up
             if num_structs == 0:
