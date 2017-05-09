@@ -1,0 +1,33 @@
+<div class="row">
+	<div class="col-md-4 col-md-offset-4">
+		<h1>Hourly Rates</h1>
+
+		<div class="well">
+			<form role="form" ng-submit="vm.register()">
+				<div class="form-group">
+					<label for="register__email">Lot</label>
+					<input type="email" class="form-control" id="register__email" ng-model="vm.email" placeholder="ex. john@notgoogle.com" />
+				</div>
+
+				<div class="form-group">
+					<label for="register__username">Section</label>
+					<input type="text" class="form-control" id="register__username" ng-model="vm.username" placeholder="ex. john" />
+				</div>
+
+				<div class="form-group">
+					<label for="register__password">Hour 0</label>
+					<input type="password" class="form-control" id="register__password" ng-model="vm.password" placeholder="ex. thisisnotgoogleplus" />
+				</div>
+
+                <div class="form-group">
+					<label for="register__password">Hour 1</label>
+					<input type="password" class="form-control" id="register__password" ng-model="vm.password" placeholder="ex. thisisnotgoogleplus" />
+				</div>
+
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
