@@ -25,6 +25,7 @@ class structures(models.Model):
 class sections(models.Model):
     name = models.CharField("Section", max_length=100)
     structure = models.ForeignKey(structures, null=True)
+
     def __str__(self):
         return str(self.name)
 
@@ -42,7 +43,8 @@ class spot_data(models.Model):
     occ_status = models.SmallIntegerField("Occupied Status", default=0)
     occ_since = models.DateTimeField("Occupied Since")
     occ_license = models.CharField("Occupant License", max_length=20)
-    occupant = models.ForeignKey(Account, null=True)
+    occupant = models.ForeignKey(Account, null=True),
+    rate = models.FloatField("Rate", null=True)
 
     def __str__(self):
         return str(self.uuid)

@@ -31,6 +31,7 @@ from rest_framework import permissions, viewsets, status, views
 from rest_framework.response import Response
 
 from monitor.serializers import *
+from monitor.rates import edit_rate
 
 
 def index(request):
@@ -133,3 +134,19 @@ class ListLotView(views.APIView):
         lot_directory = structures.objects.all()
         serialized = LotSerializer(lot_directory, many=True)
         return Response(serialized.data, status=status.HTTP_200_OK)
+
+class EditRateView(views.APIView):
+    @csrf_exempt
+    def post(self, request, format=None):
+      # Load data from Form
+      data = json.loads(request.body)
+      spot_number = data.get('spot_number', None)
+      spot_rate   = data.get('spot_rate', None)
+
+      # Upate spot attributes
+      edit_rate(spot_number, spot_rate)
+
+      return Response({
+          'status': 'Success',
+          'message': 'Spot rate changed'
+      }, status=status.HTTP_200_OK)

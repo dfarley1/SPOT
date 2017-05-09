@@ -1,6 +1,24 @@
-<div class="col-md-8 col-md-offset" ng-controller="MonitorController as vm">  
+<div class="row">
+<div class="col-md-4 col-md-offset" ng-controller="MonitorController as vm">  
   {% if user.is_authenticated %}    
-    <div class ="col-md-4 col-md-offset">
+    
+    
+    <h1> Change Rates </h1>
+    <div class="well">
+      <form role="form" ng-submit="vm.edit_rate()">
+        <div class"alert alert-danger" ng-show="error" ng-bind="error"></div>
+        <div class="form-group">
+          <label for="spot__number">Spot number</label>
+          <input type="text" class="form-control" id="spot__number" ng-model="vm.spot_number" placeholder="ex. 3" />
+          <label for="spot__rate">Pay Rate ($1/hr)</label>
+          <input type="text" class="form-control" id="spot__rate" ng-model="vm.spot_rate" placeholder="ex. $10/hr" />
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+      
+    </div>
+    
+    <div class ="col-md-14 col-md-offset">
       <h1>Enter info here</h1>
       <div class="well">
         <form role="form" ng-submit="vm.create_lot()">
@@ -15,31 +33,15 @@
     </div>
   </div>
 
-  <!-- Display Lot table -->
-  <div class="col-md-4 col-md-offset" ng-controller="LotDirectoryController as LotVM">
-    {% verbatim %}
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Name</th>
-          </tr>
-        </thead>
-
-        <tbody> 
-            <tr ng-repeat="lot in LotVM.lot_directory">
-              <td><p>Detected</p>{{ lot.name }}</td>
-            </tr>
-        </tbody>
-      </table>
-    {% endverbatim %}
-  </div>
-
   <!-- Display SPOT table -->
+  <div class="col-md-8 col-md-offset">
   <table class="table table-striped">
+    <h1>Lot Spots</h1>
     <thead>
       <tr>
         <th>#</th>
         <th>Section</th>
+        <th>Rate</th>
         <th>UUID</th>
         <th>Status</th>
       </tr>
@@ -54,6 +56,7 @@
         !-->
         <td>{{ spot.number }}</td>
         <td>{{ spot.section }}</td>
+        <td>${{ spot.rate }}/hr</td>
         <td>{{ spot.uuid }}
 
         </td>
@@ -68,6 +71,39 @@
     {% endfor %}
     </tbody>
   </table>
+  </div>
+</div>
+
+  <!-- Display Lot table -->
+  <div class="col-md-4 col-md-offset" ng-controller="LotDirectoryController as LotVM">
+    <div class="well col-md-6 col-md-offset">
+      <form role="form" ng-submit="vm.create_lot()">
+        <div class"alert alert-danger" ng-show="error" ng-bind="error"></div>
+        <div class="form-group">
+          <label for="lot__name">Lot Name</label>
+          <input type="text" class="form-control" id="lot__name" ng-model="vm.lot_name" placeholder="ex. West Core" />
+          <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+      </form>
+    </div>
+    
+    {% verbatim %}
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+          </tr>
+        </thead>
+
+        <tbody> 
+            <tr ng-repeat="lot in LotVM.lot_directory">
+              <td>{{ lot.name }}</td>
+            </tr>
+        </tbody>
+      </table>
+    {% endverbatim %}
+  </div>
+
   {% else %}
     <p>Unauthorized</p>
   {% endif %}
