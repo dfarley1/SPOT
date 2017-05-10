@@ -11,7 +11,8 @@
   function Monitor($cookies, $http) {
     var Monitor = {
       create_lot: create_lot,
-      edit_rate: edit_rate
+      edit_rate: edit_rate,
+      update_lots: update_lots
     }; 
 
     return Monitor;
@@ -40,10 +41,10 @@
         console.log(newLots);
     }
 
-    function updates_lots(newLot_array) {
+    function update_lots(newLot_array) {
 
-      return $http.post('/api/v1/monitor/create_lot/', {
-        lot_name: angular.toJson(test_array)
+      return $http.post('/api/v1/monitor/update_lots/', {
+        lot_name: angular.toJson(newLot_array)
         // old_info: old_lot_name,
         // new_info: new_lot_name
       }).then(create_lotSuccessFn, create_lotErrorFn);

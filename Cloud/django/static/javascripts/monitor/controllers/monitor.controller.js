@@ -11,6 +11,7 @@
     var vm = this;
     vm.create_lot = create_lot;
     vm.edit_rate = edit_rate;
+    vm.update_lots = update_lots;
     vm.newLots = [];
   
     function create_lot() {
@@ -20,6 +21,10 @@
     function edit_rate() {
       Monitor.edit_rate(vm.spot_number, vm.spot_rate);
       window.location = '/monitor';
+    }
+
+    function update_lots() {
+      Monitor.update_lots(vm.newLots);
     }
   }
 })();

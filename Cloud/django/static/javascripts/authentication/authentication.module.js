@@ -8,7 +8,7 @@
     ]);
 
   angular
-    .module('sdpspot.authentication.controllers', []);
+    .module('sdpspot.authentication.controllers', ['ngDialog']);
 
   angular
     .module('sdpspot.authentication.services', ['ngCookies']);

@@ -17,11 +17,11 @@
     // LotVM.lot_directory = ['test1', 'test2', 'test3'];
     // getDir();
 
-    function getDir() {
-      LotVM.lot_directory = LotDirectory.getDirectory();
-      // console.log(LotVM.lot_directory);
-      // return LotVM.lot_directory;
-    }
+    // function getDir() {
+    //   LotVM.lot_directory = LotDirectory.getDirectory();
+    //   // console.log(LotVM.lot_directory);
+    //   // return LotVM.lot_directory;
+    // }
 
 
     //Define Success and failure methods
@@ -32,7 +32,7 @@
       console.log(dir);
       LotVM.lot_directory = dir;
     }
-    
+
     function getDirectoryErrorFn(data, status, headers, config) {
       console.error('FAILED to GET directory');
     }
