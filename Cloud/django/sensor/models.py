@@ -57,6 +57,7 @@ class spot_data(models.Model):
     description = models.CharField("Description", max_length=50)
     gpslat = models.FloatField("Latitude", null=True)
     gpslon = models.FloatField("Longitude", null=True)
+    rate = models.IntegerField("OLD RATE", default=0)
     #"variable" current status
     last_update = models.DateTimeField("Last Update", auto_now=True)
     occ_status = models.SmallIntegerField("Occupied Status", default=0)
