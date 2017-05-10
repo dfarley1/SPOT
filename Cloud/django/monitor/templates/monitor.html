@@ -27,8 +27,10 @@
             <label for="lot__name">Lot Name</label>
             <input type="text" class="form-control" id="lot__name" ng-model="vm.lot_name" placeholder="ex. West Core" />
             <button type="submit" class="btn btn-primary">Create</button>
+
           </div>
         </form>
+            <button class="btn btn-primary" ng-click="vm.update_lots()">Save</button>
       </div>
     </div>
   </div>
@@ -76,17 +78,6 @@
 
   <!-- Display Lot table -->
   <div class="col-md-4 col-md-offset" ng-controller="LotDirectoryController as LotVM">
-    <div class="well col-md-6 col-md-offset">
-      <form role="form" ng-submit="vm.create_lot()">
-        <div class"alert alert-danger" ng-show="error" ng-bind="error"></div>
-        <div class="form-group">
-          <label for="lot__name">Lot Name</label>
-          <input type="text" class="form-control" id="lot__name" ng-model="vm.lot_name" placeholder="ex. West Core" />
-          <button type="submit" class="btn btn-primary">Create</button>
-        </div>
-      </form>
-    </div>
-    
     {% verbatim %}
       <table class="table table-striped">
         <thead>
