@@ -36,6 +36,9 @@
       controller: 'MobileController',
       controllerAs: 'vm',
       templateUrl: '/static/templates/mobile/insert.html'
-    }).otherwise('/');
+    }).otherwise('/', {
+			controller: 'MapController',
+			controllerAs: 'vm',
+			templateUrl: '/static/templates/home.html'});
 	}
 })();
