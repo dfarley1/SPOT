@@ -37,6 +37,8 @@
 
   <!-- Display SPOT table -->
   <div class="col-md-8 col-md-offset">
+
+  {% verbatim %}
   <table class="table table-striped">
     <h1>Lot Spots</h1>
     <thead>
@@ -50,10 +52,7 @@
     </thead>
 
     <tbody>
-    
-    {% for spot in garage_data %}
-      {% if spot.active == True %}
-      <tr>
+      <tr ng-repeat="spot in vm.currSpots">
         <!--<th scope="row">1</th>
         !-->
         <td>{{ spot.number }}</td>
@@ -69,10 +68,9 @@
             </button>
         </td>
       </tr>
-      {% endif %}
-    {% endfor %}
     </tbody>
   </table>
+  {% endverbatim %}
   </div>
 </div>
 

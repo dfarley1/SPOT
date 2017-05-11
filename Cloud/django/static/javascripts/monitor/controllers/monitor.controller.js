@@ -14,7 +14,8 @@
     vm.edit_rate = edit_rate;
     vm.update_lots = update_lots;
     vm.newLots = [];
-    vm.currLots = [{name: 'Loading Spots...'}]
+
+    vm.currSpots = [{uuid: 'Loading Spots...'}];
     
     // Load Server data
     load_spots();
@@ -40,7 +41,7 @@
       //Define Success and failure methods
       function loadSpotsSuccessFn(data, status, headers, config) {
         console.log(data.data);
-        vm.lot_directory = data.data;
+        vm.currSpots = data.data;
       }
 
       function loadSpotsErrorFn(data, status, headers, config) {
