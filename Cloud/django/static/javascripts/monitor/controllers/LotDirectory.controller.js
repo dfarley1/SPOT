@@ -10,31 +10,31 @@
   function LotDirectoryController($location, $scope, $http ,LotDirectory) {
     // Initialization
     var LotVM = this;
-    var dir;
-    $http.get('/api/v1/monitor/list_lots/',
-    ).then(getDirectorySuccessFn, getDirectoryErrorFn);
-      
-    // LotVM.lot_directory = ['test1', 'test2', 'test3'];
-    // getDir();
+    LotVM.lot_directory = [{name:'Loading Lots...'},];
 
-    // function getDir() {
-    //   LotVM.lot_directory = LotDirectory.getDirectory();
-    //   // console.log(LotVM.lot_directory);
-    //   // return LotVM.lot_directory;
-    // }
+    LoadLotDirectory();
+
+    
 
 
-    //Define Success and failure methods
-    function getDirectorySuccessFn(data, status, headers, config) {
-      // console.log(data.data);
-      //  console.log('Successfuly load directory');
-      dir = data.data;
-      console.log(dir);
-      LotVM.lot_directory = dir;
+
+    // API
+    function LoadLotDirectory() {
+      $http.get('/api/v1/monitor/list_lots/',
+      ).then(getDirectorySuccessFn, getDirectoryErrorFn);
+   
+      //Define Success and failure methods
+      function getDirectorySuccessFn(data, status, headers, config) {
+        console.log(data.data);
+        LotVM.lot_directory = data.data;
+      }
+
+      function getDirectoryErrorFn(data, status, headers, config) {
+        console.error('FAILED to GET directory');
+      }
     }
 
-    function getDirectoryErrorFn(data, status, headers, config) {
-      console.error('FAILED to GET directory');
-    }
+
+
   }
 })();

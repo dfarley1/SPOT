@@ -30,7 +30,7 @@ class sections(models.Model):
 
     #saves a 7x96 2D rate array.  7 days in week, 96 15-minute chunks in day
     def rates_save(self, rates):
-        #check dimensionality
+        # Check dimensions
         if len(rates) is 7:
             for i in range(0,6):
                 if len(rates[i]) is not 96:
@@ -57,7 +57,7 @@ class spot_data(models.Model):
     description = models.CharField("Description", max_length=50)
     gpslat = models.FloatField("Latitude", null=True)
     gpslon = models.FloatField("Longitude", null=True)
-    rate = models.IntegerField("OLD RATE", default=0)
+    rate = models.FloatField("OLD RATE", default=0)
     #"variable" current status
     last_update = models.DateTimeField("Last Update", auto_now=True)
     occ_status = models.SmallIntegerField("Occupied Status", default=0)

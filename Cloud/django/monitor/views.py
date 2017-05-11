@@ -135,6 +135,15 @@ class ListLotView(views.APIView):
         serialized = LotSerializer(lot_directory, many=True)
         return Response(serialized.data, status=status.HTTP_200_OK)
 
+class ListSpotsView(views.APIView):
+    @csrf_exempt
+    def get(self, request, format=None):
+        # Load entire structure table, and serialize every Spot instance
+        spots_directory = spot_data.objects.all()
+        serialized = SpotSerializer(spots_directory, many=True)
+        print('[SERVER]: Returning Spots Directory!')
+        return Response(serialized.data, status=status.HTTP_200_OK)
+
 class EditRateView(views.APIView):
     @csrf_exempt
     def post(self, request, format=None):
