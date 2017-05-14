@@ -17,9 +17,9 @@
 					<li><a href="/+{{ user.username }}/settings">Settings</a></li>
 					<li><a href="javascript:void(0)" ng-click="vm.logout()">Logout</a></li>
 				{% else %}
-					<li><a href="/login">Login</a></li>
-					<li><a href="/login" ng-dialog="vm.login()">Contact Us</a></li>
-					<li><a href="/register">Register</a></li>
+					<li><a ng-dialog="static/templates/authentication/login.html">Login</a></li>
+					<li><a ng-dialog="static/templates/authentication/contact_us.html">Contact Us</a></li>
+					<li><a ng-dialog="static/templates/authentication/register.html">Register</a></li>
 				{% endif %}
 			</ul>
 		</div> <!-- /.collapse.navbar-collapse -->
