@@ -6,6 +6,14 @@ sudo apt-get install sshpass
 # This allows us to use the GPIO pins on the Raspberry Pi
 sudo apt-get install python-dev python-rpi.gpio
 #------------------------------
+#set up for neopixel ring library with python wrapper
+sudo apt-get install build-essential python dev git scons swig
+git clone https://github.com/jgarff/rpi_ws281x.git
+cd rpi_ws281.x
+scons
+cd python
+sudo python setup.py install
+#------------------------------ 
 # any installation script for CV side of setup
 # sudo ./david's script for setting up the CV
 #------------------------------
