@@ -32,7 +32,7 @@
 			controller: 'MonitorController',
 			controllerAs: 'vm',
 			templateUrl: 'monitor/templates/monitor.html'
-		}).when('/mobile', {
+	}).when('/mobile', {
       controller: 'MobileController',
       controllerAs: 'vm',
       templateUrl: '/static/templates/mobile/insert.html'
