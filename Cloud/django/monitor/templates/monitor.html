@@ -1,5 +1,5 @@
 <div class="row">
-<div class="col-md-4 col-md-offset" ng-controller="MonitorController as vm">  
+<div class="col-md-4 col-md-offset coolness" ng-controller="MonitorController as vm">  
   {% if user.is_authenticated %}    
     
     
@@ -38,15 +38,15 @@
   <!-- Display SPOT table -->
   <div class="col-md-8 col-md-offset">
 
-  {% verbatim %}
+  
   <table class="table table-striped">
     <h1>Lot Spots</h1>
     <thead>
       <tr>
-        <th>#</th>
         <th>Section</th>
-        <th>Rate</th>
-        <th>UUID</th>
+        <th>#</th>
+        <!--<th>Rate</th>
+        <th>UUID</th>-->
         <th>Status</th>
       </tr>
     </thead>
@@ -55,22 +55,30 @@
       <tr ng-repeat="spot in vm.currSpots">
         <!--<th scope="row">1</th>
         !-->
-        <td>{{ spot.number }}</td>
+        {% verbatim %}
         <td>{{ spot.section }}</td>
-        <td>${{ spot.rate }}/hr</td>
-        <td>{{ spot.uuid }}
-
-        </td>
-        <td>{{ spot.occ_status }}</td>
+        <td>{{ spot.number }}</td> 
+        <!--<td>${{ spot.rate }}/hr</td>
+        <td>{{ spot.uuid }}</td>-->
+        <!--<td>{{spot.occ_status}}</td>-->
+        {% endverbatim %}
+        
+        <!--Trying to use django python to display a red or green square-->
+        <td><div class="box red" data-ng-if="spot.occ_status == 1"></div>
+        <div class="box green" data-ng-if="spot.occ_status == 0"></div></td>
+        <!--{% if spot_data.occ_status %}
+          <td><div class="box red"></div></td>
+        {% else %}
+          <td><div class="box green"></div></td>
+        {% endif %}-->
         <td>  
-          <button type="button" class="btn btn-default" aria-label="Right Align">
+          <button type="button" class="btn btn-default" aria-label="Right Align"  ng-dialog="static/templates/monitor/spot_details.html">
             <span class="glyphicon glyphicon-edit glyphicon-align-right" aria-hidden="true"></span>
-            </button>
+          </button>
         </td>
       </tr>
     </tbody>
   </table>
-  {% endverbatim %}
   </div>
 </div>
 

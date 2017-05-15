@@ -23,6 +23,7 @@ sudo runp /home/pi/SPOT/Cloud/testHttp.py sensor_getUUID_GET
 sudo runp /home/pi/SPOT/Cloud/testHttp.py sensor_GET
 #------------------------------
 sudo mkdir ~/spot_log
+sudo chown pi:pi ~/spot_log
 sudo echo '0' >~/spot_log/license_log.txt
 sudo echo '' >~/spot_log/occupied_since.txt
 sudo echo '' >~/spot_log/uuid_file.txt

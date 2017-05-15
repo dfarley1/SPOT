@@ -49,5 +49,11 @@
       }
     } 
 
+    // function compare_spot(spot) {
+    //   if(spot == 1) {
+    //     return 1;
+    //   } else return 0;
+    // }
+
   }
 })();

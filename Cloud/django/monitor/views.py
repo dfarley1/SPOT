@@ -46,7 +46,8 @@ def index(request):
 
 	#put that data into the HTML's context
 	context = {'garage_data': garage_data,
-            'lot_directory': lot_directory}
+               'spot_data':garage_data,
+               'lot_directory': lot_directory}
 	#render the HTML page
 	return HttpResponse(template.render(context, request))
 
@@ -159,3 +160,12 @@ class EditRateView(views.APIView):
           'status': 'Success',
           'message': 'Spot rate changed'
       }, status=status.HTTP_200_OK)
+
+class EditLotView(views.APIView):
+    @csrf_exempt
+    def get(self, request, format=None):
+        # Load entire structure table, and serialize every Spot instance
+        spots_directory = spot_data.objects.all()
+        serialized = SpotSerializer(spots_directory, many=True)
+        print('[SERVER]: Returning Spots Directory!')
+        return Response(serialized.data, status=status.HTTP_200_OK)
