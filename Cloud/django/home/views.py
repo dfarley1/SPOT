@@ -13,7 +13,7 @@ from sensor.models import *
 from monitor.models import *
 
 def index(request):
-    template = loader.get_template('user.html')
+    template = loader.get_template('mobile.html')
     context = {
     }
     return HttpResponse(template.render(context, request))
