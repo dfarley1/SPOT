@@ -38,6 +38,10 @@ class get_spot(views.APIView):
 class get_status(views.APIView):
     @csrf_exempt
     def get(self, request, format=None):
+        sec = sections.objects.all()
+        for se in sec:
+            se.rates_save(rates_default())
+
         if request.user.is_anonymous:
             return Response({
                 'message':'User not logged in'
@@ -46,12 +50,18 @@ class get_status(views.APIView):
         total_charge = 0
         current_rate = 0
         if len(spot_in) == 0:
+            currently_parked = 0
             #get last spot
             total_charge = 1
+            current_rate = 1
+
         else:
+            currently_parked = 1
             spot_in = spot_in[0]
             total_charge = spot_in.section.get_total_charge()
+            current_rate = 1
         return Response({
+            'currently_parked': currently_parked,
             'total_charge': total_charge,
             'current_rate': current_rate
         }, status=status.HTTP_200_OK)

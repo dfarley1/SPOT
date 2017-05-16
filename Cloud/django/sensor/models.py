@@ -48,7 +48,7 @@ class sections(models.Model):
                 if len(rates[i]) is not 96:
                     return False
             self.rates = pickle.dumps(rates)
-            rates.save()
+            self.save()
             return True
 
     def rates_load(self):
@@ -84,7 +84,7 @@ class sections(models.Model):
                 interval_start = max(chunk_start, parked_start)
                 interval_end = min(chunk_end, parked_end)
                 total_charge += (((interval_end - interval_start)/15) *
-                                (rates[start_time.date.weekday()][i]/4))
+                                 (rates[start_time.date.weekday()][i]/4))
             return total_charge
         else:
             return -1
