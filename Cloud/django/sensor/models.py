@@ -124,7 +124,7 @@ class spot_data(models.Model):
             str_structure = self.section.structure
         else:
             str_structure = "None"
-        return str_structure + " " + str(self.section) + ", " + str(self.number)
+        return str(str_structure) + " " + str(self.section) + ", " + str(self.number)
 
 
 class spot_data_serialized(serializers.ModelSerializer):

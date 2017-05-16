@@ -38,7 +38,6 @@ class get_spot(views.APIView):
 class get_status(views.APIView):
     @csrf_exempt
     def get(self, request, format=None):
-
         if request.user.is_anonymous:
             return Response({
                 'message':'User not logged in'
