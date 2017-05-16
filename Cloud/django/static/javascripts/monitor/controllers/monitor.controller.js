@@ -35,6 +35,7 @@
     }
 
     function load_spots() {
+        alert('hiiiiii');
       $http.get('/api/v1/monitor/list_spots/',
       ).then(loadSpotsSuccessFn, loadSpotsErrorFn);
    

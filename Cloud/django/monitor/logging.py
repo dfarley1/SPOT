@@ -41,6 +41,7 @@ def log_departure(sensor, end_time):
             event.end = end_time
         else:
             event.end = max(event.end, end_time)
+        event.total_paid = event.spot.section.get_total_charge(event.start, event.end)
         event.save()
 
 def log_dump(request):

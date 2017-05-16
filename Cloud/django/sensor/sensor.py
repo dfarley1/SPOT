@@ -24,7 +24,7 @@ def sensor_GET(request):
     csrf_token = django.middleware.csrf.get_token(request)
     spot = spot_data.objects.get(uuid=request.GET['sensor_uuid'])
     response = HttpResponse("GET successful:\n" + str(spot))
-    for field in spot._meta.get_fields():
+    for field in spot._meta.fields:
         response[field.name] = str(getattr(spot, field.name))
 
     response.set_cookie('sensor_uuid', str(request.GET['sensor_uuid']))

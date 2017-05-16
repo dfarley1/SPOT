@@ -42,6 +42,7 @@ urlpatterns = [
     url(r'^api/v1/monitor/update_lots/$', EditRateView.as_view(), name='editRate'),
     url(r'^api/v1/monitor/list_spots/$', ListSpotsView.as_view(), name='listSpots'),
 
+    url(r'^api/v1/home/', include('home.api_urls')),
    
     #catch-all
     url('^.*$', IndexView.as_view(), name='index'),
