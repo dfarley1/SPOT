@@ -1,0 +1,6 @@
+  <h1 class="text-center">Choose a SPOT</h1>
+  {% load static %}
+  <img class="img-responsive" src="{% static "media/monitor/spot_graphic.png" %}" usemap="#spot_map">
+  <map name="spot_map">
+    <area shape="rect" coords="0,0,90,177" name="spot_1" ng-click="vm.spot_info(1)">
+  </map>
