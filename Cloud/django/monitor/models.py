@@ -17,38 +17,28 @@ import datetime
 import pytz
 from django.db import models
 from django.forms import ModelForm
+from rest_framework import serializers
+
+
 from authentication.models import Account, AccountManager
-from sensor.models import spot_data
-
-class parking_rates(models.Model):
-    start_time = models.TimeField("Start time")
-    end_time = models.TimeField("End time")
-    days = models.IntegerField("Days", default=0)
-    section = models.CharField("Section(s)", max_length=20)
-    spot = models.IntegerField("SPOT(s)")
-    rate = models.IntegerField("Rate per hour")
-
-    def contains(self, time):
-        if time > self.start_time and time < self.end_time:
-            day_of_week = 2**time.weekday()
-            if self.days & day_of_week is True:
-                return True
-        return False
+from sensor.models import *
 
 class event_log(models.Model):
     start = models.DateTimeField("Arrival", null=True)
     end = models.DateTimeField("Departure", null=True)
+    total_paid = models.FloatField("Total charge", default=0)
     spot = models.ForeignKey(spot_data, null=True)
     user = models.ForeignKey(Account, null=True)
 
     def __str__(self):
-        string = "SPOT " + str(self.spot) + " occupied by "
-        if self.user is None:
-            string = string + str(self.spot.occ_license)
-        else:
-            string = string + str(self.user)
-        string = string + (" from " + str(self.start) + " to " +
-                           str(self.end) + " (" + str(self.dur_minutes()) + ")")
+        string = "SPOT " #+ str(self.spot) + " occupied by "
+        # if self.user is None:
+        #     string = string + str(self.spot.occ_license)
+        # else:
+        #     string = string + str(self.user)
+        # string = string + (" from " + str(self.start) + " to " +
+        #                    str(self.end) + " (" + str(self.dur_minutes()) + ")")
+        return string
 
     def dur_minutes(self):
         if self.start is None:
@@ -58,3 +48,9 @@ class event_log(models.Model):
         else:
             end = self.end
         return int((end - self.start).total_seconds() / 60)
+
+class event_log_serialized(serializers.ModelSerializer):
+    class Meta:
+        model = event_log
+        depth = 2
+        fields = ('start', 'end', 'total_paid', 'user', 'spot')

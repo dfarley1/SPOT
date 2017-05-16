@@ -35,6 +35,7 @@
     }
 
     function load_spots() {
+        alert('hiiiiii');
       $http.get('/api/v1/monitor/list_spots/',
       ).then(loadSpotsSuccessFn, loadSpotsErrorFn);
    
@@ -48,6 +49,12 @@
         console.error('FAILED to GET directory');
       }
     } 
+
+    // function compare_spot(spot) {
+    //   if(spot == 1) {
+    //     return 1;
+    //   } else return 0;
+    // }
 
   }
 })();

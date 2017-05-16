@@ -1,0 +1,30 @@
+.box{
+	width:20px;
+	height:20px;
+}
+ 
+.red{
+	background:#f00;
+}
+.green{
+	background:#0f0;
+}
+.blue{
+	background:#00f;
+}
+.grey{
+    background:#443;
+}
+
+.coolness{
+    background: url("http://watrydesign.com/uploads/articles/body//small/Elevator-Tower-380w.jpg") no-repeat fixed left;    
+    background-color: #fff;
+    background-size: 33% 100%;
+    color: #000;
+}
+
+h1{
+    color:yellow;
+    text-shadow: 3px 2px grey;
+
+}

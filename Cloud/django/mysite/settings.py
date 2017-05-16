@@ -59,6 +59,7 @@ INSTALLED_APPS = (
     'authentication',
     'rest_framework',
     'compressor',
+    'home',
     #'rest_framework_nested',
 )
 
