@@ -22,7 +22,6 @@
         
         load_stuff();
         function load_stuff() {
-            //alert('hi');
             get_spot();
             get_status();
         }
