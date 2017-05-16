@@ -38,9 +38,6 @@ class get_spot(views.APIView):
 class get_status(views.APIView):
     @csrf_exempt
     def get(self, request, format=None):
-        sec = sections.objects.all()
-        for se in sec:
-            se.rates_save(rates_default())
 
         if request.user.is_anonymous:
             return Response({
