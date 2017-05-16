@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,3 +79,85 @@ table, th, td{
 
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+h1 {
+    color: blue;
+    font-family: Comic Sans MS;
+    font-size: 300%;
+
+}
+p  {
+    color: red;
+    font-family: courier;
+    font-size: 160%;
+}
+table, th, td{
+	border: 1px solid black; 
+}
+</style>
+</head>
+
+<body>
+{% load static %}
+<p>Click on the location where you would like to park</p>
+<p>North Remote, East Remote, West Remote or West Core Structure</p>
+
+<img src="{% static "parking.png" %}" width="700" height="1000" alt="Parking" usemap="#parkmap">
+
+<map name="parkmap">
+  <area shape="rect" coords="250,40,100,126" alt="NorthRemote" href="NorthRemote.html">
+ <area shape="rect" coords="230,250,270,150" alt="WestCore" href="WestCore.html">
+ <area shape="rect" coords="400,600,660,426" alt="EastRemote" href="EastRemote.html">
+ <area shape="rect" coords="300,600,100,426" alt="WestRemote" href="WestRemote.html">
+</map>
+
+<br><a href="/monitor/list_structures/">View/edit structures</a>
+
+
+<h1> UCSC East Remote Parking </h1>
+<table style="width:100%">
+{% for spot in garage_data %}
+	<tr>
+	{% if spot.active == True %}
+		<th><a href="/monitor/edit_info/?sensor_uuid={{spot.uuid}}">
+        {% if spot.section is not None %}
+            {% if spot.section.structure is not None %}
+                {{ spot.section.structure }}, {{ spot.section }} -- {{spot.number}}
+            {% else %}
+                {{ spot.section }} -- {{ spot.number }}
+            {% endif %}
+        {% else %}
+            {{ spot.number }}
+        {% endif %}
+		</a></th>
+		<th>{{spot.occ_status}}</th>
+	{% endif %}
+	</tr>
+{% endfor %}
+</table>
+
+
+
+<h1>dump all the things!</h1>
+<ul>
+{% for spot in garage_data %}
+	<li><a href="/monitor/edit_info/?sensor_uuid={{spot.uuid}}">{{ spot.uuid }}</a>
+		<br>active={{ spot.active }}
+        <br>occupant={{spot.occupant}}
+		<br>status={{ spot.occ_status }}
+		<br>license={{ spot.occ_license }}
+		<br>location={{spot.structure.name}}, {{ spot.section.name }} 
+		<br>number={{ spot.number }}
+		<br>GPS={{ spot.gpslat }} - {{ spot.gpslon }}
+	</li>
+{% endfor %}
+</ul>
+
+
+</body>
+</html>
+>>>>>>> 2e030add642443ef2d3fe2d4ff50c22af1ec2b62
