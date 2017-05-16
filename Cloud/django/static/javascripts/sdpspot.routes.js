@@ -35,7 +35,7 @@
         }).when('/mobile', {
             controller: 'MobileController',
             controllerAs: 'vm',
-            templateUrl: '/static/templates/mobile/insert.html'
+            templateUrl: '/static/templates/mobile/mobile.html'
         }).when('/user', {
             controller: 'UserController',
             controllerAs: 'vm',
