@@ -55,8 +55,8 @@ class get_status(views.APIView):
         else:
             currently_parked = 1
             spot_in = spot_in[0]
-            total_charge = spot_in.section.get_total_charge()
-            current_rate = 1
+            total_charge = 10.99#spot_in.section.get_total_charge()
+            current_rate = 10.99
         return Response({
             'currently_parked': currently_parked,
             'total_charge': total_charge,
