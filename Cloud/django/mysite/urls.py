@@ -15,35 +15,25 @@
 from django.conf.urls import include, url
 from django.contrib import admin
 from rest_framework_nested import routers
-from authentication.views import AccountViewSet, LoginView, LogoutView, OccupyView
-import sensor 
-import monitor
-from mysite.views import IndexView
-from monitor.views import *
+
+from authentication.views import AccountViewSet
+from mysite.views import *
 
 router = routers.SimpleRouter()
 router.register(r'accounts', AccountViewSet)
 
 urlpatterns = [
+    #templates
     url(r'^sensor/', include('sensor.urls')),
     url(r'^monitor/', include('monitor.urls')),
     url(r'^user/', include('user.urls')),
     url(r'^admin/', include(admin.site.urls)),
-
+    #api
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^api/v1/', include(router.urls)),
-    url(r'^api/v1/auth/login/$', LoginView.as_view(), name='login'),
-    url(r'^api/v1/auth/logout/$', LogoutView.as_view(), name='logout'),
-    url(r'^api/v1/auth/occupy/$', OccupyView.as_view(), name='occupy'),
-    
-    url(r'^api/v1/monitor/create_lot/$', CreateLotView.as_view(), name='createLot'),
-    url(r'^api/v1/monitor/list_lots/$', ListLotView.as_view(), name='liststructures'),
-    url(r'^api/v1/monitor/edit_rate/$', EditRateView.as_view(), name='editRate'),
-    url(r'^api/v1/monitor/update_lots/$', EditRateView.as_view(), name='editRate'),
-    url(r'^api/v1/monitor/list_spots/$', ListSpotsView.as_view(), name='listSpots'),
-
+    url(r'^api/v1/auth/', include('authentication.api_urls')),
+    url(r'^api/v1/monitor/', include('monitor.api_urls')),
     url(r'^api/v1/user/', include('user.api_urls')),
-   
     #catch-all
     url('^.*$', IndexView.as_view(), name='index'),
 ]
