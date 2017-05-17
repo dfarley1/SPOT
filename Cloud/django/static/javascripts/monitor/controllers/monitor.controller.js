@@ -14,6 +14,8 @@
     vm.edit_rate = edit_rate;
     vm.update_lots = update_lots;
     vm.spot_info = spot_info;
+    
+    vm.curr_info = {number: '0'};
 
     vm.currLots = [{name: 'Loading'}];
     vm.newLots = [];
@@ -43,7 +45,6 @@
    
       //Define Success and failure methods
       function getDirectorySuccessFn(data, status, headers, config) {
-        console.log(data.data);
         vm.currLots = data.data;
       }
 
@@ -58,7 +59,6 @@
    
       //Define Success and failure methods
       function loadSpotsSuccessFn(data, status, headers, config) {
-        console.log(data.data);
         vm.currSpots = data.data;
       }
 
@@ -68,7 +68,8 @@
     }
     
     function spot_info(input) {
-      console.log('Caffeinated' + input);
+      console.log(vm.currSpots[input]);
+      vm.curr_info = vm.currSpots[input];
     }
 
     // function compare_spot(spot) {
