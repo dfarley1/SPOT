@@ -1,3 +1,4 @@
+import pytz
 import django
 from django import forms
 from django.forms import formset_factory
@@ -18,44 +19,35 @@ def index(request):
     }
     return HttpResponse(template.render(context, request))
 
+#returns the user's currently occupied spot and event_log entry,
+#  or most recent occupation spot and entry
+def most_recent_event(user):
+    return event_log.objects.filter(user=user).order_by('-start')[0]
 
 class get_spot(views.APIView):
     @csrf_exempt
     def get(self, request, format=None):
         if request.user.is_anonymous:
-            return Response({
-                'message':'User not logged in'
-            }, status=status.HTTP_401_UNAUTHORIZED)
-        spot_in = spot_data.objects.filter(occupant=request.user)
-        if len(spot_in) == 0:
-            #get the last spot they were in
-            print 0
-        else:
-            #return this spot
-            spot_in = spot_in[0]
-        return Response(spot_data_serialized(spot_in).data, status=status.HTTP_200_OK)
+            return Response({'message':'User not logged in'}, status=status.HTTP_401_UNAUTHORIZED)
+        spot = most_recent_event(request.user).spot
+        return Response(spot_data_serialized(spot).data, status=status.HTTP_200_OK)
 
 class get_status(views.APIView):
     @csrf_exempt
     def get(self, request, format=None):
         if request.user.is_anonymous:
-            return Response({
-                'message':'User not logged in'
-            }, status=status.HTTP_401_UNAUTHORIZED)
-        spot_in = spot_data.objects.filter(occupant=request.user)
-        total_charge = 0
-        current_rate = 0
-        if len(spot_in) == 0:
-            currently_parked = 0
-            #get last spot
-            total_charge = 1
-            current_rate = 1
-
-        else:
+            return Response({'message':'User not logged in'}, status=status.HTTP_401_UNAUTHORIZED)
+        event = most_recent_event(request.user)
+        if event.end is None:
+            #currently in spot
             currently_parked = 1
-            spot_in = spot_in[0]
-            total_charge = 10.99#spot_in.section.get_total_charge()
-            current_rate = 10.99
+            total_charge = event.spot.section.get_total_charge(event.start)
+            current_rate = event.spot.section.get_current_rate()
+        else:
+            #not in spot, use log
+            currently_parked = 0
+            total_charge = event.total_paid
+            current_rate = 0 #does this matter?
         return Response({
             'currently_parked': currently_parked,
             'total_charge': total_charge,
@@ -65,5 +57,5 @@ class get_status(views.APIView):
 class get_events(views.APIView):
     @csrf_exempt
     def get(self, request, format=None):
-        events = event_log.objects.all()
+        events = event_log.objects.filter(user=request.user, end__isnull=False)
         return Response(event_log_serialized(events, many=True).data, status=status.HTTP_200_OK)

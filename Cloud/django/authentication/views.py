@@ -12,7 +12,7 @@ import monitor.logging
 from authentication.models import Account
 from authentication.permissions import IsAccountOwner
 from authentication.serializers import AccountSerializer
-from sensor.models import spot_data
+from sensor.models import *
 
 class AccountViewSet(viewsets.ModelViewSet):
     lookup_field = 'username'
@@ -128,5 +128,8 @@ class OccupyView(views.APIView):
 
         return Response({
             'status':'Success',
-            'occupying': spot.pretty_str()
+            'structure': ('') if (spot.section.structure is None) else (str(spot.section.structure.name)),
+            'section': str(spot.section),
+            'number': str(spot.number),
+            'rate': spot.section.get_current_rate()
         }, status=status.HTTP_200_OK)

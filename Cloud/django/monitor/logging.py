@@ -45,7 +45,7 @@ def log_departure(sensor, end_time):
         event.save()
 
 def log_dump(request):
-    events = event_log.objects.all()
+    events = event_log.objects.all().order_by('-start')
 
     template = loader.get_template('log_dump.html')
     context = {'log_data': events}

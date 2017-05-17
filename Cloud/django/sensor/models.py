@@ -14,6 +14,7 @@
 
 import uuid
 import pickle
+import pytz
 import datetime
 from django.db import models
 from django.forms import ModelForm
@@ -54,40 +55,42 @@ class sections(models.Model):
     def rates_load(self):
         return pickle.loads(self.rates)
 
-    def time_to_index(self, time):
-        return time.hour * 4 + int(time.minute/15)
-
-    def minute_of(self, index):
-        return index * 15
-
-    #get current rate
-    def get_current_rate(self, curr_time):
-        dow = curr_time.date.weekday()
-        tod = self.time_to_index(curr_time.time)
-        ret = self.rates[dow][tod]
-        return ret
-
-    def get_total_charge(self, start_time, end_time):
+    def get_current_rate(self, time=pytz.utc.localize(datetime.datetime.now())):
         rates = self.rates_load()
-        for x in range(len(rates)):
-            for y in range(len(rates[x])):
-                rates[x][y] = 1
-        self.save()
+        return rates[time.date().weekday()][time.hour * 4 + int(time.minute/15)]
 
-        if start_time.date.weekday() == end_time.date.weekday():
-            total_charge = 0
-            for i in range(self.time_to_index(start_time.time), self.time_to_index(end_time.time)):
-                chunk_start = self.minute_of(i)
-                parked_start = start_time.time.hour * 60 + start_time.time.minute
-                chunk_end = self.minute_of(i+1)
-                parked_end = end_time.time.hour * 60 + end_time.time.minute
-                interval_start = max(chunk_start, parked_start)
-                interval_end = min(chunk_end, parked_end)
-                total_charge += (((interval_end - interval_start)/15) *
-                                 (rates[start_time.date.weekday()][i]/4))
-            return total_charge
-        else:
-            return -1
+    def get_total_charge(self, start_time, end_time=pytz.utc.localize(datetime.datetime.now())):
+        rates = self.rates_load()
+        mask = rates_default()
+        #get start and end indices [day, chunk]
+        start_n = [start_time.date().weekday(), start_time.hour * 4 + int(start_time.minute/15)]
+        end_n = [end_time.date().weekday(), end_time.hour * 4 + int(end_time.minute/15)]
+        #fill everything in between start_n and end_n with 1
+        i = start_n[0]
+        while i <= end_n[0]:
+            for j in range(96):
+                if i == start_n[0]: j = max(start_n[1], j)
+                if i == end_n[0]: j = min(end_n[1], j)
+                mask[i][j] = 1
+            i = (i+1)%7
+        #fix partial for start chunk
+        start_int = start_time.minute
+        end_int = 15 * (int(start_int / 15) + 1)
+        mask[start_n[0]][start_n[1]] = (end_int - start_int) / 15.0
+        #fix partial for end chunk
+        end_int = end_time.minute
+        start_int = 15 * int(end_int/15)
+        mask[end_n[0]][end_n[1]] = (end_int - start_int)/15.0
+
+        #apply mask to rates
+        total_charge = 0
+        for i in range(7):
+            for j in range(96):
+                total_charge += rates[i][j]/4.0 * mask[i][j]
+        print mask
+        print total_charge
+        return total_charge
+
 
     def __str__(self):
         return str(self.name + " (" + self.structure.name + ")")
@@ -95,7 +98,7 @@ class sections(models.Model):
 class sections_serialized(serializers.ModelSerializer):
     class Meta:
         model = sections
-        fields = ('name','structure')
+        fields = ('name', 'structure')
 
 
 class spot_data(models.Model):

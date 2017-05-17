@@ -31,13 +31,14 @@ class event_log(models.Model):
     user = models.ForeignKey(Account, null=True)
 
     def __str__(self):
-        string = "SPOT " #+ str(self.spot) + " occupied by "
-        # if self.user is None:
-        #     string = string + str(self.spot.occ_license)
-        # else:
-        #     string = string + str(self.user)
-        # string = string + (" from " + str(self.start) + " to " +
-        #                    str(self.end) + " (" + str(self.dur_minutes()) + ")")
+        string = "SPOT " + str(self.spot) + " occupied by "
+        if self.user is None:
+            string = string + str(self.spot.occ_license)
+        else:
+            string = string + str(self.user)
+        string = string + (" from " + str(self.start) + " to " +
+                           str(self.end) + " (" + str(self.dur_minutes()) + ") [$" +
+                           str(self.total_paid) + "]")
         return string
 
     def dur_minutes(self):
