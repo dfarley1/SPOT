@@ -24,10 +24,6 @@
             controller: 'MonitorController',
             controllerAs: 'vm',
             templateUrl: '/static/templates/monitor/monitor.html'
-        }).when('/home', {
-            controller: 'MapController',
-            controllerAs: 'vm',
-            templateUrl: '/static/templates/home.html'
         }).when('/monitor', {
             controller: 'MonitorController',
             controllerAs: 'vm',
@@ -39,7 +35,7 @@
         }).when('/user', {
             controller: 'UserController',
             controllerAs: 'vm',
-            templateUrl: 'home/templates/user.html'
+            templateUrl: 'user/templates/user.html'
         })
         // .otherwise('/', {
         //     controller: 'MonitorController',

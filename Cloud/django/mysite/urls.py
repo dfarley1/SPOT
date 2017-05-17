@@ -27,7 +27,7 @@ router.register(r'accounts', AccountViewSet)
 urlpatterns = [
     url(r'^sensor/', include('sensor.urls')),
     url(r'^monitor/', include('monitor.urls')),
-    url(r'^home/', include('home.urls')),
+    url(r'^user/', include('user.urls')),
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
@@ -42,7 +42,7 @@ urlpatterns = [
     url(r'^api/v1/monitor/update_lots/$', EditRateView.as_view(), name='editRate'),
     url(r'^api/v1/monitor/list_spots/$', ListSpotsView.as_view(), name='listSpots'),
 
-    url(r'^api/v1/home/', include('home.api_urls')),
+    url(r'^api/v1/user/', include('user.api_urls')),
    
     #catch-all
     url('^.*$', IndexView.as_view(), name='index'),
