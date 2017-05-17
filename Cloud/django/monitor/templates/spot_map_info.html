@@ -1,2 +1,5 @@
-<h1 class="text-center">Info</h1>
-  Right Aside
+<h1 class="text-center">Lot Info</h1>
+  <select class="form-control" ng-model="selectedName" ng-options="lot.name for lot in vm.currLots">
+  </select> 
+  
+  <div class="text-center" ng-repeat="info_field in vm.currSpots">info_field.name<div> 
