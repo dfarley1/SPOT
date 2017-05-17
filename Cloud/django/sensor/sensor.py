@@ -55,18 +55,19 @@ def sensor_POST(request):
 
     #a car has arrived at the spot
     if spot.occ_status == 0 and int(request.POST["occ_status"]) != 0:
+        spot.occ_status = 2
+        spot.occ_license = request.POST["occ_license"]
         monitor.logging.log_arrival(spot, date_obj)
 
     #a car has left the spot
     if spot.occ_status != 0 and int(request.POST["occ_status"]) == 0:
-        spot.occupant = None
+        spot.occ_status = 0
         spot.occ_license = ""
+        spot.occupant = None
         monitor.logging.log_departure(spot, date_obj)
 
     #update with new values
-    spot.occ_status = request.POST["occ_status"]
     spot.occ_since = request.POST["occ_since"]
-    spot.occ_license = request.POST["occ_license"]
     spot.active = True
 
     #save the updated entry

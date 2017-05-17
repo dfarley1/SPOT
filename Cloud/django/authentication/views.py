@@ -121,6 +121,7 @@ class OccupyView(views.APIView):
         # add this user as the occupant
         #if spot.occ_status is True:
         spot.occupant = request.user
+        spot.occ_status = 1
         spot.save()
 
         #log the occupancy
