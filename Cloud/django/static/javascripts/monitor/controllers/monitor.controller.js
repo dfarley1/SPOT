@@ -5,16 +5,17 @@
     .module('sdpspot.monitor.controllers')
     .controller('MonitorController', MonitorController);
 
-  MonitorController.$inject = ['$location', '$scope', '$http', 'Monitor'];
+  MonitorController.$inject = ['$location', '$scope', '$http', 'Monitor', 'ngDialog'];
 
-  function MonitorController($location, $scope, $http, Monitor) {
+  function MonitorController($location, $scope, $http, Monitor, ngDialog) {
     // Initializations
     var vm = this;
     vm.create_lot = create_lot;
     vm.edit_rate = edit_rate;
     vm.update_lots = update_lots;
-    vm.newLots = [];
+    vm.spot_info = spot_info;
 
+    vm.newLots = [];
     vm.currSpots = [{uuid: 'Loading Spots...'}];
     
     // Load Server data
@@ -35,7 +36,6 @@
     }
 
     function load_spots() {
-        alert('hiiiiii');
       $http.get('/api/v1/monitor/list_spots/',
       ).then(loadSpotsSuccessFn, loadSpotsErrorFn);
    
@@ -48,7 +48,11 @@
       function loadSpotsErrorFn(data, status, headers, config) {
         console.error('FAILED to GET directory');
       }
-    } 
+    }
+
+    function spot_info(input) {
+      console.log('Caffeinated' + input);
+    }
 
     // function compare_spot(spot) {
     //   if(spot == 1) {
