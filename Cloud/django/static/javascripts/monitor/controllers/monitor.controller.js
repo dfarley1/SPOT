@@ -14,12 +14,18 @@
     vm.edit_rate = edit_rate;
     vm.update_lots = update_lots;
     vm.spot_info = spot_info;
-    
+    vm.clear_info = clear_info;
+    vm.show_editable = show_editable;
+ 
     vm.curr_info = {number: '0'};
-
     vm.currLots = [{name: 'Loading'}];
     vm.newLots = [];
     vm.currSpots = [{uuid: 'Loading Spots...'}];
+    vm.spot_editable = false;
+    vm.spot_edit_number = 0;
+    vm.spot_edit_uuid = 0;
+    vm.spot_edit_section = 0;
+    vm.spot_edit_price = 0;
     
     // Load Server data
     load_lots();
@@ -73,6 +79,14 @@
     
     function spot_info(input) {
       vm.curr_info = vm.currSpots[input];
+    }
+
+    function clear_info() {
+      vm.curr_info = {};
+    }
+    function show_editable() {
+      vm.spot_editable = !vm.spot_editable;
+      console.log(vm.spot_editable);
     }
 
   }
