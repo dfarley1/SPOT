@@ -93,11 +93,11 @@
     }
 
     function save_editable() {
-      console.log('[save_editable()]: Sending: \n' + vm.spot_edit_number + '\n'
+      console.log('[save_editable()]: Sending: \n' + vm.curr_info.number + '\n'
       + vm.spot_edit_active + '\n' + vm.spot_edit_uuid + '\n' + vm.spot_edit_section
       + '\n' + vm.spot_edit_price);
       return $http.post('/api/v1/monitor/edit_spot_info/', {
-        spot_edit_number: vm.spot_edit_number,
+        spot_edit_number: vm.curr_info.number,
         spot_edit_active: vm.spot_edit_active,
         spot_edit_uuid: vm.spot_edit_uuid,
         spot_edit_section: vm.spot_edit_section,
