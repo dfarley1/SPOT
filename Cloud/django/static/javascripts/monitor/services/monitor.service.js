@@ -38,7 +38,6 @@
     */
     function create_lot(newLots, lot_name) {
         newLots.push(lot_name);
-        console.log(newLots);
     }
 
     function update_lots(newLot_array) {
@@ -76,5 +75,3 @@
 
   }
 })();
-
-// NOTE : add old_lot_name and new_lot_name for Dans soon to come changes
