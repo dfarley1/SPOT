@@ -28,6 +28,10 @@
             controller: 'MonitorController',
             controllerAs: 'vm',
             templateUrl: 'monitor/templates/monitor.html'
+        }).when('/payment_methods', {
+            controller: 'PaymentMethodsController',
+            controllerAs: 'vm',
+            templateUrl: 'monitor/templates/payment_methods.html'
         }).when('/mobile', {
             controller: 'UserController',
             controllerAs: 'vm',

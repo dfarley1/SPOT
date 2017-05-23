@@ -10,4 +10,6 @@ urlpatterns = [
     url(r'^edit_rate/$', EditRateView.as_view(), name='editRate'),
     url(r'^update_lots/$', EditRateView.as_view(), name='editRate'),
     url(r'^list_spots/$', ListSpotsView.as_view(), name='listSpots'),
+
+    url(r'^payment_methods/$', payment_methods.as_view(), name='payment_methods')
 ]

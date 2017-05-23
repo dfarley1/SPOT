@@ -5,6 +5,17 @@ HELLO</br>
     {% verbatim %}
         {{vm.curr_spot_text}}: {{vm.curr_spot.section.structure.name}}, {{vm.curr_spot.section.name}} #{{vm.curr_spot.number}}</br>
         </br>
+        </br>
+        <form novalidate class="simple-form">
+            <label>Name: <input type="text" ng-model="user.name" /></label><br />
+            <label>E-mail: <input type="email" ng-model="user.email" /></label><br />
+            Best Editor: 
+                <label><input type="radio" ng-model="user.preference" value="vi" />vi</label>
+                <label><input type="radio" ng-model="user.preference" value="emacs" />emacs</label><br />
+            <input type="button" ng-click="reset()" value="Reset" />
+            <input type="submit" ng-click="update(user)" value="Save" />
+        </form>
+
         
     {% endverbatim %}
 {% else %}

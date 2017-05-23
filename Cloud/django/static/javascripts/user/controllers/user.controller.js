@@ -9,7 +9,7 @@
 
     function UserController($location, $scope, $http, User) {
         // Variables
-        var vm = this;
+        var vm = this; 
         vm.curr_spot;
         vm.curr_status;
         vm.events;

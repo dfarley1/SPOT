@@ -30,6 +30,7 @@ from sensor.sensor import valid_sensor
 from rest_framework import permissions, viewsets, status, views
 from rest_framework.response import Response
 
+from monitor.models import *
 from monitor.serializers import *
 from monitor.rates import edit_rate
 
@@ -46,10 +47,15 @@ def index(request):
 
 	#put that data into the HTML's context
 	context = {'garage_data': garage_data,
-               'spot_data':garage_data,
+               'spot_data': garage_data,
                'lot_directory': lot_directory}
 	#render the HTML page
 	return HttpResponse(template.render(context, request))
+
+def payment_methods_view(request):
+    template = loader.get_template('payment_methods.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
 
 class CreateLotView(views.APIView):
     @csrf_exempt
@@ -169,3 +175,24 @@ class EditLotView(views.APIView):
         serialized = SpotSerializer(spots_directory, many=True)
         print('[SERVER]: Returning Spots Directory!')
         return Response(serialized.data, status=status.HTTP_200_OK)
+
+
+
+class payment_methods(views.APIView):
+    @csrf_exempt
+    def get(self, request, format=None):
+        payment_methods = payment_method.objects.all()
+        serialized = payment_method_serialized(payment_methods, many=True)
+        return Response(serialized.data, status=status.HTTP_200_OK)
+
+    @csrf_exempt
+    def post(self, request, format=None):
+        old_methods = payment_method.objects.all()
+        old_methods.delete()
+        new_methods_raw = json.loads(request.body)
+        new_methods_raw = payment_method_serialized(data=new_methods_raw, many=True)
+        new_methods_raw.is_valid()
+        new_methods = new_methods_raw.save()
+        return Response({}, status=status.HTTP_200_OK)
+
+
