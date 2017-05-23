@@ -48,6 +48,7 @@
       //Define Success and failure methods
       function getDirectorySuccessFn(data, status, headers, config) {
         vm.currLots = data.data;
+        console.log(vm.currLots);
       }
 
       function getDirectoryErrorFn(data, status, headers, config) {
@@ -62,7 +63,7 @@
       //Define Success and failure methods
       function loadSpotsSuccessFn(data, status, headers, config) {
         vm.currSpots = data.data;
-        // console.log(vm.currSpots);
+        console.log(vm.currSpots);
       }
 
       function loadSpotsErrorFn(data, status, headers, config) {
@@ -71,18 +72,8 @@
     }
     
     function spot_info(input) {
-      // console.log(vm.currSpots[input].number);
-      vm.spot_info = vm.currSpots[input].number;
-      console.log(vm.spot_info);
-      // console.log(vm.currSpots[input]);
-      // vm.curr_info = vm.currSpots[input];
+      vm.curr_info = vm.currSpots[input];
     }
-
-    // function compare_spot(spot) {
-    //   if(spot == 1) {
-    //     return 1;
-    //   } else return 0;
-    // }
 
   }
 })();

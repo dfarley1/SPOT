@@ -1,0 +1,14 @@
+{% verbatim %}
+<h1 class="text-center">Spot Info</h1>
+<div>
+  <table class="table table-striped">
+  <tbody>
+    <tr><td>Number  : {{ vm.curr_info.number }}<td></tr>
+    <tr><td>Active  : {{ vm.curr_info.active }}<td></tr>
+    <tr><td>UUID    : {{ vm.curr_info.uuid }}<td></tr>
+    <tr><td>Section : {{ vm.curr_info.section }}<td></tr>
+    <tr><td>Price   : {{ vm.curr_info.section.rate }}<td></tr>
+  </tbody>
+  </table>
+</div>
+{% endverbatim %}
