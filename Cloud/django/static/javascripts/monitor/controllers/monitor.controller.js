@@ -79,6 +79,7 @@
     
     function spot_info(input) {
       vm.curr_info = vm.currSpots[input];
+      console.log(vm.curr_info);
     }
 
     function clear_info() {
