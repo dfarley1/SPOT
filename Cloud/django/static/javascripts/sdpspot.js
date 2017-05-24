@@ -8,7 +8,8 @@
             'sdpspot.authentication',
             'sdpspot.layout',
             'sdpspot.monitor',
-            'sdpspot.user'
+            'sdpspot.user',
+            'rwdImageMaps'
         ]);
 
     angular

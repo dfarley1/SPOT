@@ -4,11 +4,12 @@
   angular
     .module('sdpspot.monitor', [
       'sdpspot.monitor.controllers',
-      'sdpspot.monitor.services'
+      'sdpspot.monitor.services',
+      'rwdImageMaps'
     ]);
 
   angular
-    .module('sdpspot.monitor.controllers', []);
+    .module('sdpspot.monitor.controllers', ['rwdImageMaps']);
 
   angular
     .module('sdpspot.monitor.services', ['ngCookies']);

@@ -1,6 +1,6 @@
 {% verbatim %}
 <h1 class="text-center">Lot Info</h1>
-  <select class="form-control" ng-model="selectedLot" ng-options="lot.name for lot in vm.currLots">
+  <select class="selectpicker" ng-model="selectedLot" ng-options="lot.name for lot in vm.currLots">
     <option value="" selected disabled>Select a lot...</option>
   </select> 
   
