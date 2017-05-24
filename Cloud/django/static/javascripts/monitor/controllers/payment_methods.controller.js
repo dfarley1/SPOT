@@ -48,9 +48,9 @@
             });
         }
 
-        function remove_method(id_num) {
-            console.log('removing method: ' + id_num);
-            vm.payment_methods.splice(vm.payment_methods.length-1);
+        function remove_method(index) {
+            console.log('removing method: ' + index);
+            vm.payment_methods.splice(index, 1);
         }
 
         function save_methods() {

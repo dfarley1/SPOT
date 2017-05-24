@@ -3,8 +3,8 @@
         Payment method: <input type="text" ng-model="method.name" placeholder="ex: R Permit, Credit Card, etc.">
         Purchase price: $<input type="text" ng-model="method.purchase_price" placeholder="0.00">
         Rate modifier: <input type="text" ng-model="method.rate_modifier" placeholder="0.0">
+        <button class="remove" ng-click="vm.remove_method($index)">-</button>
         <br/><br/>
-        <button class="remove" ng-show="$last" ng-click="vm.remove_method(method.id)">-</button>
     </fieldset>
     <button class="addfields" ng-click="vm.add_method()">Add payment method</button><br/>
     <button class="submit" ng-click="vm.save_methods()">Save</button>
