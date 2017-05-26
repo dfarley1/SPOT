@@ -1,15 +1,10 @@
 {% verbatim %}
-<h1 class="text-center">Lot Info</h1>
-  <select class="selectpicker" ng-model="selectedLot" ng-options="lot.name for lot in vm.currLots">
-    <option value="" selected disabled>Select a lot...</option>
-  </select> 
-  
+<h1 class="text-center">Lot Info</h1>  
   <div>
     <table class="table table-striped">
       <tbody>
-        <tr><td>Name   : </td><td>{{ selectedLot.name }}</td></tr>
-        <tr><td>Spots occupied   :</td><td> {{ vm.lot_info(selectedLot.name) }}</td></tr>
-        <tr><td>More attributes on the way...</td><td></td></tr>
+        <tr><td>Peak hour: </td><td> 4 PM</td></tr>
+        <tr><td>Occupied:</td><td> 152</td></tr>
       </tbody>
     </table>
   </div>

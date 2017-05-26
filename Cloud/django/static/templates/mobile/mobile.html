@@ -1,21 +1,22 @@
 <div class="col-md-6">
-  <div class="card card-1 hoverable">
+  <div class="card">
     <div class="card-image">
       <div class="view overlay hm-white-slight z-depth-1">
-        <img src="https://mdbootstrap.com/images/reg/reg%20(2).jpg" class="img-responsive" alt="">
+        <img src="static/media/mobile/UCSC-E2.jpeg" class="img-responsive" alt="">
         <a href="#"><div class="mask waves-effect"></div></a>
       </div>  
     </div>
-
     <div class="card-block text-center">
-      <!--Title-->
-      <h4 class="card-title">Claim this SPOT!</h4>
-      <!--Text-->
-      <p class="card-text">Section: {{ vm.curr_spot.section.name }}<br>Spot: {{ vm.curr_spot.number }}<br>Rate: ${{ vm.curr_status.current_rate }}/hr</p>
+      <h2 class="card-title">SPOT #</h2>
+      <table class="table text-center">
+        <tbody>
+          <tr><td><h4>Lot:</h4></td><td><h4>Test Core</h4></td></tr>
+          <tr><td><h4>Section:</h4></td><td><h4>Test Core</h4></td></tr>
+          <tr><td><h4>Rate:</h4></td><td><h4>Test Core</h4></td></tr>
+        </tbody>
+      </table>
+            <a href="#" class="btn btn-floating btn-lg waves-effect waves-light pull-right"><i class="glyphicon glyphicon-chevron-right"></i></a>
     </div>
-    <div class="card-btn text-center">
-      <a href="#" class="btn btn-primary btn-md waves-effect waves-light">Edit</a>
-      <a href="#" class="btn btn-default btn-md waves-effect waves-light">Confirm</a>
-    </div> 
+
   </div>
 </div>

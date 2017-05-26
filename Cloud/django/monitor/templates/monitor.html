@@ -1,11 +1,16 @@
-{% if user.is_authenticated %}    
+{% if user.is_authenticated %} 
   <div class="row" ng-controller="MonitorController as vm">
-    <div class="col-12 col-sm-6 col-md-8">
+    <div class="col-md-3">
+      <div class="well">
+        {% include "lots.html" %}
+      </div>
+    </div> 
+    <div class="col-md-6">
       <div class="well">
         {% include "spot_map.html" %}
       </div>
     </div>
-    <div class="col-6 col-md-4">
+    <div class="col-md-3">
       <div class="well">
         {% include "spot_map_info.html" %}
       </div>

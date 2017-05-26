@@ -1,0 +1,8 @@
+{% verbatim %}
+<h1 class="text-center">Lot Directory</h1>
+<table class="table table-striped table-responsive">
+  <tbody>
+    <tr class="clickable-row" ng-repeat="lot in vm.currLots"><td><button type="button" class="btn btn-primary btn-lg btn-block" ng-click="vm.set_lot(lot)">{{ lot.name }}</button></td></tr>
+  </tbody>
+</table>
+{% endverbatim %}

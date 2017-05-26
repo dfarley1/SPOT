@@ -1,4 +1,7 @@
-  <h1 class="text-center">Choose a SPOT</h1>
+{% verbatim %}  
+  <h1 class="text-center">{{ vm.curr_lot.name }}</h1>
+{% endverbatim %}
+
   {% load static %}
   <img class="img-responsive" src="{% static "media/monitor/spot_graphic.png" %}" usemap="#spot_map">
   <map name="spot_map">

@@ -16,8 +16,10 @@
     vm.clear_info = clear_info;
     vm.show_editable = show_editable;
     vm.save_editable = save_editable;
+    vm.set_lot = set_lot;
  
     vm.curr_info = {};
+    vm.curr_lot = {name: 'Lot'};
     vm.currLots = [{name: 'Loading'}];
     vm.newLots = [];
     vm.currSpots = [{uuid: 'Loading Spots...'}];
@@ -126,6 +128,11 @@
           return occupied;
         }
       }
+    }
+
+    function set_lot(lot) {
+      vm.curr_lot = lot;
+      console.log(vm.curr_lot.name);
     }
 
   }
