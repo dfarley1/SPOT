@@ -2,6 +2,9 @@
   {% load static %}
   <img class="img-responsive" src="{% static "media/monitor/spot_graphic.png" %}" usemap="#spot_map">
   <map name="spot_map">
-    <area shape="rect" coords="0,0,90,177" ng-click="vm.spot_info(0)"ng-dialog="static/templates/monitor/spot_dialog.html"> 
+    <!--This is the hacky way to keep adding spots info dialogs. 
+    I believe there's a better way to do this, but it'll have to do.-->
+    <area shape="rect" coords="0,0,90,177" ng-click="vm.spot_info(0)" ng-dialog="static/templates/monitor/spot_info/spot_1_dialog.html"> 
+    <area shape="rect" coords="0,0,180,354" ng-click="vm.spot_info(1)" ng-dialog="static/templates/monitor/spot_info/spot_2_dialog.html"> 
     <!--<area shape="rect" coords="0,0,180,354" ng-click="vm.spot_info(1)" ng-dialog="static/templates/monitor/spot_dialog.html?myVar1=1"> -->
   </map>

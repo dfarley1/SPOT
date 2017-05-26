@@ -1,0 +1,43 @@
+<!--<div class="well" ng-controller="MonitorController as vm">
+  <table class="table table-striped">
+    <tbody>
+      <tr><td>Spot # {{ vm.currSpots[1].number}}</td></tr>
+      <tr><td>UUID: {{vm.currSpots[1].uuid}}</td></tr>
+      <tr><td>Rate: {{vm.currSpots[1].rate}}</tr></td>
+      <tr><td>Occupied Status: {{vm.currSpots[1].occ_status}}</tr></td>
+      <tr><td>Description: {{vm.currSpots[1].description}}</tr></td>
+    </tbody>
+  </table>
+</div>-->
+<div class="well" ng-controller="MonitorController as vm">
+    <!--{% verbatim %}-->
+    <h1 class="text-center">Spot Info</h1>
+    <div ng-switch="vm.spot_editable">
+        <div ng-switch-when="true"> 
+        <table class="table table-striped">
+        <tbody> 
+            <tr><td>Number  : </td><td>{{  vm.currSpots[1].number }}</td></tr>
+            <tr><td>Active  : </td><td><input type="text" ng-model="vm.spot_edit_active" placeholder="False"></td></tr>
+            <tr><td>UUID    : </td><td>{{ vm.currSpots[1].uuid }}</td></tr>
+            <tr><td>Section : </td><td><input type="text" class="form-control" ng-model="vm.spot_edit_section" placeholder="West Core"></td></tr>
+            <tr><td>Price   : </td><td><input type="text" class="form-control" ng-model="vm.spot_edit_price" placeholder="$10/hr"></td></tr>
+        </tbody>
+        </table>
+        </div>
+        <div ng-switch-when="false">
+        <table class="table table-striped">
+        <tbody> 
+            <tr><td>Number  : </td><td>{{ vm.currSpots[1].number }}</td></tr>
+            <tr><td>Active  : </td><td>{{ vm.currSpots[1].occ_status }}</td></tr>
+            <tr><td>UUID    : </td><td>{{ vm.currSpots[1].uuid }}</td></tr>
+            <tr><td>Section : </td><td>{{ vm.currSpots[1].section }}</td></tr>
+            <tr><td>Price   : </td><td>{{ vm.currSpots[1].rate }}</td></tr>
+        </tbody>
+        </table>
+        </div>
+    <button class="btn btn-primary" ng-switch-when="false" ng-click="vm.clear_info()">Reset</button>
+    <button class="btn btn-primary" ng-switch-when="false" ng-click="vm.show_editable()">Edit</button>
+    <button class="btn btn-primary" ng-switch-when="true" ng-click="vm.show_editable()">Cancel</button>
+    <button class="btn btn-primary" ng-switch-when="true" ng-click="vm.save_editable()">Save</button>
+    </div>
+</div>
