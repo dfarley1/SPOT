@@ -50,7 +50,7 @@ def sensor_POST(request):
 
     #get db entry
     spot = spot_data.objects.get(uuid=request.GET['sensor_uuid'])
-    date_obj = datetime.strptime(request.POST["occ_since"], '%Y-%m-%d %H:%M:%S.%f')
+    date_obj = datetime.strptime(request.POST["occ_since"], '%Y-%m-%d %H:%M:%S.%f\n')
     date_obj = pytz.utc.localize(date_obj)
 
     #a car has arrived at the spot
