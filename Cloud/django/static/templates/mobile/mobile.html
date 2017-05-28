@@ -7,16 +7,15 @@
       </div>  
     </div>
     <div class="card-block text-center">
-      <h2 class="card-title">SPOT #</h2>
+      <h2 class="card-title">SPOT # {{ vm.curr_spot.number }}</h2>
       <table class="table text-center">
         <tbody>
-          <tr><td><h4>Lot:</h4></td><td><h4>Test Core</h4></td></tr>
-          <tr><td><h4>Section:</h4></td><td><h4>Test Core</h4></td></tr>
+          <tr><td><h4>Lot:</h4></td><td><h4>{{ vm.curr_spot.section.structure.name }}</h4></td></tr>
+          <tr><td><h4>Section:</h4></td><td><h4>{{ vm.curr_spot.section.name }}</h4></td></tr>
           <tr><td><h4>Rate:</h4></td><td><h4>Test Core</h4></td></tr>
         </tbody>
       </table>
-            <a href="#" class="btn btn-floating btn-lg waves-effect waves-light pull-right"><i class="glyphicon glyphicon-chevron-right"></i></a>
+            <button class="btn btn-floating btn-lg waves-effect waves-light pull-right"><i class="glyphicon glyphicon-chevron-right"></i></button>
     </div>
-
   </div>
 </div>
