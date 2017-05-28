@@ -1,4 +1,21 @@
-<div class="row">
+{% if user.is_authenticated %}
+{% verbatim %}
+<!-- CURRENT LOCATION -->
+{{vm.curr_spot.section.structure.name}}, {{vm.curr_spot.section.name}} #{{vm.curr_spot.number}}</br>
+
+<!--  -->
+Since: {{vm.curr_spot}}
+Rate: 
+
+Events:
+<tr class="clickable-row" ng-repeat="event in vm.events"></tr>
+{% endverbatim %}
+{% else %}
+<p>Unauthorized</p>
+{% endif %}
+
+
+<!--<div class="row">
 <div class="col-md-4 col-md-offset" ng-controller="UserController as vm">
 HELLO</br>
 {% if user.is_authenticated %}
@@ -22,4 +39,4 @@ HELLO</br>
     <p>Unauthorized</p>
 {% endif %}
 </div>
-</div>
+</div>-->

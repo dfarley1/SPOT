@@ -20,10 +20,6 @@
             controller: 'LoginController',
             controllerAs: 'vm',
             templateUrl: '/static/templates/authentication/login.html'
-        }).when('/test', {
-            controller: 'MonitorController',
-            controllerAs: 'vm',
-            templateUrl: '/static/templates/monitor/monitor.html'
         }).when('/monitor', {
             controller: 'MonitorController',
             controllerAs: 'vm',
@@ -32,14 +28,14 @@
             controller: 'PaymentMethodsController',
             controllerAs: 'vm',
             templateUrl: 'monitor/templates/payment_methods.html'
-        }).when('/mobile', {
-            controller: 'UserController',
-            controllerAs: 'vm',
-            templateUrl: '/static/templates/mobile/mobile.html'
         }).when('/user', {
             controller: 'UserController',
             controllerAs: 'vm',
             templateUrl: 'user/templates/user.html'
+        }).when('/edit_structures', {
+            controller: 'StructuresController',
+            controllerAs: 'vm',
+            templateUrl: 'monitor/templates/edit_structures.html'
         })
         // .otherwise('/', {
         //     controller: 'MonitorController',
