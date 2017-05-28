@@ -32,6 +32,8 @@ class structures_serialized(serializers.ModelSerializer):
     class Meta:
         model = structures
         fields = ('name',)
+    def create(self, validated_data):
+        return sections.objects.create(**validated_data)
 
 def rates_default():
     return [[0 for i in xrange(96)] for j in xrange(7)]
@@ -67,12 +69,17 @@ class sections(models.Model):
         end_n = [end_time.date().weekday(), end_time.hour * 4 + int(end_time.minute/15)]
         #fill everything in between start_n and end_n with 1
         i = start_n[0]
-        while i <= end_n[0]:
+        while i != end_n[0]:
             for j in range(96):
                 if i == start_n[0]: j = max(start_n[1], j)
                 if i == end_n[0]: j = min(end_n[1], j)
                 mask[i][j] = 1
             i = (i+1)%7
+        if start_n[0] == end_n[0]:
+            for j in range(96):
+                if i == start_n[0]: j = max(start_n[1], j)
+                if i == end_n[0]: j = min(end_n[1], j)
+                mask[i][j] = 1
         #fix partial for start chunk
         start_int = start_time.minute
         end_int = 15 * (int(start_int / 15) + 1)
@@ -99,6 +106,8 @@ class sections_serialized(serializers.ModelSerializer):
     class Meta:
         model = sections
         fields = ('name', 'structure')
+    def create(self, validated_data):
+        return sections.objects.create(**validated_data)
 
 
 class spot_data(models.Model):

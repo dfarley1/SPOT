@@ -14,7 +14,6 @@
         vm.curr_status;
         vm.events;
         
-        vm.curr_spot_text;
         //Functions
         vm.get_spot = get_spot;
         vm.get_status = get_status;
@@ -22,8 +21,9 @@
         
         load_stuff();
         function load_stuff() {
-            get_spot();
             get_status();
+            get_spot();
+            get_events();
         }
 
         function get_spot() {
@@ -32,11 +32,6 @@
             function get_spot_OK(data, status, headers, config) {
                 console.log(data.data);
                 vm.curr_spot = data.data;
-                if (vm.curr_spot.occ_status > 0) {
-                    vm.curr_spot_text = 'You are parked at SPOT';
-                } else {
-                    vm.curr_spot_text = 'You were last parked in SPOT';
-                 }
             }
             function get_spot_ERR(data, status, headers, config) {
                 console.log('user.controller: get_spot ERROR');
