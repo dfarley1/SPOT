@@ -45,9 +45,9 @@ class struct_lots(views.APIView):
 class struct_sections(views.APIView):
     @csrf_exempt
     def get(self, request, format=None):
-        sections = sections.objects.all()
-        sections = sections_serialized(sections, many=True)
-        return Response(sections.data, status=status.HTTP_200_OK)
+        all_secs = sections.objects.all()
+        all_secs = sections_serialized(all_secs, many=True)
+        return Response(all_secs.data, status=status.HTTP_200_OK)
 
     def post(self, request, format=None):
         return Response({}, status=status.HTTP_200_OK)
