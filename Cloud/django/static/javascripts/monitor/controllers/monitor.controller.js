@@ -19,6 +19,7 @@
     vm.set_lot = set_lot;
  
     vm.curr_info = {};
+    vm.currSections = {name: 'Loading...'};
     vm.curr_lot = {name: 'Lot'};
     vm.currLots = [{name: 'Loading'}];
     vm.newLots = [];
@@ -34,6 +35,7 @@
     // Load Server data
     load_lots();
     load_spots();
+    load_sections();
   
     vm.spot_info = spot_info;
     vm.lot_info = lot_info;
@@ -52,6 +54,20 @@
       Monitor.update_lots(vm.newLots);
     }
 
+    function load_sections() {
+      $http.get('/api/v1/monitor/list_sections/',
+      ).then(getDirectorySuccessFn, getDirectoryErrorFn);
+   
+      //Define Success and failure methods
+      function getDirectorySuccessFn(data, status, headers, config) {
+        vm.currSections = data.data;
+        console.log(vm.currSections);
+      }
+
+      function getDirectoryErrorFn(data, status, headers, config) {
+        console.error('FAILED to GET directory');
+      }
+    }  
     function load_lots() {
       $http.get('/api/v1/monitor/list_lots/',
       ).then(getDirectorySuccessFn, getDirectoryErrorFn);

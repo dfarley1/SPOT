@@ -4,10 +4,14 @@
     <div ng-switch-when="true"> 
       <table class="table table-striped">
       <tbody> 
-        <tr><td>Section: </td><td class="text-center">Level 1</td></tr>
-        <tr><td>Number : </td><td class="text-center">2</td></tr>
-        <tr><td>Active : </td><td><input type="text" class="form-control text-center" ng-model="vm.spot_edit_active" placeholder="False"></td></tr>
-        <tr><td>Price : </td><td><input type="text" class="form-control text-center" ng-model="vm.spot_edit_price" placeholder="$10/hr"></td></tr>
+        <tr><td>Section: </td><td class="text-center">
+          <select class="selectpicker" ng-model="selectedLot" ng-options="lot.name for lot in vm.currLots">
+            <option value="" selected disabled>Select a lot...</option>
+          </select>
+        </td></tr>
+        <tr><td>Number: </td><td class="text-center">2</td></tr>
+        <tr><td>Active: </td><td><input type="text" class="form-control text-center" ng-model="vm.spot_edit_active" placeholder="False"></td></tr>
+        <tr><td>Price: </td><td><input type="text" class="form-control text-center" ng-model="vm.spot_edit_price" placeholder="$10/hr"></td></tr>
       </tbody>
       </table>
     </div>
