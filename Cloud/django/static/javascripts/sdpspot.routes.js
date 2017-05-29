@@ -36,6 +36,10 @@
             controller: 'StructuresController',
             controllerAs: 'vm',
             templateUrl: 'monitor/templates/edit_structures.html'
+        }).when('/edit_rates', {
+            controller: 'StructuresController',
+            controllerAs: 'vm',
+            templateUrl: 'monitor/templates/edit_rates.html'
         })
         // .otherwise('/', {
         //     controller: 'MonitorController',

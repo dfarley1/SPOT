@@ -57,6 +57,11 @@ def payment_methods_view(request):
     context = {}
     return HttpResponse(template.render(context, request))
 
+def edit_rates_view(request):
+    template = loader.get_template('edit_rates.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
+
 class CreateLotView(views.APIView):
     @csrf_exempt
     def post(self, request, format=None):
@@ -176,7 +181,12 @@ class EditLotView(views.APIView):
         print('[SERVER]: Returning Spots Directory!')
         return Response(serialized.data, status=status.HTTP_200_OK)
 
-
+class struct_sections(views.APIView):
+    @csrf_exempt
+    def get(self, request, format=None):
+        secs = sections.objects.all()
+        serialized = sections_serialized(secs, many=True)
+        return Response(serialized.data, status=status.HTTP_200_OK)
 
 class payment_methods(views.APIView):
     @csrf_exempt
@@ -195,4 +205,13 @@ class payment_methods(views.APIView):
         new_methods = new_methods_raw.save()
         return Response({}, status=status.HTTP_200_OK)
 
+class edit_rates(views.APIView):
+    @csrf_exempt
+    def get(self, request, format=None):
+        section = sections.objects.all()[0]
+        rates = section.rates_load()
 
+        return Response(rates, status=status.HTTP_200_OK)
+    
+    def post(self, request, format=None):
+        return Response({}, status=status.HTTP_200_OK)

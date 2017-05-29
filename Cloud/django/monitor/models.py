@@ -53,7 +53,7 @@ class event_log(models.Model):
 class event_log_serialized(serializers.ModelSerializer):
     class Meta:
         model = event_log
-        depth = 2
+        depth = 3
         fields = ('start', 'end', 'total_paid', 'user', 'spot')
 
 class payment_method(models.Model):
