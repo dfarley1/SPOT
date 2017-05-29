@@ -208,10 +208,22 @@ class payment_methods(views.APIView):
 class edit_rates(views.APIView):
     @csrf_exempt
     def get(self, request, format=None):
-        section = sections.objects.all()[0]
+        lots = structures.objects.filter(name=request.GET['lot'])[0]
+        ssection = sections.objects.filter(name=request.GET['section'], structure=lots)
+        section = ssection[0]
         rates = section.rates_load()
 
         return Response(rates, status=status.HTTP_200_OK)
     
     def post(self, request, format=None):
+        msg = json.loads(request.body)
+        lot_str = msg['lot']
+        sec_str = msg['section']
+        new_rates = msg['rates']
+
+        lot = structures.objects.filter(name=lot_str)[0]
+        section = sections.objects.filter(name=sec_str, structure=lot)[0]
+        
+        section.rates_save(new_rates)
+
         return Response({}, status=status.HTTP_200_OK)

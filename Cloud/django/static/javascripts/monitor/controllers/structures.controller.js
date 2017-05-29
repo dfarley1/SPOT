@@ -27,7 +27,7 @@
         }
 
         function get_rates() {
-            $http.get('/api/v1/monitor/edit_rates/')
+            $http.get('/api/v1/monitor/edit_rates/', {params:{lot: vm.lot, section: vm.section}})
                 .then(get_rates_OK, get_rates_ERR);
 
             function get_rates_OK(data, status, headers, config) {
@@ -40,8 +40,11 @@
         }
 
         function post_rates() {
-            $http.post('/api/v1/monitor/edit_rates/', vm.rates)
-                .then(post_rates_OK, post_rates_ERR);
+            $http.post('/api/v1/monitor/edit_rates/', {
+                lot: vm.lot,
+                section: vm.section,
+                rates: vm.rates
+            }).then(post_rates_OK, post_rates_ERR);
 
             function post_rates_OK(data, status, headers, config) {
                 console.log('strctures controller: rates SAVED')
