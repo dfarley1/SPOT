@@ -45,7 +45,7 @@
 
     function edit_rate() {
       Monitor.edit_rate(vm.spot_number, vm.spot_rate);
-      window.location = '/monitor';
+      //window.location = '/monitor';
     }
 
     function update_lots() {

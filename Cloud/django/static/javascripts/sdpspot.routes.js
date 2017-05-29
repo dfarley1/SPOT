@@ -20,6 +20,10 @@
             controller: 'LoginController',
             controllerAs: 'vm',
             templateUrl: '/static/templates/authentication/login.html'
+        }).when('/Lots', {
+            controller: 'MonitorController',
+            controllerAs: 'vm',
+            templateUrl: 'static/templates/monitor/lots.html'
         }).when('/monitor', {
             controller: 'MonitorController',
             controllerAs: 'vm',

@@ -27,7 +27,7 @@
         }
 
         function get_spot() {
-            $http.get('/api/v1/user/get_spot/',).then(get_spot_OK, get_spot_ERR);
+            $http.get('/api/v1/user/get_spot/').then(get_spot_OK, get_spot_ERR);
 
             function get_spot_OK(data, status, headers, config) {
                 console.log(data.data);
@@ -39,7 +39,7 @@
         }
 
         function get_status() {
-            $http.get('/api/v1/user/get_status/',).then(get_status_OK, get_status_ERR);
+            $http.get('/api/v1/user/get_status/').then(get_status_OK, get_status_ERR);
 
             function get_status_OK(data, status, headers, config) {
                 console.log(data.data);
@@ -52,7 +52,7 @@
 
 
         function get_events() {
-            $http.get('/api/v1/user/get_events/',).then(get_OK, get_ERR);
+            $http.get('/api/v1/user/get_events/').then(get_OK, get_ERR);
             
             function get_OK(data, status, headers, config) {
                 console.log(data.data);
