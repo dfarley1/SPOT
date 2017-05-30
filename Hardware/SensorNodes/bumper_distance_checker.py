@@ -97,10 +97,10 @@ error = (abs((distance_1 - distance_2)) / distance_2) * 100
 if error <= 10:
 	if(distance_1 < car_distance):
 		#colorWipe(strip, Color(0, 255, 0))
-		GPIO.output(COLOR, True)
+		GPIO.output(COLOR, False)
 		GPIO.cleanup()
 		exit(1)
-GPIO.output(COLOR, False)
+GPIO.output(COLOR, True)
 #coolorWipe(strip, Color(255,0,0))
 
 GPIO.cleanup()

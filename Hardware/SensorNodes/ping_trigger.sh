@@ -63,4 +63,4 @@ if [ $STATUS -ne $LAST_STATUS ]; then
 
     # Update Cloud with new status
     $TRANSFER_SCRIPT
-    fi
+fi
