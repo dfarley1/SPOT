@@ -5,7 +5,7 @@
       <table class="table table-striped">
       <tbody> 
         <tr><td>Section: </td><td class="text-center">
-          <select class="selectpicker" ng-model="selectedLot" ng-options="lot.name for lot in vm.currLots">
+          <select class="selectpicker" ng-model="selectedLot" ng-options="section.name for section in vm.currSections">
             <option value="" selected disabled>Select a lot...</option>
           </select>
         </td></tr>
@@ -18,9 +18,27 @@
     <div ng-switch-when="false">
       <table class="table table-striped">
       <tbody> 
-        <tr><td>Section: </td><td class="text-center">Level 1</td></tr>
-        <tr><td>Number:</td><td class="text-center">2</td></tr>
-        <tr><td>Active: </td><td class="text-center">{{ vm.curr_info.active }}</td></tr>
+        <tr><td>Section: </td><td class="text-center">FILL</td></tr>
+        <tr><td>Number:</td><td class="text-center">{{ vm.curr_info.number }}</td></tr>
+        <tr><td>Active: </td>
+            <td>
+              <div ng-if="vm.curr_info.occ_status==0">
+                 <svg height="20" width="20" style="display: block;margin: auto;">
+                   <circle cx="10" cy="10" r="10" stroke="red" stroke-width="2" fill="red" />
+                 </svg> 
+             </div>
+             <div ng-if="vm.curr_info.occ_status==1">
+                 <svg height="20" width="20" style="display: block;margin: auto;">
+                   <circle cx="10" cy="10" r="10" stroke="green" stroke-width="2" fill="green" />
+                 </svg> 
+             </div>
+             <div ng-if="vm.curr_info.occ_status==2">
+                 <svg height="20" width="20" style="display: block;margin: auto;">
+                   <circle cx="10" cy="10" r="10" stroke="yellow" stroke-width="2" fill="yellow" />
+                 </svg> 
+             </div>
+            </td>
+        </tr>
         <tr><td>Price: </td><td class="text-center">2.99 ($/hr)</td></tr>
       </tbody>
       </table>
