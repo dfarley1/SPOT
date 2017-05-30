@@ -24,7 +24,7 @@ LED_INVERT     = False   # True to invert the signal (when using NPN transistor$
 
 # Intialize the library (must be called once before other functions).
 #strip.begin()
-
+GPIO.cleanup()
 GPIO.setmode(GPIO.BCM)
 #GPIO.setwarnings(False)
 car_distance = 1.5
@@ -97,11 +97,9 @@ error = (abs((distance_1 - distance_2)) / distance_2) * 100
 if error <= 10:
 	if(distance_1 < car_distance):
 		#colorWipe(strip, Color(0, 255, 0))
-		GPIO.output(COLOR, False)
-		GPIO.cleanup()
+		#GPIO.output(COLOR, True)
 		exit(1)
-GPIO.output(COLOR, True)
-#coolorWipe(strip, Color(255,0,0))
 
-GPIO.cleanup()
+#GPIO.output(COLOR, False)
+#coolorWipe(strip, Color(255,0,0))
 exit(0)
