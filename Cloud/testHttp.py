@@ -24,7 +24,18 @@ def sensor_GET():
     
     r = requests.get(base_url+"sensor/", params=params)
     
-    saveCookies(r.cookies)
+    f = open(uuid_filename, 'w')
+    sensor_uuid_hex = uuid.UUID(r.cookies['sensor_uuid']).hex
+
+    s = str(sensor_uuid_hex)
+    new_hex = " ".join(s[i:i+2] for i in range(0, len(s),2))
+    #hex_s = new_hex[0:12] + new_hex[30:]
+    #print(hex_s)
+    f.write(new_hex)
+    f.close()
+
+
+    #saveCookies(r.cookies)
     printResponse(r)
     print(uuid_filename)
 
@@ -41,7 +52,7 @@ def sensor_POST():
         # 'occ_since': datetime.datetime.now(),
         # 'occ_license': occupied_license,
         'occ_license': '4AME671',
-        'csrfmiddlewaretoken': cookies['csrftoken']
+        #'csrfmiddlewaretoken': cookies['csrftoken']
     }
     
     r = requests.post(
@@ -56,7 +67,7 @@ def sensor_POST():
 def sensor_getUUID_GET():
     params = {'mac_addr': uuid.getnode()}
     r = requests.get(base_url+'sensor/getUUID/', params = params)
-    print(r.cookies['csrftoken'])
+    #print(r.cookies['csrftoken'])
     saveCookies(r.cookies)
     
     f = open(uuid_filename, 'w')
@@ -64,9 +75,9 @@ def sensor_getUUID_GET():
     
     s = str(sensor_uuid_hex)
     new_hex = " ".join(s[i:i+2] for i in range(0, len(s),2))
-    hex_s = new_hex[0:12] + new_hex[30:]
-    print(hex_s)
-    f.write(hex_s)
+    #hex_s = new_hex[0:12] + new_hex[30:]
+    #print(hex_s)
+    f.write(new_hex)
     f.close()
 
     printResponse(r)
