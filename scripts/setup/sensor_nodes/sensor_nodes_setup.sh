@@ -8,11 +8,11 @@ sudo apt-get install python-dev python-rpi.gpio
 #------------------------------
 #set up for neopixel ring library with python wrapper
 sudo apt-get install build-essential python dev git scons swig
+cd ~
 git clone https://github.com/jgarff/rpi_ws281x.git
-cd rpi_ws281.x
+cd ~/rpi_ws281.x
 scons
-cd python
-sudo python setup.py install
+sudo python /home/pi/rpi_ws281.x/setup.py install
 #------------------------------ 
 # any installation script for CV side of setup
 # sudo ./david's script for setting up the CV
@@ -30,7 +30,7 @@ sudo echo '' >~/spot_log/uuid_file.txt
 #------------------------------
 # This sets up the sensor for autonomous background script
 sudo cp /home/pi/SPOT/scripts/setup/sensor_nodes/bootup_ping_script.sh /etc/init.d/
-sudo update-rc.d bootup_ping_script.sh defaults
+sudo update-rc.d /etc/init.d/bootup_ping_script.sh defaults
 #------------------------------
 #------------------------------
 echo "Sensor setup complete!"
