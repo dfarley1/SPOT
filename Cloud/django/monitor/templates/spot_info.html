@@ -18,7 +18,7 @@
     <div ng-switch-when="false">
       <table class="table table-striped">
       <tbody> 
-        <tr><td>Section: </td><td class="text-center">FILL</td></tr>
+        <tr><td>Section: </td><td class="text-center">{{ vm.curr_info.section.name }}</td></tr>
         <tr><td>Number:</td><td class="text-center">{{ vm.curr_info.number }}</td></tr>
         <tr><td>Active: </td>
             <td>
@@ -39,7 +39,7 @@
              </div>
             </td>
         </tr>
-        <tr><td>Price: </td><td class="text-center">FILL ($/hr)</td></tr>
+        <tr><td>Price: </td><td class="text-center"> ${{ vm.curr_info.section.curr_rate }}/hr</td></tr>
       </tbody>
       </table>
     </div>
