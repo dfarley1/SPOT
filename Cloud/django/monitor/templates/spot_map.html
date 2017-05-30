@@ -7,7 +7,13 @@
   <map name="spot_map">
     <!--This is the hacky way to keep adding spots info dialogs. 
     I believe there's a better way to do this, but it'll have to do.-->
-    <area shape="rect" coords="0,0,90,177" ng-click="vm.spot_info(0)" ng-dialog="static/templates/monitor/spot_info/spot_1_dialog.html"> 
-    <area shape="rect" coords="0,0,180,354" ng-click="vm.spot_info(1)" ng-dialog="static/templates/monitor/spot_info/spot_2_dialog.html"> 
+    <!--SPOT 0-->
+    <area shape="rect" coords="0,0,90,177" ng-click="vm.spot_info(0)" ng-if="vm.currSpots[0]"> 
+    
+    <!--SPOT 1-->
+    <area shape="rect" coords="0,0,180,354" ng-click="vm.spot_info(1)" ng-if="vm.currSpots[1]"> 
+    
+    
+
     <!--<area shape="rect" coords="0,0,180,354" ng-click="vm.spot_info(1)" ng-dialog="static/templates/monitor/spot_dialog.html?myVar1=1"> -->
   </map>

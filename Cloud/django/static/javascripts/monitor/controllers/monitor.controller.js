@@ -34,8 +34,9 @@
     
     // Load Server data
     load_lots();
-    load_spots();
-    load_sections();
+    load_periodic();
+    //load_spots();
+    //load_sections();
   
     vm.spot_info = spot_info;
     vm.lot_info = lot_info;
@@ -65,7 +66,7 @@
       }
 
       function getDirectoryErrorFn(data, status, headers, config) {
-        console.error('FAILED to GET directory');
+        console.error('FAILED to GET section directory');
       }
     }  
     function load_lots() {
@@ -79,7 +80,7 @@
       }
 
       function getDirectoryErrorFn(data, status, headers, config) {
-        console.error('FAILED to GET directory');
+        console.error('FAILED to GET lot directory');
       }
     }  
 
@@ -89,11 +90,12 @@
    
       //Define Success and failure methods
       function loadSpotsSuccessFn(data, status, headers, config) {
+        console.log(data.data);
         vm.currSpots = data.data;
       }
 
       function loadSpotsErrorFn(data, status, headers, config) {
-        console.error('FAILED to GET directory');
+        console.error('FAILED to GET spot directory');
       }
     }
     
@@ -149,6 +151,13 @@
     function set_lot(lot) {
       vm.curr_lot = lot;
       console.log(vm.curr_lot.name);
+    }
+
+    function load_periodic() {
+      setInterval(function() {
+        load_spots();
+        load_sections();
+      }, 1500);
     }
 
   }
