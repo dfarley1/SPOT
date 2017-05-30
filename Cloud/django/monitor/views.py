@@ -31,7 +31,6 @@ from rest_framework import permissions, viewsets, status, views
 from rest_framework.response import Response
 
 from monitor.models import *
-from monitor.serializers import *
 from monitor.rates import edit_rate
 
 
@@ -144,7 +143,7 @@ class ListLotView(views.APIView):
     def get(self, request, format=None):
         # Load entire structure table, and serialize every Lot instance
         lot_directory = structures.objects.all()
-        serialized = LotSerializer(lot_directory, many=True)
+        serialized = structures_serialized(lot_directory, many=True)
         return Response(serialized.data, status=status.HTTP_200_OK)
 
 class ListSpotsView(views.APIView):
@@ -152,8 +151,8 @@ class ListSpotsView(views.APIView):
     def get(self, request, format=None):
         # Load entire structure table, and serialize every Spot instance
         spots_directory = spot_data.objects.all()
-        serialized = SpotSerializer(spots_directory, many=True)
-        print('[SERVER]: Returning Spots Directory!')
+        serialized = spot_data_serialized(spots_directory, many=True)
+        #print('[SERVER]: Returning Spots Directory!')
         return Response(serialized.data, status=status.HTTP_200_OK)
 
 class EditRateView(views.APIView):
@@ -177,7 +176,7 @@ class EditLotView(views.APIView):
     def get(self, request, format=None):
         # Load entire structure table, and serialize every Spot instance
         spots_directory = spot_data.objects.all()
-        serialized = SpotSerializer(spots_directory, many=True)
+        serialized = spot_data_serialized(spots_directory, many=True)
         print('[SERVER]: Returning Spots Directory!')
         return Response(serialized.data, status=status.HTTP_200_OK)
 

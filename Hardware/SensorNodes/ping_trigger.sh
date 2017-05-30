@@ -9,6 +9,8 @@ PING_CHECKER="sudo python /home/pi/SPOT/Hardware/SensorNodes/bumper_distance_che
 TRANSFER_SCRIPT="sudo runp /home/pi/SPOT/Cloud/testHttp.py sensor_POST"
 TIMESTAMP_SCRIPT="sudo runp /home/pi/SPOT/Hardware/SensorNodes/occupied_since.py now"
 EDDYSTONE_SCRIPT="sudo /home/pi/SPOT/scripts/setup/sensor_nodes/eddystone_test_setup.sh"
+GREEN_SCRIPT="sudo python /home/pi/SPOT/Hardware/SensorNodes/green.py"
+RED_SCRIPT="sudo python /home/pi/SPOT/Hardware/SensorNodes/red.py"
 #BLUETOOTH_SHUTOFF_SCRIPT = "sudo /home/pi/SPOT/scripts/setup/sensor_nodes/bluetooth_shutoff.sh"
 
 # Reference for files
@@ -40,14 +42,15 @@ if [ $STATUS -ne $LAST_STATUS ]; then
 
 	# UPDATE FILE
 	#echo $STATUS > $LOG_FILE
-
+	$GREEN_SCRIPT
         # Activate beacon for this spot
         $EDDYSTONE_SCRIPT
     fi
-#    if [ $STATUS -eq $EMPTY ]; then
+    if [ $STATUS -eq $EMPTY ]; then
 	# Turn off beacon
 	# $BLUETOOTH_SHUTOFF_SCRIPT
-#    fi
+	$RED_SCRIPT
+    fi
 
     # Update Log File
     # rm $LOG_FILE
@@ -63,4 +66,4 @@ if [ $STATUS -ne $LAST_STATUS ]; then
 
     # Update Cloud with new status
     $TRANSFER_SCRIPT
-    fi
+fi

@@ -1,0 +1,22 @@
+/home/pi/SPOT/Hardware/SensorNodes/bumper_distance_checker.py:27: RuntimeWarning: No channels have been set up yet - nothing to clean up!  Try cleaning up at the end of your program instead!
+  GPIO.cleanup()
+/home/pi/SPOT/Hardware/SensorNodes/bumper_distance_checker.py:39: RuntimeWarning: This channel is already in use, continuing anyway.  Use GPIO.setwarnings(False) to disable warnings.
+  GPIO.setup(COLOR,GPIO.OUT)
+/home/pi/SPOT/Hardware/SensorNodes/bumper_distance_checker.py:40: RuntimeWarning: This channel is already in use, continuing anyway.  Use GPIO.setwarnings(False) to disable warnings.
+  GPIO.setup(TRIG,GPIO.OUT)
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 4.34 ft
+Waiting For Sensor To Settle
+Distance: 4.36 ft
+/home/pi/SPOT/Hardware/SensorNodes/bumper_distance_checker.py:27: RuntimeWarning: No channels have been set up yet - nothing to clean up!  Try cleaning up at the end of your program instead!
+  GPIO.cleanup()
+/home/pi/SPOT/Hardware/SensorNodes/bumper_distance_checker.py:39: RuntimeWarning: This channel is already in use, continuing anyway.  Use GPIO.setwarnings(False) to disable warnings.
+  GPIO.setup(COLOR,GPIO.OUT)
+/home/pi/SPOT/Hardware/SensorNodes/bumper_distance_checker.py:40: RuntimeWarning: This channel is already in use, continuing anyway.  Use GPIO.setwarnings(False) to disable warnings.
+  GPIO.setup(TRIG,GPIO.OUT)
+Distance Measurement In Progress
+Waiting For Sensor To Settle
+Distance: 4.34 ft
+Waiting For Sensor To Settle
+Distance: 4.42 ft

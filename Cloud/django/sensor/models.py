@@ -47,9 +47,11 @@ class sections(models.Model):
     def rates_save(self, rates):
         # Check dimensions
         if len(rates) is 7:
-            for i in range(0, 6):
+            for i in range(7):
                 if len(rates[i]) is not 96:
                     return False
+                for j in range(96):
+                    rates[i][j] = float(rates[i][j])
             self.rates = pickle.dumps(rates)
             self.save()
             return True
@@ -103,9 +105,12 @@ class sections(models.Model):
         return str(self.name + " (" + self.structure.name + ")")
 
 class sections_serialized(serializers.ModelSerializer):
+    curr_rate = serializers.FloatField(source='get_current_rate')
+    structure = structures_serialized(read_only=True)
     class Meta:
         model = sections
-        fields = ('name', 'structure')
+        depth = 2
+        fields = ('name', 'structure', 'curr_rate')
     def create(self, validated_data):
         return sections.objects.create(**validated_data)
 
@@ -127,7 +132,6 @@ class spot_data(models.Model):
     occ_license = models.CharField("Occupant License", max_length=20)
     occupant = models.ForeignKey(Account, null=True)
 
-
     def __str__(self):
         return str(self.uuid)
 
@@ -140,10 +144,10 @@ class spot_data(models.Model):
 
 
 class spot_data_serialized(serializers.ModelSerializer):
+    section = sections_serialized(read_only=True)
     class Meta:
         model = spot_data
-        depth = 2
-
+        depth = 4
         fields = ('uuid', 'active', 'section', 'number',
                   'description', 'gpslat', 'gpslon',
                   'rate', 'last_update', 'occ_status',

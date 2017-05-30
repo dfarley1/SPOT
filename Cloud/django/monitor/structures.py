@@ -17,7 +17,6 @@ from rest_framework import permissions, viewsets, status, views
 from rest_framework.response import Response
 
 from monitor.models import *
-from monitor.serializers import *
 from monitor.rates import edit_rate
 
 def index(request):
