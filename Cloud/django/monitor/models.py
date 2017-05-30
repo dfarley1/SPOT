@@ -51,6 +51,7 @@ class event_log(models.Model):
         return int((end - self.start).total_seconds() / 60)
 
 class event_log_serialized(serializers.ModelSerializer):
+    spot = spot_data_serialized(read_only=True)
     class Meta:
         model = event_log
         depth = 3
