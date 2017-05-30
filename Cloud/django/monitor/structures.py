@@ -47,7 +47,8 @@ class struct_sections(views.APIView):
         all_secs = sections.objects.all()
         all_secs = sections_serialized(all_secs, many=True)
         return Response(all_secs.data, status=status.HTTP_200_OK)
-
+    
+    @csrf_exempt
     def post(self, request, format=None):
         return Response({}, status=status.HTTP_200_OK)
 
@@ -67,4 +68,3 @@ class edit_structures(views.APIView):
         new_methods_raw.is_valid()
         new_methods = new_methods_raw.save()
         return Response({}, status=status.HTTP_200_OK)
-
