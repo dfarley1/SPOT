@@ -1,5 +1,12 @@
-<h1 class="text-center">Lot Info</h1>
-  <select class="form-control" ng-model="selectedName" ng-options="lot.name for lot in vm.currLots">
-  </select> 
-  
-  <div class="text-center" ng-repeat="info_field in vm.currSpots">info_field.name<div> 
+{% verbatim %}
+<h1 class="text-center">Lot Stats</h1>  
+  <div>
+    <table class="table table-striped">
+      <tbody>
+        <tr><td>Peak hour: </td><td> 4 PM</td></tr>
+        <tr><td>Occupied:</td><td> 152</td></tr>
+      </tbody>
+    </table>
+  </div>
+{% endverbatim %}
+

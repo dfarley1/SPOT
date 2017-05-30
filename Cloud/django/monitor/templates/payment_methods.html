@@ -1,0 +1,12 @@
+<div ng-controller="PaymentMethodsController as vm">
+    <fieldset  data-ng-repeat="method in vm.payment_methods">
+        Payment method: <input type="text" ng-model="method.name" placeholder="ex: R Permit, Credit Card, etc.">
+        Purchase price: $<input type="text" ng-model="method.purchase_price" placeholder="0.00">
+        Rate modifier: <input type="text" ng-model="method.rate_modifier" placeholder="0.0">
+        <button class="remove" ng-click="vm.remove_method($index)">-</button>
+        <br/><br/>
+    </fieldset>
+    <button class="addfields" ng-click="vm.add_method()">Add payment method</button><br/>
+    <button class="submit" ng-click="vm.save_methods()">Save</button>
+    {{ vm.payment_methods }}
+</div>

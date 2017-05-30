@@ -34,6 +34,14 @@
       </div>
     </div>
   </div>
+  
+
+ <select class="selectpicker" ng-model="selectedLot" ng-options="lot.name for lot in vm.currLots">
+    <option value="" selected disabled>Select a lot...</option>
+  </select> 
+
+
+
 
   <!-- Display SPOT table -->
   <div class="col-md-8 col-md-offset">

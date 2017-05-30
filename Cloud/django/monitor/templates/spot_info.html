@@ -1,0 +1,33 @@
+{% verbatim %}
+<h1 class="text-center">Spot Info</h1>
+<div ng-switch="vm.spot_editable">
+    <div ng-switch-when="true"> 
+      <table class="table table-striped">
+      <tbody> 
+        <tr><td>Section: </td><td class="text-center">
+          <select class="selectpicker" ng-model="selectedLot" ng-options="lot.name for lot in vm.currLots">
+            <option value="" selected disabled>Select a lot...</option>
+          </select>
+        </td></tr>
+        <tr><td>Number: </td><td class="text-center">2</td></tr>
+        <tr><td>Active: </td><td><input type="text" class="form-control text-center" ng-model="vm.spot_edit_active" placeholder="False"></td></tr>
+        <tr><td>Price: </td><td><input type="text" class="form-control text-center" ng-model="vm.spot_edit_price" placeholder="$10/hr"></td></tr>
+      </tbody>
+      </table>
+    </div>
+    <div ng-switch-when="false">
+      <table class="table table-striped">
+      <tbody> 
+        <tr><td>Section: </td><td class="text-center">Level 1</td></tr>
+        <tr><td>Number:</td><td class="text-center">2</td></tr>
+        <tr><td>Active: </td><td class="text-center">{{ vm.curr_info.active }}</td></tr>
+        <tr><td>Price: </td><td class="text-center">2.99 ($/hr)</td></tr>
+      </tbody>
+      </table>
+    </div>
+<button class="btn btn-primary" ng-switch-when="false" ng-click="vm.clear_info()">Reset</button>
+<button class="btn btn-primary" ng-switch-when="false" ng-click="vm.show_editable()">Edit</button>
+<button class="btn btn-primary" ng-switch-when="true" ng-click="vm.show_editable()">Cancel</button>
+<button class="btn btn-primary" ng-switch-when="true" ng-click="vm.save_editable()">Save</button>
+</div>
+{% endverbatim %}

@@ -1,0 +1,22 @@
+{% if user.is_authenticated %}
+{% verbatim %}
+<button class="submit" ng-click="vm.save_rates()">Save Rates</button>
+<table>
+    <tr>
+        <th></th><th>Sunday</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th>
+    </tr>
+    <tr ng-repeat="chunk in vm.rates[0] track by $index"> 
+        <td>{{("00"+Math.floor($index/4)).slice(-2)}}:{{("00"+($index%4)*15).slice(-2)}}</td>
+        <td>&nbsp;<input type="text" ng-model="vm.rates[0][$index]" size="5"></td>
+        <td>&nbsp;<input type="text" ng-model="vm.rates[1][$index]" size="5"></td>
+        <td>&nbsp;<input type="text" ng-model="vm.rates[2][$index]" size="5"></td>
+        <td>&nbsp;<input type="text" ng-model="vm.rates[3][$index]" size="5"></td>
+        <td>&nbsp;<input type="text" ng-model="vm.rates[4][$index]" size="5"></td>
+        <td>&nbsp;<input type="text" ng-model="vm.rates[5][$index]" size="5"></td>
+        <td>&nbsp;<input type="text" ng-model="vm.rates[6][$index]" size="5"></td>
+    </tr>
+</table>
+{% endverbatim %}
+{% else %}
+Unauthorized
+{% endif %}

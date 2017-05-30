@@ -20,7 +20,7 @@ from django.forms import ModelForm
 from rest_framework import serializers
 
 
-from authentication.models import Account, AccountManager
+from authentication.models import *
 from sensor.models import *
 
 class event_log(models.Model):
@@ -53,5 +53,20 @@ class event_log(models.Model):
 class event_log_serialized(serializers.ModelSerializer):
     class Meta:
         model = event_log
-        depth = 2
+        depth = 3
         fields = ('start', 'end', 'total_paid', 'user', 'spot')
+
+class payment_method(models.Model):
+    name = models.CharField("Payment Method Name", max_length=100)
+    purchase_price = models.FloatField("Purchase Price", default = 0.0)
+    rate_modifier = models.FloatField("Rate Modifier", default = 1.0)
+
+
+class payment_method_serialized(serializers.ModelSerializer):
+    class Meta:
+        model = payment_method
+        depth = 2
+        fields = ('id', 'name', 'purchase_price', 'rate_modifier')
+    
+    def create(self, validated_data):
+        return payment_method.objects.create(**validated_data)

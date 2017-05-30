@@ -20,22 +20,30 @@
             controller: 'LoginController',
             controllerAs: 'vm',
             templateUrl: '/static/templates/authentication/login.html'
-        }).when('/test', {
+        }).when('/Lots', {
             controller: 'MonitorController',
             controllerAs: 'vm',
-            templateUrl: '/static/templates/monitor/monitor.html'
+            templateUrl: 'static/templates/monitor/lots.html'
         }).when('/monitor', {
             controller: 'MonitorController',
             controllerAs: 'vm',
             templateUrl: 'monitor/templates/monitor.html'
-        }).when('/mobile', {
-            controller: 'UserController',
+        }).when('/payment_methods', {
+            controller: 'PaymentMethodsController',
             controllerAs: 'vm',
-            templateUrl: '/static/templates/mobile/mobile.html'
+            templateUrl: 'monitor/templates/payment_methods.html'
         }).when('/user', {
             controller: 'UserController',
             controllerAs: 'vm',
             templateUrl: 'user/templates/user.html'
+        }).when('/edit_structures', {
+            controller: 'StructuresController',
+            controllerAs: 'vm',
+            templateUrl: 'monitor/templates/edit_structures.html'
+        }).when('/edit_rates', {
+            controller: 'StructuresController',
+            controllerAs: 'vm',
+            templateUrl: 'monitor/templates/edit_rates.html'
         })
         // .otherwise('/', {
         //     controller: 'MonitorController',

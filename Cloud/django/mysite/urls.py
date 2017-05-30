@@ -26,6 +26,7 @@ urlpatterns = [
     #templates
     url(r'^sensor/', include('sensor.urls')),
     url(r'^monitor/', include('monitor.urls')),
+    #url(r'^payment_methods/', include('monitor.urls')),
     url(r'^user/', include('user.urls')),
     url(r'^admin/', include(admin.site.urls)),
     #api
