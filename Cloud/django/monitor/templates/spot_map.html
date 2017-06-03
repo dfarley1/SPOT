@@ -2,18 +2,54 @@
 <h1 class="text-center">{{ vm.curr_lot.name }}</h1>
 {% endverbatim %}
 {% load static %}
-<p>
-    <img class="map_img" name="spot_map" src="{% static "media/monitor/spot_graphic.png" %}" usemap="#spot_map" border="0" width="100%">
+
+<img name="map_img" onload="resize" src="{% static "media/monitor/spot_graphic.png" %}" usemap="#map" border="0" width="100%">
+<map name="map">
+    <area shape="rect" coords="10,12,144,288" ng-click="vm.spot_info(0)">
+</map>
+
+<script type="text/javascript">
+var map_img = $("[name='map_img']")[0],
+    old_width = 1280.0;
+
+var resize = function() {
+    var map = $("[name='map']");
+    map.find("area").each(function(){
+        var coords = $(this).attr("coords").split(",");
+        var new_coords = "";
+        var scale = map_img.clientWidth / old_width;
+        for (coord in coords) {
+            new_coords += Math.round(coords[coord] * scale) + ',';
+        }
+        new_coords = new_coords.slice(0, -1);
+        $(this).attr("coords", new_coords);
+        old_width = map_img.clientWidth;
+    });
+};
+
+window.onload = resize();
+window.onresize = resize;
+</script>
+
+
+
+<!--<p>
+    <img name="spot_map" src="{% static "media/monitor/spot_graphic.png" %}" usemap="#spot_map" border="0" width="100%">
 </p>
 <map name="spot_map">
     <area shape="rect" coords="10,12,144,288" ng-click="vm.spot_info(0)" ng-if="vm.currSpots[0]"> 
+
+
+    <area shape="poly" coords="409,298,409,298,411,292,409,279,409,233,408,233,437,231,446,263,449,267,448,270,448,275,450,285,421,288,420,290,423,294,423,296,420,299,418,297,416,294,414,294,414,298,409,298" href="http://en.wikipedia.org/wiki/Alabama" title="Alabama">
+    <area shape="poly" coords="58,294,56,293,55,292,54,292,51,294,49,293,47,294,46,293,43,292,41,293,39,292,38,291,36,291,35,291,34,291,33,290,31,292,28,292,26,294,24,295,22,298,22,300,21,301,16,301,16,303,21,307,21,309,23,310,24,313,24,314,24,314,20,314,20,312,17,312,17,314,16,313,12,316,15,317,14,318,14,319,15,320,17,321,21,321,22,321,25,320,26,320,25,322,26,325,25,326,22,326,21,328,20,328,19,327,18,328,17,330,15,331,14,335,15,336,16,337,16,338,15,339,17,341,18,342,18,343,20,343,22,342,23,345,23,347,23,348,23,349,24,348,27,347,30,350,31,347,32,349,34,348,33,350,32,354,29,358,26,361,25,362,24,361,23,362,21,364,18,366,17,365,15,366,14,368,11,369,9,369,8,369,8,370,7,372,6,372,6,371,5,371,4,372,2,374,5,373,6,373,11,370,14,370,15,368,19,367,21,366,22,366,23,365,23,363,26,364,28,362,30,363,32,360,31,359,36,356,37,354,40,351,42,350,42,349,43,347,41,346,41,345,43,344,44,342,44,340,45,339,47,336,48,335,51,337,49,336,48,337,47,339,46,342,48,343,47,344,46,345,48,345,49,344,52,340,53,341,55,340,55,337,55,336,58,335,58,336,59,337,61,337,62,337,64,339,69,337,72,337,74,335,74,336,74,338,78,339,79,340,81,341,84,340,84,342,87,344,90,347,90,347,90,346,90,343,92,344,93,346,94,349,97,351,100,351,99,348,100,346,100,348,102,350,104,349,104,348,102,343,97,343,88,336,87,336,86,335,85,335,83,333,81,334,82,336,80,338,74,334,74,333,73,334,70,335,58,294" href="http://en.wikipedia.org/wiki/Alaska" title="Alaska">
+    <area shape="poly" coords="163,213,153,290,131,288,90,266,91,262,93,263,95,262,95,259,94,258,93,254,96,250,98,245,102,242,102,240,100,239,99,235,98,230,100,216,101,216,103,216,104,218,105,219,106,218,109,207,163,213" href="http://en.wikipedia.org/wiki/Arizona" title="Arizona">
+    <area shape="poly" coords="383,236,383,236,381,235,380,239,378,239,378,243,374,247,374,249,374,250,373,252,373,254,372,254,371,256,373,261,373,263,372,265,339,266,339,259,333,257,333,257,333,232,331,218,381,216,382,218,379,221,379,222,380,223,382,223,383,227,383,236" href="http://en.wikipedia.org/wiki/Arkansas" title="Arkansas">
+    <area shape="poly" coords="148,148,155,94,224,101,220,155,181,154,150,150,148,148" href="http://en.wikipedia.org/wiki/Wyoming" title="Wyoming">
 </map>
 <script src="{% static "media/monitor/imageMapResizer.min.js" %}"></script>
-<script src="{% static "media/monitor/jquery.maphilight.js" %}"></script>
 <script type="text/javascript">
     $('map').imageMapResize();
-    $('.map_img').maphilight();
-</script>
+</script>-->
 
 
 <!--<img id="mapimg" class="img-responsive" src="{% static "media/monitor/spot_graphic.png" %}" usemap="#spot_map">-->

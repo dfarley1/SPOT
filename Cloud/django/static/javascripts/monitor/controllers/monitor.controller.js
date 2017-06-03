@@ -35,8 +35,8 @@
     // Load Server data
     load_lots();
     load_periodic();
-    //load_spots();
-    //load_sections();
+    load_spots();
+    load_sections();
   
     vm.spot_info = spot_info;
     vm.lot_info = lot_info;
@@ -157,7 +157,7 @@
       setInterval(function() {
         load_spots();
         load_sections();
-      }, 1500);
+      }, 1000000000);
     }
 
   }
