@@ -4,6 +4,7 @@
 {% load static %}
 
 
+<!--
 <canvas id="demo" width=400 height=400></canvas>
 <script>
 
@@ -14,6 +15,8 @@ var canvas = document.getElementById('demo'),
 
 
 ctx.strokeStyle = '#fff';
+
+
 
 function Line(ctx) {
       
@@ -26,8 +29,7 @@ var me = this;
 
     this.draw = function() {
         ctx.beginPath();
-        ctx.moveTo(me.x1, me.y1);
-        ctx.lineTo(me.x2, me.y2);
+        ctx.rect(20,20,150,100);
         ctx.stroke();
     }
 }
@@ -57,10 +59,15 @@ function updateLine(e) {
 }
 
 </script>
+-->
 
-<img name="map_img" onload="resize" src="{% static "media/monitor/spot_graphic.png" %}" usemap="#map" border="0" width="100%">
+<img name="map_img" ng-if="vm.currSpots[1].occ_status==0" onload="resize" src="{% static "media/monitor/spot_graphic_R4.png" %}" usemap="#map" border="0" width="100%">
+<img name="map_img" ng-if="vm.currSpots[1].occ_status==1" onload="resize" src="{% static "media/monitor/spot_graphic_G4.png" %}" usemap="#map" border="0" width="100%">
+<img name="map_img" ng-if="vm.currSpots[1].occ_status==2" onload="resize" src="{% static "media/monitor/spot_graphic_Y4.png" %}" usemap="#map" border="0" width="100%">
+
 <map name="map">
     <area shape="rect" coords="10,12,144,288" ng-click="vm.spot_info(0)">
+    <area shape="rect" coords="194,12,254,288" ng-click="vm.spot_info(1)">
 </map>
 
 <script type="text/javascript">
@@ -85,6 +92,7 @@ var resize = function() {
 window.onload = resize();
 window.onresize = resize;
 </script>
+
 
 
 
