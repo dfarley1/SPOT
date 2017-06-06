@@ -61,8 +61,8 @@ function updateLine(e) {
 </script>
 -->
 
-<img name="map_img" ng-if="vm.currSpots[1].occ_status==0" onload="resize" src="{% static "media/monitor/spot_graphic_R4.png" %}" usemap="#map" border="0" width="100%">
-<img name="map_img" ng-if="vm.currSpots[1].occ_status==1" onload="resize" src="{% static "media/monitor/spot_graphic_G4.png" %}" usemap="#map" border="0" width="100%">
+<img name="map_img" ng-if="vm.currSpots[1].occ_status==0" onload="resize" src="{% static "media/monitor/spot_graphic_G4.png" %}" usemap="#map" border="0" width="100%">
+<img name="map_img" ng-if="vm.currSpots[1].occ_status==1" onload="resize" src="{% static "media/monitor/spot_graphic_R4.png" %}" usemap="#map" border="0" width="100%">
 <img name="map_img" ng-if="vm.currSpots[1].occ_status==2" onload="resize" src="{% static "media/monitor/spot_graphic_Y4.png" %}" usemap="#map" border="0" width="100%">
 
 <map name="map">
