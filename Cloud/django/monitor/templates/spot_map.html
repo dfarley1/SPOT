@@ -16,18 +16,18 @@ var map_img = $("[name='map_img']")[0],
 var resize = function() {
     var map = $("[name='map']"),
         scale = map_img.clientWidth / old_width;
-        console.log("scale=" + map_img.clientWidth + "/" + old_width + "=" + scale);
+        //console.log("scale=" + map_img.clientWidth + "/" + old_width + "=" + scale);
     
     map.find("area").each(function(){
         var coords = $(this).attr("coords").split(",");
-        console.log("old = " + coords);
+        //console.log("old = " + coords);
         var new_coords = "";
         for (coord in coords) {
             new_coords += Math.round(coords[coord] * scale) + ',';
         }
         new_coords = new_coords.slice(0, -1);
         $(this).attr("coords", new_coords);
-        console.log("new = " + $(this).attr("coords").split(","));
+        //console.log("new = " + $(this).attr("coords").split(","));
         old_width = map_img.clientWidth;
     });
 };
