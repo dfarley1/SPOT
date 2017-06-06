@@ -1,6 +1,5 @@
 #!/bin/bash
-#IMPORT_UUID="/home/pi/spot_log/uuid_file.txt"
-IMPORT_UUID=`echo /home/pi/spot_log/uuid_file.txt`
+IMPORT_UUID="/home/pi/spot_log/uuid_file.txt"
 CURRENT_UUID=`cat $IMPORT_UUID`
 sudo hciconfig hci0 up
 sudo hciconfig hci0 leadv 3
