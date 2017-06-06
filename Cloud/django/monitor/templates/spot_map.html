@@ -3,7 +3,68 @@
 {% endverbatim %}
 {% load static %}
 
-<img name="map_img" onload="resize" src="{% static "media/monitor/spot_graphic.png" %}" usemap="#map" border="0" width="100%">
+
+<!--
+<canvas id="demo" width=400 height=400></canvas>
+<script>
+
+var canvas = document.getElementById('demo'),
+    ctx = canvas.getContext('2d'),
+    line = new Line(ctx),
+    img = new Image;
+
+
+ctx.strokeStyle = '#fff';
+
+
+
+function Line(ctx) {
+      
+var me = this;
+
+    this.x1 = 0;
+    this.x2 = 0;
+    this.y1 = 0;
+    this.y2 = 0;
+
+    this.draw = function() {
+        ctx.beginPath();
+        ctx.rect(20,20,150,100);
+        ctx.stroke();
+    }
+}
+
+img.onload = start;
+//img.src = 'http://i.imgur.com/O712qpO.jpg';
+img.src = 'static/media/monitor/spot_graphic.png';
+
+function start() {
+    ctx.drawImage(img, 0, 0, demo.width, demo.height);
+    canvas.onmousemove = updateLine;
+}
+
+
+function updateLine(e) {
+    var r = canvas.getBoundingClientRect(),
+    x = e.clientX - r.left,
+    y = e.clientY - r.top;
+
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+    line.x1 = x;
+    line.y1 = 0;
+    line.x2 = x;
+    line.y2 = canvas.height;
+    line.draw();
+}
+
+</script>
+-->
+
+<img name="map_img" ng-if="vm.currSpots[1].occ_status==0" onload="resize" src="{% static "media/monitor/spot_graphic_G4.png" %}" usemap="#map" border="0" width="100%">
+<img name="map_img" ng-if="vm.currSpots[1].occ_status==1" onload="resize" src="{% static "media/monitor/spot_graphic_R4.png" %}" usemap="#map" border="0" width="100%">
+<img name="map_img" ng-if="vm.currSpots[1].occ_status==2" onload="resize" src="{% static "media/monitor/spot_graphic_Y4.png" %}" usemap="#map" border="0" width="100%">
+
 <map name="map">
     <area shape="rect" coords="10,11,144,290" ng-click="vm.spot_info(0)">
     <area shape="rect" coords="151,11,285,290" ng-click="vm.spot_info(1)">
