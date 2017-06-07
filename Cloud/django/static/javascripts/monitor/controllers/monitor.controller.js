@@ -157,7 +157,7 @@
       setInterval(function() {
         load_spots();
         load_sections();
-      }, 1250);
+      }, 5000);
     }
 
   }
