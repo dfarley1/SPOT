@@ -3,13 +3,13 @@
 {% endverbatim %}
 {% load static %}
 <div id="map_div" style="position:relative; height:920px" width="100%">
-    <img name="map_g2" ng-show="vm.currSpots[0].occ_status==0" src="{% static "media/monitor/spot_graphic_G2.png" %}" border="0" width="100%" style="position:absolute; z-index:0;"/>
-    <img name="map_r2" ng-show="vm.currSpots[0].occ_status!=0" src="{% static "media/monitor/spot_graphic_R2.png" %}" border="0" width="100%" style="position:absolute; z-index:0;"/>
+    <img name="map_g2" ng-show="vm.currSpots[3].occ_status==0" src="{% static "media/monitor/spot_graphic_G2.png" %}" border="0" width="100%" style="position:absolute; z-index:0;"/>
+    <img name="map_r2" ng-show="vm.currSpots[3].occ_status!=0" src="{% static "media/monitor/spot_graphic_R2.png" %}" border="0" width="100%" style="position:absolute; z-index:0;"/>
     <img name="map_g4" ng-show="vm.currSpots[2].occ_status==0" src="{% static "media/monitor/spot_graphic_G4.png" %}" border="0" width="100%" style="position:absolute; z-index:0;"/>
     <img name="map_r4" ng-show="vm.currSpots[2].occ_status!=0" src="{% static "media/monitor/spot_graphic_R4.png" %}" border="0" width="100%" style="position:absolute; z-index:0;"/>
     <img name="map_img" onload="resize" src="{% static "media/monitor/spot_graphic.png" %}" usemap="#map" border="0" width="100%" style="position:absolute; z-index:0;"/>
     <map name="map" style="position:absolute; z-index:2;">
-        <area shape="rect" coords="10,11,144,290" ng-click="vm.spot_info(0)" style="position:absolute; z-index:2;">
+        <area shape="rect" coords="151,11,285,290" ng-click="vm.spot_info(3)" style="position:absolute; z-index:2;">
         <area shape="rect" coords="431,11,565,290" ng-click="vm.spot_info(2)" style="position:absolute; z-index:2;">
     </map>
 </div>

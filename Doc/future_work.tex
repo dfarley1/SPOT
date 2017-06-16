@@ -1,0 +1,48 @@
+\subsection{Hardware}
+The hardware was primarily chosen based on its ease of use and quick prototyping for quick implementation with the database.
+We were focused on getting a working prototype to make sure that our idea was possible. 
+We've realized that we really only need a CPU, GPU, Bluetooth transceiver, Wifi transceiver, camera, and proximity sensor. 
+Using only these components we could develop our own PCB that is an optimized version of our prototype. 
+
+It would also be beneficial if you didn't have to do a serial connection between the raspberry pi and the arduino nano. There is about a 2 second delay for the light to turn green or red which isn't the worst thing ever however it is still a little bit of an annoyance. 
+
+The Camera software can be signficantly improved with additional image preprocessing. Currently we directly hand our images to our openALPR command. This only yields about 80\%-90\% depending on the angle. We could improve it by training the openALPR data with our own images.
+
+\subsubsection{Power Efficient Device}
+Cutting down on hardware, we can foresee a significant drop it power consumption. 
+The Raspberry Pi Model 3 itself is extremely overkill and we believe that it can be marked down significantly.
+Also there is an extreme amount of power that is used to power the neopixel rings. It may be best to use something else for the status light. 
+For instance, we do not need all 40 GPIO pins, multi-core processors, or even all the USB ports.
+Additionally, power-conserving software can be implemented to ensure our system is only at full power when absolutely necessary and remains idle or in a very low powered state normally.
+
+\subsubsection{Magnetometer}
+Currently, our ping sensor relies on sound waves. 
+This requires that there is not high acoustic impedance, meaning we can't fully enclose the proximity sensor into our package. 
+As discussed in the sensor section of this paper, the ping sensor relies heavily on a flat object.
+For car bumpers this is not ideal since most cars are curved.
+This is also undesirable since we would ideally like to weather-proof our whole design to design for longevity. 
+Using other sensors, like a magnetometer, can provide a different means of sensing that can also allow for full weather-proofing of the device.
+Magnetometers simplify our device to: 
+'If there is a chunk of metal in front of me, signal high. 
+Otherwise leave the GPIO pin low.'
+
+\subsection{Mechanical Design}
+Currently the mechanical design isn't as sturdy as we would have hoped.
+We would like to one day incorporate a LCD screen into the module and find a tube that doesn't shatter as easily as acrylic. 
+Also the magnets are one of the most expensive parts of the hardware. 
+If possible I would recommend redesigning without them. 
+It might be beneficial to also create a different sensor module that could be produced and assembled faster.
+It takes approximately one full week to print all the necessary parts. 
+It would also be handy to create a low cost module that doesn't have a camera but can easily detect whether or not a car is there. 
+It would be nice to actually make several modules, ranging in various prices, in order to meet the needs of the potential customer.
+Experimenting with a Raspberry Pi 0W would be another option too. 
+
+\subsection{Cloud}
+\begin{itemize}
+    \item Refactor the sensor API to utilize DRF and JSON transactions
+    \item Complete the implementation of payment methods
+    \item Redesign the payment calculation algorithm as described above.
+    \item Implement license plate verification
+    \item Add the ability for SPOTs, sections, and lots to all define their own rates with the ability to fallthrough to the containing region
+    \item Define a manager account and add checks on edit pages to make sure the user is a manager
+\end{itemize}  
